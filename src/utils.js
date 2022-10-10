@@ -107,7 +107,6 @@ export const fetcher = async () => {
     return undefined
   }
 
-  const nodeNames = Object.keys(parsedData.nodes)
   const nodes = Object.keys(parsedData.nodes).map(nodeName => ({
     name: nodeName,
     parsedSchema: pasrseNodeSchemaInfo(parsedData.nodes[nodeName]['__schema'])
