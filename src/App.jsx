@@ -1,16 +1,24 @@
 import React from 'react'
 import { GraphiQL } from 'graphiql'
+import { createGraphiQLFetcher } from '@graphiql/toolkit'
 
 import { useFederationInfoPlugin } from './federation-info-plugin'
-import { fetcher } from './utils'
 
 import 'graphiql/graphiql.css'
 
 function App() {
+  const federationSchemaUrl = 'http://localhost:3001/federation-schema'
+
+  const fetcher = createGraphiQLFetcher({
+    url: 'http://localhost:3001/graphql'
+  })
+
   return (
     <div style={{ height: '100vh' }}>
-      <p data-testid="custom-element">This is rendered</p>
-      <GraphiQL fetcher={fetcher} plugins={[useFederationInfoPlugin()]} />
+      <GraphiQL
+        fetcher={fetcher}
+        plugins={[useFederationInfoPlugin({ federationSchemaUrl })]}
+      />
     </div>
   )
 }
