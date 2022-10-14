@@ -14,6 +14,9 @@
     "plugin",
     "graphiql"
   ],
+  "files": [
+    "dist"
+  ],
   "author": "",
   "license": "ISC",
   "bugs": {
@@ -26,7 +29,8 @@
     "eject": "react-scripts eject",
     "prepare": "husky install",
     "lint": "eslint src/**/*.{js,jsx}",
-    "lint:fix": "eslint --fix"
+    "lint:fix": "eslint --fix",
+    "prepublish": "build"
   },
   "dependencies": {
     "@graphiql/react": "^0.13.3",
