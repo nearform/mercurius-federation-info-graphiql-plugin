@@ -30,7 +30,7 @@
     "prepare": "husky install",
     "lint": "eslint src/**/*.{js,jsx}",
     "lint:fix": "eslint --fix",
-    "prepublish": "build"
+    "prepublish": "npm run build"
   },
   "dependencies": {
     "@graphiql/react": "^0.13.3",
