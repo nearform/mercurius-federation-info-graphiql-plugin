@@ -18,7 +18,6 @@ const sortObjectsByName = objects => {
   })
 }
 
-//TODO: Write test for complex nested types
 const createTypeString = type => {
   if (type.name) {
     return type.name
@@ -105,13 +104,15 @@ const getMutationsFromObjects = (mutationTypeName, graphQlObjects) => {
 }
 
 const pasrseNodeSchemaInfo = schema => {
+  //TODO: Is there a generic GraphQL default for the query and mutation OBJECT
+  //TODO: that should be used in case the queryType and mutationType
+  //TODO: is not specified in the schema?
   const queryTypeName = schema.queryType ? schema.queryType.name : undefined
   const mutationTypeName = schema.mutationType
     ? schema.mutationType.name
     : undefined
 
-  //TODO: discuss if the mutation and subscription info should be seperate from entities or not
-  // const subscriptionTypeName = Boolean(schema.queryType) ? schema.queryType.name : undefined
+  //TODO: Implementing the parsing of subscriptions and enumerations
 
   const graphQlObjects = schema.types.filter(
     type => type.kind === TYPE_KIND.OBJECT
@@ -136,15 +137,26 @@ const pasrseNodeSchemaInfo = schema => {
 // Public ////////////////
 //////////////////////////
 const parseFederationSchema = federationSchema => {
-  //TODO: Error feedback to user about missing data or incorrect date shape
+  //TODO: Error feedback to user about missing data or incorrect data shape.
   if (!federationSchema.nodes) {
     return undefined
   }
 
-  const nodes = Object.keys(federationSchema.nodes).map(nodeName => ({
-    name: nodeName,
-    schema: pasrseNodeSchemaInfo(federationSchema.nodes[nodeName]['__schema'])
-  }))
+  const nodes = Object.keys(federationSchema.nodes)
+    .map(nodeName => {
+      //TODO: Should there be an error if a node returned without '__schema'?
+      if (!federationSchema.nodes[nodeName]['__schema']) {
+        return undefined
+      }
+
+      return {
+        name: nodeName,
+        schema: pasrseNodeSchemaInfo(
+          federationSchema.nodes[nodeName]['__schema']
+        )
+      }
+    })
+    .filter(node => node)
 
   const sortedNodes = sortObjectsByName(nodes)
 

@@ -15,6 +15,7 @@ afterEach(() => {
   container = null
 })
 
+//TODO: Write some visual tests
 test('Render the Graphiql component', () => {
   // render(<App />)
 
