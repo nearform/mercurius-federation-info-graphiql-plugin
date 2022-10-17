@@ -1,26 +1,36 @@
-import { render, screen } from '@testing-library/react'
+import { render } from '@testing-library/react'
+import { unmountComponentAtNode } from 'react-dom'
 import { act } from 'react-dom/test-utils'
-import ReactDOM from 'react-dom/client'
 import App from './App'
+import { createGraphiQLFetcher } from '@graphiql/toolkit'
+jest.mock('@graphiql/toolkit')
 
-let container
-
+let container = null
 beforeEach(() => {
+  // setup a DOM element as a render target
   container = document.createElement('div')
   document.body.appendChild(container)
 })
 
 afterEach(() => {
-  document.body.removeChild(container)
+  // cleanup on exiting
+  unmountComponentAtNode(container)
+  container.remove()
   container = null
 })
 
-//TODO: Write some visual tests
-test('Render the Graphiql component', () => {
-  // render(<App />)
+//TODO: Write some more visual tests
+test('Render the Graphiql component', async () => {
+  createGraphiQLFetcher.mockReturnValue(() => {})
+  const { getByTestId } = render(<App />, {
+    container
+  })
 
-  // const linkElement = screen.getByTestId('custom-element')
-  // console.log(linkElement)
-  // // expect(linkElement).toBeInTheDocument()
-  expect(true).toBeTruthy()
+  await act(async () => {
+    expect(getByTestId('graphiql-container')).toBeInTheDocument()
+    expect(getByTestId('plugin-icon')).toBeInTheDocument()
+    expect(createGraphiQLFetcher).toHaveBeenCalledWith({
+      url: 'http://localhost:3001/graphql'
+    })
+  })
 })
