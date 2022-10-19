@@ -138,9 +138,13 @@ const getEnumsFromSchema = schema => {
 }
 
 const pasrseNodeSchemaInfo = schema => {
-  const queryTypeName = schema.queryType?.name
-  const mutationTypeName = schema.mutationType?.name
-  const subscriptionTypeName = schema.subscriptionType?.name
+  const queryTypeName = schema.queryType ? schema.queryType.name : undefined
+  const mutationTypeName = schema.mutationType
+    ? schema.mutationType.name
+    : undefined
+  const subscriptionTypeName = schema.subscriptionType
+    ? schema.subscriptionType.name
+    : undefined
 
   const graphQlObjects = schema.types.filter(
     type => type.kind === TYPE_KIND.OBJECT

@@ -28,3 +28,8 @@ export function useFederationInfoPlugin(props) {
     [federationNodes]
   )
 }
+
+export function umdPlugin() {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  return useFederationInfoPlugin()
+}
