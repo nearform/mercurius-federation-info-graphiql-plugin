@@ -119,8 +119,10 @@ describe('parseFederationSchema', () => {
             },
             { attributes: [], isExtension: false, key: undefined, name: 'User' }
           ],
+          enums: [],
           mutations: [],
-          queries: [{ name: 'topPosts', returnType: 'String' }]
+          queries: [{ name: 'topPosts', returnType: 'String' }],
+          subscriptions: []
         }
       }
     ]
@@ -164,9 +166,13 @@ describe('parseFederationSchema', () => {
                         kind: 'LIST',
                         name: null,
                         ofType: {
-                          kind: 'OBJECT',
-                          name: 'Post',
-                          ofType: null
+                          kind: 'NON_NULL',
+                          name: null,
+                          ofType: {
+                            kind: 'OBJECT',
+                            name: 'Post',
+                            ofType: null
+                          }
                         }
                       }
                     }
@@ -185,10 +191,12 @@ describe('parseFederationSchema', () => {
         schema: {
           entities: [],
           mutations: [],
+          enums: [],
           queries: [
-            { name: 'allPostsInYear', returnType: 'NON_NULL<LIST<Post>>' },
-            { name: 'topPosts', returnType: 'LIST<Post>' }
-          ]
+            { name: 'allPostsInYear', returnType: '[Post!]!' },
+            { name: 'topPosts', returnType: '[Post]' }
+          ],
+          subscriptions: []
         }
       }
     ]
@@ -234,13 +242,69 @@ describe('parseFederationSchema', () => {
         name: 'post',
         schema: {
           entities: [],
+          enums: [],
           mutations: [
             {
               name: 'createPost',
-              returnType: 'NON_NULL<PostInput>'
+              returnType: 'PostInput!'
             }
           ],
-          queries: []
+          queries: [],
+          subscriptions: []
+        }
+      }
+    ]
+
+    const result = parseFederationSchema(input)
+
+    expect(result).toEqual(expectation)
+  })
+
+  it('returns the subscriptions for the node with their return types', () => {
+    const input = {
+      nodes: {
+        post: {
+          __schema: {
+            subscriptionType: { name: 'Subscription' },
+            types: [
+              {
+                kind: 'OBJECT',
+                name: 'Subscription',
+                fields: [
+                  {
+                    name: 'createPost',
+                    type: {
+                      kind: 'NON_NULL',
+                      name: null,
+                      ofType: {
+                        kind: 'INPUT_OBJECT',
+                        name: 'PostInput',
+                        ofType: null
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      }
+    }
+
+    const expectation = [
+      {
+        name: 'post',
+        schema: {
+          entities: [],
+          enums: [],
+          mutations: [],
+          queries: [],
+          subscriptions: [
+            {
+              name: 'createPost',
+              returnType: 'PostInput!'
+            }
+          ]
         }
       }
     ]
@@ -342,7 +406,7 @@ describe('parseFederationSchema', () => {
           entities: [
             {
               attributes: [
-                { isExternal: false, name: 'id', type: 'NON_NULL<ID>' },
+                { isExternal: false, name: 'id', type: 'ID!' },
                 { isExternal: false, name: 'name', type: 'String' }
               ],
               isExtension: false,
@@ -351,17 +415,19 @@ describe('parseFederationSchema', () => {
             },
             {
               attributes: [
-                { isExternal: true, name: 'id', type: 'NON_NULL<ID>' },
+                { isExternal: true, name: 'id', type: 'ID!' },
                 { isExternal: true, name: 'name', type: 'String' },
-                { isExternal: false, name: 'posts', type: 'LIST<Post>' }
+                { isExternal: false, name: 'posts', type: '[Post]' }
               ],
               isExtension: true,
               key: undefined,
               name: 'User'
             }
           ],
+          enums: [],
           mutations: [],
-          queries: []
+          queries: [],
+          subscriptions: []
         }
       }
     ]

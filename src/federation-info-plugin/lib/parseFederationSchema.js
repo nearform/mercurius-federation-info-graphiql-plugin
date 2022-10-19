@@ -19,15 +19,23 @@ const sortObjectsByName = objects => {
 }
 
 const createTypeString = type => {
+  //if has a name return it
   if (type.name) {
     return type.name
   }
 
-  if (type.ofType) {
-    return `${type.kind}<${createTypeString(type.ofType)}>`
+  switch (type.kind) {
+    case TYPE_KIND.LIST:
+      return `[${createTypeString(type.ofType)}]`
+    case TYPE_KIND.NON_NULL:
+      return `${createTypeString(type.ofType)}!`
+    default:
+      if (type.ofType) {
+        return `${type.kind}<${createTypeString(type.ofType)}>`
+      } else {
+        return type.kind
+      }
   }
-
-  return type.kind
 }
 
 const parseEntityField = field => {
@@ -53,15 +61,10 @@ const parseEntity = entity => {
   }
 }
 
-const getEntitiesFromObjects = (
-  queryTypeName,
-  mutationTypeName,
-  graphQlObjects
-) => {
+const getEntitiesFromObjects = (graphQlObjects, excludeTypes) => {
   const rawEntities = graphQlObjects.filter(
     graphQlObject =>
-      graphQlObject.name !== queryTypeName &&
-      graphQlObject.name !== mutationTypeName &&
+      !excludeTypes.includes(graphQlObject.name) &&
       !INTROSPECTION_TYPES.includes(graphQlObject.name) &&
       !GRAPH_QL_OBJECT_NAMES.includes(graphQlObject.name)
   )
@@ -87,6 +90,10 @@ const getObjectsForFunctionType = (functionTypeName, graphQlObjects) => {
 }
 
 const getQueriesFromObjects = (queryTypeName, graphQlObjects) => {
+  //if there is no queryType return empty
+  if (!queryTypeName) {
+    return []
+  }
   const queries = getObjectsForFunctionType(
     queryTypeName,
     graphQlObjects
@@ -96,6 +103,10 @@ const getQueriesFromObjects = (queryTypeName, graphQlObjects) => {
 }
 
 const getMutationsFromObjects = (mutationTypeName, graphQlObjects) => {
+  //if there is no mutationTypeName return empty
+  if (!mutationTypeName) {
+    return []
+  }
   const mutations = getObjectsForFunctionType(mutationTypeName, graphQlObjects)
 
   return sortObjectsByName(
@@ -103,16 +114,33 @@ const getMutationsFromObjects = (mutationTypeName, graphQlObjects) => {
   )
 }
 
-const pasrseNodeSchemaInfo = schema => {
-  //TODO: Is there a generic GraphQL default for the query and mutation OBJECT
-  //TODO: that should be used in case the queryType and mutationType
-  //TODO: is not specified in the schema?
-  const queryTypeName = schema.queryType ? schema.queryType.name : undefined
-  const mutationTypeName = schema.mutationType
-    ? schema.mutationType.name
-    : undefined
+const getSubscriptionFromObjects = (subscriptionTypeName, graphQlObjects) => {
+  //if there is no subscriptionTypeName return empty
+  if (!subscriptionTypeName) {
+    return []
+  }
+  const mutations = getObjectsForFunctionType(
+    subscriptionTypeName,
+    graphQlObjects
+  )
+  return sortObjectsByName(
+    mutations.map(mutation => parseGraphQlFunction(mutation))
+  )
+}
 
-  //TODO: Implementing the parsing of subscriptions and enumerations
+const getEnumsFromSchema = schema => {
+  return sortObjectsByName(
+    schema.types.filter(
+      type =>
+        type.kind === TYPE_KIND.ENUM && !INTROSPECTION_TYPES.includes(type.name)
+    )
+  )
+}
+
+const pasrseNodeSchemaInfo = schema => {
+  const queryTypeName = schema.queryType?.name
+  const mutationTypeName = schema.mutationType?.name
+  const subscriptionTypeName = schema.subscriptionType?.name
 
   const graphQlObjects = schema.types.filter(
     type => type.kind === TYPE_KIND.OBJECT
@@ -120,15 +148,24 @@ const pasrseNodeSchemaInfo = schema => {
 
   const queries = getQueriesFromObjects(queryTypeName, graphQlObjects)
   const mutations = getMutationsFromObjects(mutationTypeName, graphQlObjects)
-  const entities = getEntitiesFromObjects(
-    queryTypeName,
-    mutationTypeName,
+  const subscriptions = getSubscriptionFromObjects(
+    subscriptionTypeName,
     graphQlObjects
   )
+
+  const enums = getEnumsFromSchema(schema)
+
+  const entities = getEntitiesFromObjects(graphQlObjects, [
+    queryTypeName,
+    mutationTypeName,
+    subscriptionTypeName
+  ])
 
   return {
     queries,
     mutations,
+    subscriptions,
+    enums,
     entities
   }
 }
