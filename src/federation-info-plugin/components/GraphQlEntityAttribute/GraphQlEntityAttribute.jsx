@@ -1,8 +1,13 @@
-import PropTypes from 'prop-types'
 import React from 'react'
 
 import styles from './GraphQlEntityAttribute.module.scss'
 
+/**
+ * TODO: Add props definition here
+ * @param attribute
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const GraphQlEntityAttribute = ({ attribute }) => {
   const { name, type, isExternal } = attribute
 
@@ -19,10 +24,6 @@ const GraphQlEntityAttribute = ({ attribute }) => {
       {name}: {type} {addExternalLabel()}
     </div>
   )
-}
-
-GraphQlEntityAttribute.propTypes = {
-  attribute: PropTypes.object.isRequired
 }
 
 export default GraphQlEntityAttribute

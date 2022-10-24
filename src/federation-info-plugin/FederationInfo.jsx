@@ -1,14 +1,35 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React, { useEffect, useState } from 'react'
 
 import FederationNode from './components/FederationNode/FederationNode'
+import fetchFederationSchema from './lib/fetchFederationSchema'
+import parseFederationSchema from './lib/parseFederationSchema'
 
-const Content = props => {
-  const { federationNodes, error } = props
+const FederationInfoContent = ({ federationSchemaUrl }) => {
+  const [federationNodes, setFederationNodes] = useState([])
+
+  const [fetchError, setFetchError] = useState()
+
+  useEffect(() => {
+    const fetchSchema = async () => {
+      try {
+        const federationSchema = await fetchFederationSchema(
+          federationSchemaUrl
+        )
+        setFederationNodes(parseFederationSchema(federationSchema))
+      } catch (e) {
+        setFetchError(e)
+      }
+    }
+
+    fetchSchema()
+  }, [federationSchemaUrl])
+
   return (
     <div>
       <h3>Federation Info</h3>
-      {error && <div>Error fetching federation schema: {error.message}</div>}
+      {fetchError && (
+        <div>Error fetching federation schema: {fetchError.message}</div>
+      )}
       {federationNodes.map((federationNode, index) => (
         <FederationNode key={index} federationNode={federationNode} />
       ))}
@@ -18,9 +39,4 @@ const Content = props => {
 
 const Icon = () => <div>t</div> // <ShareNodes fill="currentColor" data-testid="plugin-icon" />
 
-Content.propTypes = {
-  federationNodes: PropTypes.array,
-  error: PropTypes.string
-}
-
-export { Content, Icon }
+export { FederationInfoContent, Icon }

@@ -29,7 +29,7 @@ const rollup = [
         name: 'federationInfo'
       }
     ],
-    external: ['react', '@graphiql/toolkit'],
+    external: ['react'],
     plugins: [
       resolve({
         extensions: ['.js', '.jsx']

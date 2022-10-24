@@ -1,8 +1,15 @@
-import PropTypes from 'prop-types'
 import React from 'react'
 
 import styles from './FederationNodeSection.module.scss'
 
+/**
+ * TODO: Add props definition here
+ * @param name
+ * @param sectionData
+ * @param EntryComponent
+ * @returns {JSX.Element|undefined}
+ * @constructor
+ */
 const FederationNodeSection = ({
   name,
   sectionData,
@@ -22,12 +29,6 @@ const FederationNodeSection = ({
       </div>
     </div>
   )
-}
-
-FederationNodeSection.propTypes = {
-  name: PropTypes.string.isRequired,
-  sectionData: PropTypes.array.isRequired,
-  entryComponent: PropTypes.func.isRequired
 }
 
 export default FederationNodeSection

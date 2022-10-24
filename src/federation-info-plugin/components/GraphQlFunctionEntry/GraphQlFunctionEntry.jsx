@@ -1,6 +1,11 @@
-import PropTypes from 'prop-types'
 import React from 'react'
 
+/**
+ * TODO: Add props definition here
+ * @param graphQlFunctionInfo
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const GraphQlFunctionEntry = ({ entry: graphQlFunctionInfo }) => {
   const { name, returnType } = graphQlFunctionInfo
   return (
@@ -8,10 +13,6 @@ const GraphQlFunctionEntry = ({ entry: graphQlFunctionInfo }) => {
       {name}: {returnType}
     </div>
   )
-}
-
-GraphQlFunctionEntry.propTypes = {
-  entry: PropTypes.object.isRequired
 }
 
 export default GraphQlFunctionEntry

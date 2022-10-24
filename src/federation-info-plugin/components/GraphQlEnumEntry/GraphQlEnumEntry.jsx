@@ -1,7 +1,12 @@
-import PropTypes from 'prop-types'
 import styles from './GraphQlEnumEntry.module.scss'
 import React from 'react'
 
+/**
+ * TODO: Add props definition here
+ * @param graphQlFunctionInfo
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const GraphQlEnumEntry = ({ entry: graphQlFunctionInfo }) => {
   const { name, enumValues } = graphQlFunctionInfo
   return (
@@ -14,10 +19,6 @@ const GraphQlEnumEntry = ({ entry: graphQlFunctionInfo }) => {
       ))}
     </div>
   )
-}
-
-GraphQlEnumEntry.propTypes = {
-  entry: PropTypes.object.isRequired
 }
 
 export default GraphQlEnumEntry

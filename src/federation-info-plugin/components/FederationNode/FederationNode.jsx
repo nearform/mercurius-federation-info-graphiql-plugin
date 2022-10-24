@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types'
 import React from 'react'
 
 import FederationNodeSection from '../FederationNodeSection/FederationNodeSection'
@@ -8,6 +7,12 @@ import GraphQlEnumEntry from '../GraphQlEnumEntry/GraphQlEnumEntry'
 
 import styles from './FederationNode.module.scss'
 
+/**
+ * TODO: Add props definition here
+ * @param federationNode
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const FederationNode = ({ federationNode }) => {
   const { name, schema } = federationNode
   const { queries, mutations, entities, subscriptions, enums } = schema
@@ -54,10 +59,6 @@ const FederationNode = ({ federationNode }) => {
       </div>
     </div>
   )
-}
-
-FederationNode.propTypes = {
-  federationNode: PropTypes.object.isRequired
 }
 
 export default FederationNode
