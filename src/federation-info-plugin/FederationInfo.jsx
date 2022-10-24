@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import FederationNode from './components/FederationNode/FederationNode'
 import fetchFederationSchema from './lib/fetchFederationSchema'
 import parseFederationSchema from './lib/parseFederationSchema'
+import { ReactComponent as ShareNodes } from './icons/share-nodes.svg'
 
 const FederationInfoContent = ({ federationSchemaUrl }) => {
   const [federationNodes, setFederationNodes] = useState([])
@@ -37,6 +38,6 @@ const FederationInfoContent = ({ federationSchemaUrl }) => {
   )
 }
 
-const Icon = () => <div>t</div> // <ShareNodes fill="currentColor" data-testid="plugin-icon" />
+const Icon = () => <ShareNodes fill="currentColor" data-testid="plugin-icon" />
 
 export { FederationInfoContent, Icon }

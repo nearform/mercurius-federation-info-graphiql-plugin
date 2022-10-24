@@ -19,7 +19,9 @@ const FederationNode = ({ federationNode }) => {
 
   return (
     <div className={styles.container}>
-      node <strong>{name}</strong>:
+      <div className={styles.nodeTitle}>
+        <strong>{name}</strong> node:
+      </div>
       <div className={styles.sectionsList}>
         {Boolean(queries) && (
           <FederationNodeSection
