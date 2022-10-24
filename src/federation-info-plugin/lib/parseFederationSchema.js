@@ -137,10 +137,14 @@ const getEnumsFromSchema = schema => {
   )
 }
 
-const pasrseNodeSchemaInfo = schema => {
-  const queryTypeName = schema.queryType?.name
-  const mutationTypeName = schema.mutationType?.name
-  const subscriptionTypeName = schema.subscriptionType?.name
+const parseNodeSchemaInfo = schema => {
+  const queryTypeName = schema.queryType ? schema.queryType.name : undefined
+  const mutationTypeName = schema.mutationType
+    ? schema.mutationType.name
+    : undefined
+  const subscriptionTypeName = schema.subscriptionType
+    ? schema.subscriptionType.name
+    : undefined
 
   const graphQlObjects = schema.types.filter(
     type => type.kind === TYPE_KIND.OBJECT
@@ -188,7 +192,7 @@ const parseFederationSchema = federationSchema => {
 
       return {
         name: nodeName,
-        schema: pasrseNodeSchemaInfo(
+        schema: parseNodeSchemaInfo(
           federationSchema.nodes[nodeName]['__schema']
         )
       }

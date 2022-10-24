@@ -1,27 +1,15 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 
-import FederationNode from './components/FederationNode/FederationNode'
+import { Icon, FederationInfoContent } from './FederationInfo'
 
-const Content = props => {
-  const { federationNodes } = props
-
-  return (
-    <div>
-      <h3>Federation Info</h3>
-      {federationNodes.map((federationNode, index) => (
-        <FederationNode key={index} federationNode={federationNode} />
-      ))}
-    </div>
-  )
+export function federationInfoPlugin(props) {
+  return {
+    title: props.title || 'Federation info explorer',
+    icon: () => <Icon />,
+    content: () => <FederationInfoContent {...props} />
+  }
 }
 
-const Icon = () => {
-  return <p data-testid="plugin-icon">FI</p>
+export function umdPlugin(props) {
+  return federationInfoPlugin(props)
 }
-
-Content.propTypes = {
-  federationNodes: PropTypes.array
-}
-
-export { Content, Icon }

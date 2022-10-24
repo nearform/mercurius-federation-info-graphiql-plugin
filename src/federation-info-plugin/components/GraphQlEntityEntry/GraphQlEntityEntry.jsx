@@ -1,10 +1,21 @@
-import PropTypes from 'prop-types'
+import React from 'react'
 
 import GraphQlEntityAttribute from '../GraphQlEntityAttribute/GraphQlEntityAttribute'
 
 import styles from './GraphQlEntityEntry.module.scss'
 
-const GraphQlEntityEntry = ({ entry: graphQlEntity }) => {
+/**
+ * @param {Object} props.entry graphql entitty entry
+ * @param {Object} props.entry.name Name of the entity
+ * @param {Object} props.entry.attributes Atributes of the entity.
+ * @param {boolean} props.entry.isExtension If the entry is an extension 
+
+ * @returns {JSX.Element}
+ */
+const GraphQlEntityEntry = ({
+  /** asasdas */
+  entry: graphQlEntity
+}) => {
   const { name, attributes, key, isExtension } = graphQlEntity
 
   const addEntityKeyLabel = () => {
@@ -37,10 +48,6 @@ const GraphQlEntityEntry = ({ entry: graphQlEntity }) => {
       </div>
     </div>
   )
-}
-
-GraphQlEntityEntry.propTypes = {
-  entry: PropTypes.object.isRequired
 }
 
 export default GraphQlEntityEntry

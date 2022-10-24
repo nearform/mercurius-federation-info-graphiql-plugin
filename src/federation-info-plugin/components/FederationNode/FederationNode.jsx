@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types'
+import React from 'react'
 
 import FederationNodeSection from '../FederationNodeSection/FederationNodeSection'
 import GraphQlFunctionEntry from '../GraphQlFunctionEntry/GraphQlFunctionEntry'
@@ -7,13 +7,21 @@ import GraphQlEnumEntry from '../GraphQlEnumEntry/GraphQlEnumEntry'
 
 import styles from './FederationNode.module.scss'
 
+/**
+ * @param {Object} props
+ * @param {{name: string, schema: any}} props.federationNode Schema for the federate node
+ *
+ * @returns {JSX.Element}
+ */
 const FederationNode = ({ federationNode }) => {
   const { name, schema } = federationNode
   const { queries, mutations, entities, subscriptions, enums } = schema
 
   return (
     <div className={styles.container}>
-      node <strong>{name}</strong>:
+      <div className={styles.nodeTitle}>
+        <strong>{name}</strong> node:
+      </div>
       <div className={styles.sectionsList}>
         {Boolean(queries) && (
           <FederationNodeSection
@@ -53,10 +61,6 @@ const FederationNode = ({ federationNode }) => {
       </div>
     </div>
   )
-}
-
-FederationNode.propTypes = {
-  federationNode: PropTypes.object.isRequired
 }
 
 export default FederationNode

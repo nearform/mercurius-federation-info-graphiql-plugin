@@ -21,14 +21,15 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "rollup -c",
     "test": "react-scripts test",
+    "test:ci": "cross-env CI=true npm test",
     "eject": "react-scripts eject",
     "prepare": "husky install",
     "lint": "eslint src/**/*.{js,jsx}",
     "lint:fix": "eslint --fix"
   },
-  "dependencies": {
+  "devDependencies": {
     "@graphiql/react": "^0.13.3",
     "@graphiql/toolkit": "^0.8.0",
     "@testing-library/jest-dom": "^5.16.5",
@@ -41,13 +42,16 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
-    "sass": "^1.55.0"
-  },
-  "devDependencies": {
+    "sass": "^1.55.0",
     "@babel/core": "^7.19.6",
     "@babel/eslint-parser": "^7.19.1",
     "@commitlint/cli": "^17.1.2",
     "@commitlint/config-conventional": "^17.1.0",
+    "@rollup/plugin-commonjs": "^23.0.0",
+    "@rollup/plugin-node-resolve": "^15.0.0",
+    "@rollup/plugin-replace": "^5.0.1",
+    "@svgr/rollup": "^6.5.0",
+    "cross-env": "^7.0.3",
     "eslint": "^8.25.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-prettier": "^8.5.0",
@@ -59,7 +63,10 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "husky": "^8.0.1",
     "lint-staged": "^13.0.3",
-    "prettier": "^2.7.1"
+    "prettier": "^2.7.1",
+    "rollup": "^2.79.1",
+    "rollup-plugin-jsx": "^1.0.3",
+    "rollup-plugin-postcss": "^4.0.2"
   },
   "lint-staged": {
     "*.{js,jsx}": "eslint --cache --fix"
@@ -75,5 +82,11 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "umd": "dist/umd/index.js",
+  "files": [
+    "dist"
+  ]
 }

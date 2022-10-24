@@ -2,7 +2,7 @@ import React from 'react'
 import { GraphiQL } from 'graphiql'
 import { createGraphiQLFetcher } from '@graphiql/toolkit'
 
-import { useFederationInfoPlugin } from './federation-info-plugin'
+import { federationInfoPlugin } from './federation-info-plugin'
 
 import 'graphiql/graphiql.css'
 
@@ -17,7 +17,7 @@ function App() {
     <div style={{ height: '100vh' }}>
       <GraphiQL
         fetcher={fetcher}
-        plugins={[useFederationInfoPlugin({ federationSchemaUrl })]}
+        plugins={[federationInfoPlugin({ federationSchemaUrl })]}
       />
     </div>
   )
