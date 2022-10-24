@@ -1,27 +1,45 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import { useMemo, useState, useEffect } from 'react'
 
-import FederationNode from './components/FederationNode/FederationNode'
+import { Content, Icon } from './FederationInfo'
 
-const Content = props => {
-  const { federationNodes } = props
+import fetchFederationSchema from './lib/fetchFederationSchema'
+import parseFederationSchema from './lib/parseFederationSchema'
 
-  return (
-    <div>
-      <h3>Federation Info</h3>
-      {federationNodes.map((federationNode, index) => (
-        <FederationNode key={index} federationNode={federationNode} />
-      ))}
-    </div>
+export function FederationInfoPlugin(props) {
+  const { federationSchemaUrl } = props
+
+  const [federationNodes, setFederationNodes] = useState([])
+
+  const [fetchError, setFetchError] = useState()
+
+  useEffect(() => {
+    const fetchSchema = async () => {
+      try {
+        const federationSchema = await fetchFederationSchema(
+          federationSchemaUrl
+        )
+        setFederationNodes(parseFederationSchema(federationSchema))
+      } catch (e) {
+        setFetchError(e)
+      }
+    }
+
+    fetchSchema()
+  }, [federationSchemaUrl])
+
+  return useMemo(
+    () => ({
+      title: 'GraphiQL Explorer',
+      icon: () => <Icon />,
+      content: () => (
+        <Content federationNodes={federationNodes} error={fetchError} />
+      )
+    }),
+    [federationNodes, fetchError]
   )
 }
 
-const Icon = () => {
-  return <p data-testid="plugin-icon">FI</p>
+export function umdPlugin() {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  return FederationInfoPlugin()
 }
-
-Content.propTypes = {
-  federationNodes: PropTypes.array
-}
-
-export { Content, Icon }

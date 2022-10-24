@@ -137,7 +137,7 @@ const getEnumsFromSchema = schema => {
   )
 }
 
-const pasrseNodeSchemaInfo = schema => {
+const parseNodeSchemaInfo = schema => {
   const queryTypeName = schema.queryType ? schema.queryType.name : undefined
   const mutationTypeName = schema.mutationType
     ? schema.mutationType.name
@@ -192,7 +192,7 @@ const parseFederationSchema = federationSchema => {
 
       return {
         name: nodeName,
-        schema: pasrseNodeSchemaInfo(
+        schema: parseNodeSchemaInfo(
           federationSchema.nodes[nodeName]['__schema']
         )
       }
