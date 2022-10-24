@@ -5,12 +5,17 @@ import GraphQlEntityAttribute from '../GraphQlEntityAttribute/GraphQlEntityAttri
 import styles from './GraphQlEntityEntry.module.scss'
 
 /**
- * TODO: Add props definition here
- * @param graphQlEntity
+ * @param {Object} props.entry graphql entitty entry
+ * @param {Object} props.entry.name Name of the entity
+ * @param {Object} props.entry.attributes Atributes of the entity.
+ * @param {boolean} props.entry.isExtension If the entry is an extension 
+
  * @returns {JSX.Element}
- * @constructor
  */
-const GraphQlEntityEntry = ({ entry: graphQlEntity }) => {
+const GraphQlEntityEntry = ({
+  /** asasdas */
+  entry: graphQlEntity
+}) => {
   const { name, attributes, key, isExtension } = graphQlEntity
 
   const addEntityKeyLabel = () => {

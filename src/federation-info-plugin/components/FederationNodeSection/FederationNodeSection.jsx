@@ -3,12 +3,11 @@ import React from 'react'
 import styles from './FederationNodeSection.module.scss'
 
 /**
- * TODO: Add props definition here
- * @param name
- * @param sectionData
- * @param EntryComponent
+ * @param {string} props.name Name of the node section.
+ * @param {Array} props.sectionData Data of the section.
+ * @param {JSX.Element} props.EntryComponent component to use for rendering the section
+ *
  * @returns {JSX.Element|undefined}
- * @constructor
  */
 const FederationNodeSection = ({
   name,

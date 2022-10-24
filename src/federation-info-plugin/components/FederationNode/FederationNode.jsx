@@ -8,10 +8,10 @@ import GraphQlEnumEntry from '../GraphQlEnumEntry/GraphQlEnumEntry'
 import styles from './FederationNode.module.scss'
 
 /**
- * TODO: Add props definition here
- * @param federationNode
+ * @param {Object} props
+ * @param {{name: string, schema: any}} props.federationNode Schema for the federate node
+ *
  * @returns {JSX.Element}
- * @constructor
  */
 const FederationNode = ({ federationNode }) => {
   const { name, schema } = federationNode
