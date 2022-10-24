@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types'
+import React from 'react'
 
 const GraphQlFunctionEntry = ({ entry: graphQlFunctionInfo }) => {
   const { name, returnType } = graphQlFunctionInfo

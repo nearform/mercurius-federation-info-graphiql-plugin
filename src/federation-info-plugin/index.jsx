@@ -1,1 +1,1 @@
-export { FederationInfoPlugin } from './FederationInfoPlugin'
+export { FederationInfoPlugin, umdPlugin } from './FederationInfoPlugin'

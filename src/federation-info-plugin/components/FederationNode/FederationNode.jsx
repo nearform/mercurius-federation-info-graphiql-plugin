@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types'
+import React from 'react'
 
 import FederationNodeSection from '../FederationNodeSection/FederationNodeSection'
 import GraphQlFunctionEntry from '../GraphQlFunctionEntry/GraphQlFunctionEntry'

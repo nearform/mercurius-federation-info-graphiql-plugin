@@ -1,3 +1,4 @@
+import React from 'react'
 import { useMemo, useState, useEffect } from 'react'
 
 import { Content, Icon } from './FederationInfo'
@@ -39,7 +40,7 @@ export function FederationInfoPlugin(props) {
   )
 }
 
-export function umdPlugin() {
+export function umdPlugin(props) {
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  return FederationInfoPlugin()
+  return FederationInfoPlugin(props)
 }

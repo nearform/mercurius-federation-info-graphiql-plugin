@@ -4,8 +4,10 @@ const svgr = require('@svgr/rollup')
 const jsx = require('rollup-plugin-jsx')
 const postcss = require('rollup-plugin-postcss')
 
+//using .js and not .mjs, due to importing json in mjs is still experimental
 const packageJson = require('./package.json')
-
+// globals: { react: 'React' },
+//
 const rollup = [
   {
     input: './src/export.js',
@@ -24,7 +26,7 @@ const rollup = [
         file: packageJson.umd,
         format: 'umd',
         sourcemap: true,
-        name: 'useFederationInfoPlugin'
+        name: 'federationInfo'
       }
     ],
     external: ['react', '@graphiql/toolkit'],
@@ -32,7 +34,7 @@ const rollup = [
       resolve({
         extensions: ['.js', '.jsx']
       }),
-      svgr(),
+      svgr({ exportType: 'named', jsxRuntime: 'classic' }),
       postcss({ modules: true }),
       commonjs(),
       jsx({ factory: 'React.createElement' })

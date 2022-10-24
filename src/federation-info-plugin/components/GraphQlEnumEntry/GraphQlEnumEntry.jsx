@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types'
 import styles from './GraphQlEnumEntry.module.scss'
+import React from 'react'
 
 const GraphQlEnumEntry = ({ entry: graphQlFunctionInfo }) => {
   const { name, enumValues } = graphQlFunctionInfo
