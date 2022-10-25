@@ -30,7 +30,7 @@
     "lint:fix": "eslint --fix"
   },
   "devDependencies": {
-    "@graphiql/react": "^0.13.3",
+    "@graphiql/react": "^0.13.4",
     "@graphiql/toolkit": "^0.8.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
