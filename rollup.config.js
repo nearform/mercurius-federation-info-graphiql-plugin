@@ -6,7 +6,7 @@ const postcss = require('rollup-plugin-postcss')
 
 //using .js and not .mjs, due to importing json in mjs is still experimental
 const packageJson = require('./package.json')
-// globals: { react: 'React' },
+
 //
 const rollup = [
   {
@@ -26,10 +26,15 @@ const rollup = [
         file: packageJson.umd,
         format: 'umd',
         sourcemap: true,
-        name: 'federationInfo'
+        name: 'federationInfo',
+        globals: {
+          react: 'React',
+          '@graphiql/react': 'GraphiQL.React',
+          graphql: 'GraphiQL.GraphQL'
+        }
       }
     ],
-    external: ['react'],
+    external: ['react', '@graphiql/react', 'graphql'],
     plugins: [
       resolve({
         extensions: ['.js', '.jsx']
