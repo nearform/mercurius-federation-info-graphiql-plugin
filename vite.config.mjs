@@ -21,7 +21,7 @@ export default defineConfig({
       entry: 'src/export.js',
       fileName: format => `${format}/index.js`,
       name: 'federationInfo',
-      formats: ['umd']
+      formats: ['umd', 'cjs', 'es']
     },
     rollupOptions: {
       external: ['react', '@graphiql/react', 'graphql', 'react-dom'],
