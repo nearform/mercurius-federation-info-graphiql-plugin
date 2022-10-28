@@ -20,7 +20,7 @@ const FieldRow = ({ field }) => {
 const TypeRow = ({ type }) => {
   const [expanded, setExpanded] = useState(true)
   return (
-    <div>
+    <>
       <tr onClick={() => setExpanded(!expanded)}>
         <td>{type.name}</td>
         <td>{type.ownerNodes.join(', ')}</td>
@@ -52,7 +52,7 @@ const TypeRow = ({ type }) => {
           </td>
         </tr>
       )}
-    </div>
+    </>
   )
 }
 
@@ -68,9 +68,11 @@ const SchemaView = ({ schemaViewData }) => {
             <th>Extended by</th>
           </tr>
         </thead>
-        {schemaViewData.map(type => (
-          <TypeRow key={type.name} type={type} />
-        ))}
+        <tbody>
+          {schemaViewData.map(type => (
+            <TypeRow key={type.name} type={type} />
+          ))}
+        </tbody>
       </table>
     </div>
   )
