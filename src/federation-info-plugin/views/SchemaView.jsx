@@ -12,7 +12,7 @@ const FieldRow = ({ field }) => {
       <td>{input}</td>
       <td>{field.type.toString()}</td>
       <td>{field.ownerNodes.join(',')}</td>
-      <td>{field.referecedBy.join(',')}</td>
+      <td>{field.referencedBy.join(',')}</td>
     </tr>
   )
 }
@@ -25,7 +25,7 @@ const TypeRow = ({ type }) => {
         <td>{type.name}</td>
         <td>{type.ownerNodes.join(', ')}</td>
         <td>
-          {type.referecedBy
+          {type.referencedBy
             .map(({ nodeName, key }) => `${nodeName} @key(${key[0].value})`)
             .join(<br />)}
         </td>

@@ -1,0 +1,242 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`prepareNodesViewData Checks correct result 1`] = `
+Array [
+  Object {
+    "itemsMap": Object {
+      "CustomInput": Object {
+        "description": null,
+        "enumValues": null,
+        "fields": null,
+        "inputFields": Array [
+          Object {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": null,
+            "isDeprecated": false,
+            "name": "names",
+            "nodeName": "testNode",
+            "type": Object {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": Object {
+                "kind": "LIST",
+                "name": null,
+                "ofType": Object {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null,
+                },
+              },
+            },
+            "typeString": "[String]!",
+          },
+        ],
+        "interfaces": null,
+        "itemsMap": Object {
+          "names": Object {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": null,
+            "isDeprecated": false,
+            "name": "names",
+            "nodeName": "testNode",
+            "type": Object {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": Object {
+                "kind": "LIST",
+                "name": null,
+                "ofType": Object {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null,
+                },
+              },
+            },
+            "typeString": "[String]!",
+          },
+        },
+        "kind": "INPUT_OBJECT",
+        "name": "CustomInput",
+        "nodeName": "testNode",
+        "possibleTypes": null,
+        "specifiedByURL": null,
+      },
+      "CustomType": Object {
+        "description": null,
+        "enumValues": null,
+        "fields": Array [
+          Object {
+            "args": Array [],
+            "deprecationReason": null,
+            "description": null,
+            "isDeprecated": false,
+            "name": "id",
+            "nodeName": "testNode",
+            "type": Object {
+              "kind": "SCALAR",
+              "name": "ID",
+              "ofType": null,
+            },
+            "typeString": "ID",
+          },
+          Object {
+            "args": Array [],
+            "deprecationReason": null,
+            "description": null,
+            "isDeprecated": false,
+            "name": "name",
+            "nodeName": "testNode",
+            "type": Object {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null,
+            },
+            "typeString": "String",
+          },
+        ],
+        "inputFields": null,
+        "interfaces": Array [],
+        "itemsMap": Object {
+          "id": Object {
+            "args": Array [],
+            "deprecationReason": null,
+            "description": null,
+            "isDeprecated": false,
+            "name": "id",
+            "nodeName": "testNode",
+            "type": Object {
+              "kind": "SCALAR",
+              "name": "ID",
+              "ofType": null,
+            },
+            "typeString": "ID",
+          },
+          "name": Object {
+            "args": Array [],
+            "deprecationReason": null,
+            "description": null,
+            "isDeprecated": false,
+            "name": "name",
+            "nodeName": "testNode",
+            "type": Object {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null,
+            },
+            "typeString": "String",
+          },
+        },
+        "kind": "OBJECT",
+        "name": "CustomType",
+        "nodeName": "testNode",
+        "possibleTypes": null,
+        "specifiedByURL": null,
+      },
+      "Query": Object {
+        "description": null,
+        "enumValues": null,
+        "fields": Array [
+          Object {
+            "args": Array [
+              Object {
+                "defaultValue": null,
+                "deprecationReason": null,
+                "description": null,
+                "isDeprecated": false,
+                "name": "customInput",
+                "type": Object {
+                  "kind": "INPUT_OBJECT",
+                  "name": "CustomInput",
+                  "ofType": null,
+                },
+              },
+            ],
+            "deprecationReason": null,
+            "description": null,
+            "isDeprecated": false,
+            "name": "test",
+            "nodeName": "testNode",
+            "type": Object {
+              "kind": "OBJECT",
+              "name": "CustomType",
+              "ofType": null,
+            },
+            "typeString": "CustomType",
+          },
+        ],
+        "inputFields": null,
+        "interfaces": Array [],
+        "itemsMap": Object {
+          "test": Object {
+            "args": Array [
+              Object {
+                "defaultValue": null,
+                "deprecationReason": null,
+                "description": null,
+                "isDeprecated": false,
+                "name": "customInput",
+                "type": Object {
+                  "kind": "INPUT_OBJECT",
+                  "name": "CustomInput",
+                  "ofType": null,
+                },
+              },
+            ],
+            "deprecationReason": null,
+            "description": null,
+            "isDeprecated": false,
+            "name": "test",
+            "nodeName": "testNode",
+            "type": Object {
+              "kind": "OBJECT",
+              "name": "CustomType",
+              "ofType": null,
+            },
+            "typeString": "CustomType",
+          },
+        },
+        "kind": "OBJECT",
+        "name": "Query",
+        "nodeName": "testNode",
+        "possibleTypes": null,
+        "specifiedByURL": null,
+      },
+      "TestEnum": Object {
+        "description": null,
+        "enumValues": Array [
+          Object {
+            "deprecationReason": null,
+            "description": null,
+            "isDeprecated": false,
+            "name": "one",
+          },
+          Object {
+            "deprecationReason": null,
+            "description": null,
+            "isDeprecated": false,
+            "name": "two",
+          },
+          Object {
+            "deprecationReason": null,
+            "description": null,
+            "isDeprecated": false,
+            "name": "three",
+          },
+        ],
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "itemsMap": Object {},
+        "kind": "ENUM",
+        "name": "TestEnum",
+        "nodeName": "testNode",
+        "possibleTypes": null,
+        "specifiedByURL": null,
+      },
+    },
+    "nodeName": "testNode",
+  },
+]
+`;

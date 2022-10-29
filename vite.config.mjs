@@ -24,7 +24,13 @@ export default defineConfig({
       formats: ['umd', 'cjs', 'es']
     },
     rollupOptions: {
-      external: ['react', '@graphiql/react', 'graphql', 'react-dom'],
+      external: [
+        'react',
+        '@graphiql/react',
+        'graphql',
+        'react-dom',
+        '@graphiql_toolkit'
+      ],
       output: {
         globals: {
           react: 'React',

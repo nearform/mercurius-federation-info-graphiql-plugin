@@ -1,0 +1,20 @@
+.container {
+  padding-top: 0.5rem;
+}
+
+.nodeTitle {
+  font-size: 1.05rem;
+}
+
+.sectionsList {
+  padding-left: 1rem;
+  color: hsla(var(--color-neutral), var(--alpha-secondary));
+}
+
+.attributeList {
+  padding-left: 1rem;
+}
+
+.entityKeyLabel {
+  color: yellow;
+}
