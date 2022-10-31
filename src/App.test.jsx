@@ -1,9 +1,9 @@
 import React from 'react'
+import { createGraphiQLFetcher } from '@graphiql/toolkit'
 import { render } from '@testing-library/react'
 import { unmountComponentAtNode } from 'react-dom'
 import { act } from 'react-dom/test-utils'
 import App from './App'
-import { createGraphiQLFetcher } from '@graphiql/toolkit'
 jest.mock('@graphiql/toolkit')
 
 let container = null
