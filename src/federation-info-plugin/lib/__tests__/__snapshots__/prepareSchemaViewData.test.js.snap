@@ -1,37 +1,37 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`prepareSchemaViewData Returns correct result 1`] = `
-Array [
-  Object {
-    "_fields": Object {
-      "_entities": Object {
-        "args": Array [],
-        "astNode": Object {
-          "arguments": Array [],
+[
+  {
+    "_fields": {
+      "_entities": {
+        "args": [],
+        "astNode": {
+          "arguments": [],
           "description": undefined,
-          "directives": Array [],
+          "directives": [],
           "kind": "FieldDefinition",
-          "loc": Object {
+          "loc": {
             "end": 95,
             "start": 78,
           },
-          "name": Object {
+          "name": {
             "kind": "Name",
-            "loc": Object {
+            "loc": {
               "end": 87,
               "start": 78,
             },
             "value": "_entities",
           },
-          "type": Object {
+          "type": {
             "kind": "NamedType",
-            "loc": Object {
+            "loc": {
               "end": 95,
               "start": 89,
             },
-            "name": Object {
+            "name": {
               "kind": "Name",
-              "loc": Object {
+              "loc": {
                 "end": 95,
                 "start": 89,
               },
@@ -41,40 +41,40 @@ Array [
         },
         "deprecationReason": undefined,
         "description": undefined,
-        "extensions": Object {},
+        "extensions": {},
         "name": "_entities",
         "resolve": undefined,
         "subscribe": undefined,
         "type": "String",
       },
-      "id": Object {
-        "args": Array [],
-        "astNode": Object {
-          "arguments": Array [],
+      "id": {
+        "args": [],
+        "astNode": {
+          "arguments": [],
           "description": undefined,
-          "directives": Array [],
+          "directives": [],
           "kind": "FieldDefinition",
-          "loc": Object {
+          "loc": {
             "end": 38,
             "start": 32,
           },
-          "name": Object {
+          "name": {
             "kind": "Name",
-            "loc": Object {
+            "loc": {
               "end": 34,
               "start": 32,
             },
             "value": "id",
           },
-          "type": Object {
+          "type": {
             "kind": "NamedType",
-            "loc": Object {
+            "loc": {
               "end": 38,
               "start": 36,
             },
-            "name": Object {
+            "name": {
               "kind": "Name",
-              "loc": Object {
+              "loc": {
                 "end": 38,
                 "start": 36,
               },
@@ -84,40 +84,40 @@ Array [
         },
         "deprecationReason": undefined,
         "description": undefined,
-        "extensions": Object {},
+        "extensions": {},
         "name": "id",
         "resolve": undefined,
         "subscribe": undefined,
         "type": "ID",
       },
-      "node2Field": Object {
-        "args": Array [],
-        "astNode": Object {
-          "arguments": Array [],
+      "node2Field": {
+        "args": [],
+        "astNode": {
+          "arguments": [],
           "description": undefined,
-          "directives": Array [],
+          "directives": [],
           "kind": "FieldDefinition",
-          "loc": Object {
+          "loc": {
             "end": 67,
             "start": 49,
           },
-          "name": Object {
+          "name": {
             "kind": "Name",
-            "loc": Object {
+            "loc": {
               "end": 59,
               "start": 49,
             },
             "value": "node2Field",
           },
-          "type": Object {
+          "type": {
             "kind": "NamedType",
-            "loc": Object {
+            "loc": {
               "end": 67,
               "start": 61,
             },
-            "name": Object {
+            "name": {
               "kind": "Name",
-              "loc": Object {
+              "loc": {
                 "end": 67,
                 "start": 61,
               },
@@ -127,44 +127,44 @@ Array [
         },
         "deprecationReason": undefined,
         "description": undefined,
-        "extensions": Object {},
+        "extensions": {},
         "name": "node2Field",
         "resolve": undefined,
         "subscribe": undefined,
         "type": "String",
       },
     },
-    "_interfaces": Array [],
-    "astNode": Object {
+    "_interfaces": [],
+    "astNode": {
       "description": undefined,
-      "directives": Array [],
-      "fields": Array [
-        Object {
-          "arguments": Array [],
+      "directives": [],
+      "fields": [
+        {
+          "arguments": [],
           "description": undefined,
-          "directives": Array [],
+          "directives": [],
           "kind": "FieldDefinition",
-          "loc": Object {
+          "loc": {
             "end": 38,
             "start": 32,
           },
-          "name": Object {
+          "name": {
             "kind": "Name",
-            "loc": Object {
+            "loc": {
               "end": 34,
               "start": 32,
             },
             "value": "id",
           },
-          "type": Object {
+          "type": {
             "kind": "NamedType",
-            "loc": Object {
+            "loc": {
               "end": 38,
               "start": 36,
             },
-            "name": Object {
+            "name": {
               "kind": "Name",
-              "loc": Object {
+              "loc": {
                 "end": 38,
                 "start": 36,
               },
@@ -172,32 +172,32 @@ Array [
             },
           },
         },
-        Object {
-          "arguments": Array [],
+        {
+          "arguments": [],
           "description": undefined,
-          "directives": Array [],
+          "directives": [],
           "kind": "FieldDefinition",
-          "loc": Object {
+          "loc": {
             "end": 67,
             "start": 49,
           },
-          "name": Object {
+          "name": {
             "kind": "Name",
-            "loc": Object {
+            "loc": {
               "end": 59,
               "start": 49,
             },
             "value": "node2Field",
           },
-          "type": Object {
+          "type": {
             "kind": "NamedType",
-            "loc": Object {
+            "loc": {
               "end": 67,
               "start": 61,
             },
-            "name": Object {
+            "name": {
               "kind": "Name",
-              "loc": Object {
+              "loc": {
                 "end": 67,
                 "start": 61,
               },
@@ -205,32 +205,32 @@ Array [
             },
           },
         },
-        Object {
-          "arguments": Array [],
+        {
+          "arguments": [],
           "description": undefined,
-          "directives": Array [],
+          "directives": [],
           "kind": "FieldDefinition",
-          "loc": Object {
+          "loc": {
             "end": 95,
             "start": 78,
           },
-          "name": Object {
+          "name": {
             "kind": "Name",
-            "loc": Object {
+            "loc": {
               "end": 87,
               "start": 78,
             },
             "value": "_entities",
           },
-          "type": Object {
+          "type": {
             "kind": "NamedType",
-            "loc": Object {
+            "loc": {
               "end": 95,
               "start": 89,
             },
-            "name": Object {
+            "name": {
               "kind": "Name",
-              "loc": Object {
+              "loc": {
                 "end": 95,
                 "start": 89,
               },
@@ -239,15 +239,15 @@ Array [
           },
         },
       ],
-      "interfaces": Array [],
+      "interfaces": [],
       "kind": "ObjectTypeDefinition",
-      "loc": Object {
+      "loc": {
         "end": 105,
         "start": 10,
       },
-      "name": Object {
+      "name": {
         "kind": "Name",
-        "loc": Object {
+        "loc": {
           "end": 19,
           "start": 15,
         },
@@ -255,37 +255,37 @@ Array [
       },
     },
     "description": undefined,
-    "extensionASTNodes": Array [],
-    "extensions": Object {},
-    "fields": Array [
-      Object {
-        "args": Array [],
-        "astNode": Object {
-          "arguments": Array [],
+    "extensionASTNodes": [],
+    "extensions": {},
+    "fields": [
+      {
+        "args": [],
+        "astNode": {
+          "arguments": [],
           "description": undefined,
-          "directives": Array [],
+          "directives": [],
           "kind": "FieldDefinition",
-          "loc": Object {
+          "loc": {
             "end": 38,
             "start": 32,
           },
-          "name": Object {
+          "name": {
             "kind": "Name",
-            "loc": Object {
+            "loc": {
               "end": 34,
               "start": 32,
             },
             "value": "id",
           },
-          "type": Object {
+          "type": {
             "kind": "NamedType",
-            "loc": Object {
+            "loc": {
               "end": 38,
               "start": 36,
             },
-            "name": Object {
+            "name": {
               "kind": "Name",
-              "loc": Object {
+              "loc": {
                 "end": 38,
                 "start": 36,
               },
@@ -295,56 +295,56 @@ Array [
         },
         "deprecationReason": undefined,
         "description": undefined,
-        "extensions": Object {},
-        "fieldsFromNodes": Array [
-          Object {
+        "extensions": {},
+        "fieldsFromNodes": [
+          {
             "isExternal": false,
             "nodeName": "node1",
           },
-          Object {
+          {
             "isExternal": true,
             "nodeName": "node2",
           },
         ],
         "name": "id",
-        "ownerNodes": Array [
+        "ownerNodes": [
           "node1",
         ],
-        "referencedBy": Array [
+        "referencedBy": [
           "node2",
         ],
         "resolve": undefined,
         "subscribe": undefined,
         "type": "ID",
       },
-      Object {
-        "args": Array [],
-        "astNode": Object {
-          "arguments": Array [],
+      {
+        "args": [],
+        "astNode": {
+          "arguments": [],
           "description": undefined,
-          "directives": Array [],
+          "directives": [],
           "kind": "FieldDefinition",
-          "loc": Object {
+          "loc": {
             "end": 67,
             "start": 49,
           },
-          "name": Object {
+          "name": {
             "kind": "Name",
-            "loc": Object {
+            "loc": {
               "end": 59,
               "start": 49,
             },
             "value": "node2Field",
           },
-          "type": Object {
+          "type": {
             "kind": "NamedType",
-            "loc": Object {
+            "loc": {
               "end": 67,
               "start": 61,
             },
-            "name": Object {
+            "name": {
               "kind": "Name",
-              "loc": Object {
+              "loc": {
                 "end": 67,
                 "start": 61,
               },
@@ -354,50 +354,50 @@ Array [
         },
         "deprecationReason": undefined,
         "description": undefined,
-        "extensions": Object {},
-        "fieldsFromNodes": Array [
-          Object {
+        "extensions": {},
+        "fieldsFromNodes": [
+          {
             "isExternal": false,
             "nodeName": "node2",
           },
         ],
         "name": "node2Field",
-        "ownerNodes": Array [
+        "ownerNodes": [
           "node2",
         ],
-        "referencedBy": Array [],
+        "referencedBy": [],
         "resolve": undefined,
         "subscribe": undefined,
         "type": "String",
       },
-      Object {
-        "args": Array [],
-        "astNode": Object {
-          "arguments": Array [],
+      {
+        "args": [],
+        "astNode": {
+          "arguments": [],
           "description": undefined,
-          "directives": Array [],
+          "directives": [],
           "kind": "FieldDefinition",
-          "loc": Object {
+          "loc": {
             "end": 95,
             "start": 78,
           },
-          "name": Object {
+          "name": {
             "kind": "Name",
-            "loc": Object {
+            "loc": {
               "end": 87,
               "start": 78,
             },
             "value": "_entities",
           },
-          "type": Object {
+          "type": {
             "kind": "NamedType",
-            "loc": Object {
+            "loc": {
               "end": 95,
               "start": 89,
             },
-            "name": Object {
+            "name": {
               "kind": "Name",
-              "loc": Object {
+              "loc": {
                 "end": 95,
                 "start": 89,
               },
@@ -407,11 +407,11 @@ Array [
         },
         "deprecationReason": undefined,
         "description": undefined,
-        "extensions": Object {},
-        "fieldsFromNodes": Array [],
+        "extensions": {},
+        "fieldsFromNodes": [],
         "name": "_entities",
-        "ownerNodes": Array [],
-        "referencedBy": Array [],
+        "ownerNodes": [],
+        "referencedBy": [],
         "resolve": undefined,
         "subscribe": undefined,
         "type": "String",
@@ -419,13 +419,13 @@ Array [
     ],
     "isTypeOf": undefined,
     "name": "User",
-    "ownerNodes": Array [
+    "ownerNodes": [
       "node1",
     ],
-    "referencedBy": Array [
-      Object {
-        "key": Array [
-          Object {
+    "referencedBy": [
+      {
+        "key": [
+          {
             "value": "id",
           },
         ],
@@ -433,36 +433,36 @@ Array [
       },
     ],
   },
-  Object {
-    "_fields": Object {
-      "id": Object {
-        "args": Array [],
-        "astNode": Object {
-          "arguments": Array [],
+  {
+    "_fields": {
+      "id": {
+        "args": [],
+        "astNode": {
+          "arguments": [],
           "description": undefined,
-          "directives": Array [],
+          "directives": [],
           "kind": "FieldDefinition",
-          "loc": Object {
+          "loc": {
             "end": 155,
             "start": 149,
           },
-          "name": Object {
+          "name": {
             "kind": "Name",
-            "loc": Object {
+            "loc": {
               "end": 151,
               "start": 149,
             },
             "value": "id",
           },
-          "type": Object {
+          "type": {
             "kind": "NamedType",
-            "loc": Object {
+            "loc": {
               "end": 155,
               "start": 153,
             },
-            "name": Object {
+            "name": {
               "kind": "Name",
-              "loc": Object {
+              "loc": {
                 "end": 155,
                 "start": 153,
               },
@@ -472,44 +472,44 @@ Array [
         },
         "deprecationReason": undefined,
         "description": undefined,
-        "extensions": Object {},
+        "extensions": {},
         "name": "id",
         "resolve": undefined,
         "subscribe": undefined,
         "type": "ID",
       },
     },
-    "_interfaces": Array [],
-    "astNode": Object {
+    "_interfaces": [],
+    "astNode": {
       "description": undefined,
-      "directives": Array [],
-      "fields": Array [
-        Object {
-          "arguments": Array [],
+      "directives": [],
+      "fields": [
+        {
+          "arguments": [],
           "description": undefined,
-          "directives": Array [],
+          "directives": [],
           "kind": "FieldDefinition",
-          "loc": Object {
+          "loc": {
             "end": 155,
             "start": 149,
           },
-          "name": Object {
+          "name": {
             "kind": "Name",
-            "loc": Object {
+            "loc": {
               "end": 151,
               "start": 149,
             },
             "value": "id",
           },
-          "type": Object {
+          "type": {
             "kind": "NamedType",
-            "loc": Object {
+            "loc": {
               "end": 155,
               "start": 153,
             },
-            "name": Object {
+            "name": {
               "kind": "Name",
-              "loc": Object {
+              "loc": {
                 "end": 155,
                 "start": 153,
               },
@@ -518,15 +518,15 @@ Array [
           },
         },
       ],
-      "interfaces": Array [],
+      "interfaces": [],
       "kind": "ObjectTypeDefinition",
-      "loc": Object {
+      "loc": {
         "end": 165,
         "start": 122,
       },
-      "name": Object {
+      "name": {
         "kind": "Name",
-        "loc": Object {
+        "loc": {
           "end": 136,
           "start": 127,
         },
@@ -534,37 +534,37 @@ Array [
       },
     },
     "description": undefined,
-    "extensionASTNodes": Array [],
-    "extensions": Object {},
-    "fields": Array [
-      Object {
-        "args": Array [],
-        "astNode": Object {
-          "arguments": Array [],
+    "extensionASTNodes": [],
+    "extensions": {},
+    "fields": [
+      {
+        "args": [],
+        "astNode": {
+          "arguments": [],
           "description": undefined,
-          "directives": Array [],
+          "directives": [],
           "kind": "FieldDefinition",
-          "loc": Object {
+          "loc": {
             "end": 155,
             "start": 149,
           },
-          "name": Object {
+          "name": {
             "kind": "Name",
-            "loc": Object {
+            "loc": {
               "end": 151,
               "start": 149,
             },
             "value": "id",
           },
-          "type": Object {
+          "type": {
             "kind": "NamedType",
-            "loc": Object {
+            "loc": {
               "end": 155,
               "start": 153,
             },
-            "name": Object {
+            "name": {
               "kind": "Name",
-              "loc": Object {
+              "loc": {
                 "end": 155,
                 "start": 153,
               },
@@ -574,18 +574,18 @@ Array [
         },
         "deprecationReason": undefined,
         "description": undefined,
-        "extensions": Object {},
-        "fieldsFromNodes": Array [
-          Object {
+        "extensions": {},
+        "fieldsFromNodes": [
+          {
             "name": "id",
             "nodeName": "node2",
           },
         ],
         "name": "id",
-        "ownerNodes": Array [
+        "ownerNodes": [
           "node2",
         ],
-        "referencedBy": Array [],
+        "referencedBy": [],
         "resolve": undefined,
         "subscribe": undefined,
         "type": "ID",
@@ -593,25 +593,25 @@ Array [
     ],
     "isTypeOf": undefined,
     "name": "Node2Type",
-    "ownerNodes": Array [
+    "ownerNodes": [
       "node2",
     ],
-    "referencedBy": Array [],
+    "referencedBy": [],
   },
-  Object {
-    "_nameLookup": Object {
-      "one": Object {
-        "astNode": Object {
+  {
+    "_nameLookup": {
+      "one": {
+        "astNode": {
           "description": undefined,
-          "directives": Array [],
+          "directives": [],
           "kind": "EnumValueDefinition",
-          "loc": Object {
+          "loc": {
             "end": 262,
             "start": 259,
           },
-          "name": Object {
+          "name": {
             "kind": "Name",
-            "loc": Object {
+            "loc": {
               "end": 262,
               "start": 259,
             },
@@ -620,22 +620,22 @@ Array [
         },
         "deprecationReason": undefined,
         "description": undefined,
-        "extensions": Object {},
+        "extensions": {},
         "name": "one",
         "value": "one",
       },
-      "three": Object {
-        "astNode": Object {
+      "three": {
+        "astNode": {
           "description": undefined,
-          "directives": Array [],
+          "directives": [],
           "kind": "EnumValueDefinition",
-          "loc": Object {
+          "loc": {
             "end": 292,
             "start": 287,
           },
-          "name": Object {
+          "name": {
             "kind": "Name",
-            "loc": Object {
+            "loc": {
               "end": 292,
               "start": 287,
             },
@@ -644,22 +644,22 @@ Array [
         },
         "deprecationReason": undefined,
         "description": undefined,
-        "extensions": Object {},
+        "extensions": {},
         "name": "three",
         "value": "three",
       },
-      "two": Object {
-        "astNode": Object {
+      "two": {
+        "astNode": {
           "description": undefined,
-          "directives": Array [],
+          "directives": [],
           "kind": "EnumValueDefinition",
-          "loc": Object {
+          "loc": {
             "end": 276,
             "start": 273,
           },
-          "name": Object {
+          "name": {
             "kind": "Name",
-            "loc": Object {
+            "loc": {
               "end": 276,
               "start": 273,
             },
@@ -668,24 +668,24 @@ Array [
         },
         "deprecationReason": undefined,
         "description": undefined,
-        "extensions": Object {},
+        "extensions": {},
         "name": "two",
         "value": "two",
       },
     },
     "_valueLookup": Map {
-      "one" => Object {
-        "astNode": Object {
+      "one" => {
+        "astNode": {
           "description": undefined,
-          "directives": Array [],
+          "directives": [],
           "kind": "EnumValueDefinition",
-          "loc": Object {
+          "loc": {
             "end": 262,
             "start": 259,
           },
-          "name": Object {
+          "name": {
             "kind": "Name",
-            "loc": Object {
+            "loc": {
               "end": 262,
               "start": 259,
             },
@@ -694,22 +694,22 @@ Array [
         },
         "deprecationReason": undefined,
         "description": undefined,
-        "extensions": Object {},
+        "extensions": {},
         "name": "one",
         "value": "one",
       },
-      "two" => Object {
-        "astNode": Object {
+      "two" => {
+        "astNode": {
           "description": undefined,
-          "directives": Array [],
+          "directives": [],
           "kind": "EnumValueDefinition",
-          "loc": Object {
+          "loc": {
             "end": 276,
             "start": 273,
           },
-          "name": Object {
+          "name": {
             "kind": "Name",
-            "loc": Object {
+            "loc": {
               "end": 276,
               "start": 273,
             },
@@ -718,22 +718,22 @@ Array [
         },
         "deprecationReason": undefined,
         "description": undefined,
-        "extensions": Object {},
+        "extensions": {},
         "name": "two",
         "value": "two",
       },
-      "three" => Object {
-        "astNode": Object {
+      "three" => {
+        "astNode": {
           "description": undefined,
-          "directives": Array [],
+          "directives": [],
           "kind": "EnumValueDefinition",
-          "loc": Object {
+          "loc": {
             "end": 292,
             "start": 287,
           },
-          "name": Object {
+          "name": {
             "kind": "Name",
-            "loc": Object {
+            "loc": {
               "end": 292,
               "start": 287,
             },
@@ -742,24 +742,24 @@ Array [
         },
         "deprecationReason": undefined,
         "description": undefined,
-        "extensions": Object {},
+        "extensions": {},
         "name": "three",
         "value": "three",
       },
     },
-    "_values": Array [
-      Object {
-        "astNode": Object {
+    "_values": [
+      {
+        "astNode": {
           "description": undefined,
-          "directives": Array [],
+          "directives": [],
           "kind": "EnumValueDefinition",
-          "loc": Object {
+          "loc": {
             "end": 262,
             "start": 259,
           },
-          "name": Object {
+          "name": {
             "kind": "Name",
-            "loc": Object {
+            "loc": {
               "end": 262,
               "start": 259,
             },
@@ -768,22 +768,22 @@ Array [
         },
         "deprecationReason": undefined,
         "description": undefined,
-        "extensions": Object {},
+        "extensions": {},
         "name": "one",
         "value": "one",
       },
-      Object {
-        "astNode": Object {
+      {
+        "astNode": {
           "description": undefined,
-          "directives": Array [],
+          "directives": [],
           "kind": "EnumValueDefinition",
-          "loc": Object {
+          "loc": {
             "end": 276,
             "start": 273,
           },
-          "name": Object {
+          "name": {
             "kind": "Name",
-            "loc": Object {
+            "loc": {
               "end": 276,
               "start": 273,
             },
@@ -792,22 +792,22 @@ Array [
         },
         "deprecationReason": undefined,
         "description": undefined,
-        "extensions": Object {},
+        "extensions": {},
         "name": "two",
         "value": "two",
       },
-      Object {
-        "astNode": Object {
+      {
+        "astNode": {
           "description": undefined,
-          "directives": Array [],
+          "directives": [],
           "kind": "EnumValueDefinition",
-          "loc": Object {
+          "loc": {
             "end": 292,
             "start": 287,
           },
-          "name": Object {
+          "name": {
             "kind": "Name",
-            "loc": Object {
+            "loc": {
               "end": 292,
               "start": 287,
             },
@@ -816,73 +816,73 @@ Array [
         },
         "deprecationReason": undefined,
         "description": undefined,
-        "extensions": Object {},
+        "extensions": {},
         "name": "three",
         "value": "three",
       },
     ],
-    "astNode": Object {
+    "astNode": {
       "description": undefined,
-      "directives": Array [],
+      "directives": [],
       "kind": "EnumTypeDefinition",
-      "loc": Object {
+      "loc": {
         "end": 302,
         "start": 232,
       },
-      "name": Object {
+      "name": {
         "kind": "Name",
-        "loc": Object {
+        "loc": {
           "end": 245,
           "start": 237,
         },
         "value": "TestEnum",
       },
-      "values": Array [
-        Object {
+      "values": [
+        {
           "description": undefined,
-          "directives": Array [],
+          "directives": [],
           "kind": "EnumValueDefinition",
-          "loc": Object {
+          "loc": {
             "end": 262,
             "start": 259,
           },
-          "name": Object {
+          "name": {
             "kind": "Name",
-            "loc": Object {
+            "loc": {
               "end": 262,
               "start": 259,
             },
             "value": "one",
           },
         },
-        Object {
+        {
           "description": undefined,
-          "directives": Array [],
+          "directives": [],
           "kind": "EnumValueDefinition",
-          "loc": Object {
+          "loc": {
             "end": 276,
             "start": 273,
           },
-          "name": Object {
+          "name": {
             "kind": "Name",
-            "loc": Object {
+            "loc": {
               "end": 276,
               "start": 273,
             },
             "value": "two",
           },
         },
-        Object {
+        {
           "description": undefined,
-          "directives": Array [],
+          "directives": [],
           "kind": "EnumValueDefinition",
-          "loc": Object {
+          "loc": {
             "end": 292,
             "start": 287,
           },
-          "name": Object {
+          "name": {
             "kind": "Name",
-            "loc": Object {
+            "loc": {
               "end": 292,
               "start": 287,
             },
@@ -892,12 +892,12 @@ Array [
       ],
     },
     "description": undefined,
-    "extensionASTNodes": Array [],
-    "extensions": Object {},
-    "fields": Array [],
+    "extensionASTNodes": [],
+    "extensions": {},
+    "fields": [],
     "name": "TestEnum",
-    "ownerNodes": Array [],
-    "referencedBy": Array [],
+    "ownerNodes": [],
+    "referencedBy": [],
   },
 ]
 `;

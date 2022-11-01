@@ -1,28 +1,28 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`prepareNodesViewData Checks correct result 1`] = `
-Array [
-  Object {
-    "itemsMap": Object {
-      "CustomInput": Object {
+[
+  {
+    "itemsMap": {
+      "CustomInput": {
         "description": null,
         "enumValues": null,
         "fields": null,
-        "inputFields": Array [
-          Object {
+        "inputFields": [
+          {
             "defaultValue": null,
             "deprecationReason": null,
             "description": null,
             "isDeprecated": false,
             "name": "names",
             "nodeName": "testNode",
-            "type": Object {
+            "type": {
               "kind": "NON_NULL",
               "name": null,
-              "ofType": Object {
+              "ofType": {
                 "kind": "LIST",
                 "name": null,
-                "ofType": Object {
+                "ofType": {
                   "kind": "SCALAR",
                   "name": "String",
                   "ofType": null,
@@ -33,21 +33,21 @@ Array [
           },
         ],
         "interfaces": null,
-        "itemsMap": Object {
-          "names": Object {
+        "itemsMap": {
+          "names": {
             "defaultValue": null,
             "deprecationReason": null,
             "description": null,
             "isDeprecated": false,
             "name": "names",
             "nodeName": "testNode",
-            "type": Object {
+            "type": {
               "kind": "NON_NULL",
               "name": null,
-              "ofType": Object {
+              "ofType": {
                 "kind": "LIST",
                 "name": null,
-                "ofType": Object {
+                "ofType": {
                   "kind": "SCALAR",
                   "name": "String",
                   "ofType": null,
@@ -63,32 +63,32 @@ Array [
         "possibleTypes": null,
         "specifiedByURL": null,
       },
-      "CustomType": Object {
+      "CustomType": {
         "description": null,
         "enumValues": null,
-        "fields": Array [
-          Object {
-            "args": Array [],
+        "fields": [
+          {
+            "args": [],
             "deprecationReason": null,
             "description": null,
             "isDeprecated": false,
             "name": "id",
             "nodeName": "testNode",
-            "type": Object {
+            "type": {
               "kind": "SCALAR",
               "name": "ID",
               "ofType": null,
             },
             "typeString": "ID",
           },
-          Object {
-            "args": Array [],
+          {
+            "args": [],
             "deprecationReason": null,
             "description": null,
             "isDeprecated": false,
             "name": "name",
             "nodeName": "testNode",
-            "type": Object {
+            "type": {
               "kind": "SCALAR",
               "name": "String",
               "ofType": null,
@@ -97,30 +97,30 @@ Array [
           },
         ],
         "inputFields": null,
-        "interfaces": Array [],
-        "itemsMap": Object {
-          "id": Object {
-            "args": Array [],
+        "interfaces": [],
+        "itemsMap": {
+          "id": {
+            "args": [],
             "deprecationReason": null,
             "description": null,
             "isDeprecated": false,
             "name": "id",
             "nodeName": "testNode",
-            "type": Object {
+            "type": {
               "kind": "SCALAR",
               "name": "ID",
               "ofType": null,
             },
             "typeString": "ID",
           },
-          "name": Object {
-            "args": Array [],
+          "name": {
+            "args": [],
             "deprecationReason": null,
             "description": null,
             "isDeprecated": false,
             "name": "name",
             "nodeName": "testNode",
-            "type": Object {
+            "type": {
               "kind": "SCALAR",
               "name": "String",
               "ofType": null,
@@ -134,19 +134,19 @@ Array [
         "possibleTypes": null,
         "specifiedByURL": null,
       },
-      "Query": Object {
+      "Query": {
         "description": null,
         "enumValues": null,
-        "fields": Array [
-          Object {
-            "args": Array [
-              Object {
+        "fields": [
+          {
+            "args": [
+              {
                 "defaultValue": null,
                 "deprecationReason": null,
                 "description": null,
                 "isDeprecated": false,
                 "name": "customInput",
-                "type": Object {
+                "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "CustomInput",
                   "ofType": null,
@@ -158,7 +158,7 @@ Array [
             "isDeprecated": false,
             "name": "test",
             "nodeName": "testNode",
-            "type": Object {
+            "type": {
               "kind": "OBJECT",
               "name": "CustomType",
               "ofType": null,
@@ -167,17 +167,17 @@ Array [
           },
         ],
         "inputFields": null,
-        "interfaces": Array [],
-        "itemsMap": Object {
-          "test": Object {
-            "args": Array [
-              Object {
+        "interfaces": [],
+        "itemsMap": {
+          "test": {
+            "args": [
+              {
                 "defaultValue": null,
                 "deprecationReason": null,
                 "description": null,
                 "isDeprecated": false,
                 "name": "customInput",
-                "type": Object {
+                "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "CustomInput",
                   "ofType": null,
@@ -189,7 +189,7 @@ Array [
             "isDeprecated": false,
             "name": "test",
             "nodeName": "testNode",
-            "type": Object {
+            "type": {
               "kind": "OBJECT",
               "name": "CustomType",
               "ofType": null,
@@ -203,22 +203,22 @@ Array [
         "possibleTypes": null,
         "specifiedByURL": null,
       },
-      "TestEnum": Object {
+      "TestEnum": {
         "description": null,
-        "enumValues": Array [
-          Object {
+        "enumValues": [
+          {
             "deprecationReason": null,
             "description": null,
             "isDeprecated": false,
             "name": "one",
           },
-          Object {
+          {
             "deprecationReason": null,
             "description": null,
             "isDeprecated": false,
             "name": "two",
           },
-          Object {
+          {
             "deprecationReason": null,
             "description": null,
             "isDeprecated": false,
@@ -228,7 +228,7 @@ Array [
         "fields": null,
         "inputFields": null,
         "interfaces": null,
-        "itemsMap": Object {},
+        "itemsMap": {},
         "kind": "ENUM",
         "name": "TestEnum",
         "nodeName": "testNode",

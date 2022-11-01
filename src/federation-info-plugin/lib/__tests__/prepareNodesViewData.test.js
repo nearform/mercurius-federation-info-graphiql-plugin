@@ -1,5 +1,5 @@
-import { IGNORED_FIELDS, IGNORED_TYPES } from '../constants'
-import { TypeKind, buildSchema, introspectionFromSchema } from 'graphql'
+import { IGNORED_FIELDS } from '../constants'
+import { buildSchema, introspectionFromSchema } from 'graphql'
 import { indexNodeFields, prepareNodesViewData } from '../prepareNodesViewData'
 
 const fieldsFromNames = names =>
