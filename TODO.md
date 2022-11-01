@@ -1,0 +1,3 @@
+- [ ] define handling of scalar, union, enum, interface
+- [ ] improve example serverside schema with more realistic federated schema
+- [ ] Maybe add utility function for referencedBy and ownedBy (see `prepareSchemaViewData.js`)

@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
-import fetchFederationSchema from './lib/fetchFederationSchema'
-import parseFederationSchema from './lib/parseFederationSchema'
-import { prepareSchemaView } from './lib/prepareSchemaViewData'
+import { prepareSchemaViewData } from './lib/prepareSchemaViewData'
+import useFederationInfo from './lib/useFederationInfoHook'
 import { ReactComponent as ShareNodes } from './icons/share-nodes.svg'
 import { TabGroup, TabButton } from './components/Tabs/Tabs'
 import SchemaView from './views/SchemaView'
@@ -10,44 +9,33 @@ import { Spinner, useSchemaContext } from '@graphiql/react'
 import NodesView from './views/NodesView'
 
 const TABS = {
-  NODES: 0,
-  SCHEMA: 1
+  SCHEMA: 0,
+  NODES: 1
 }
+
 const FederationInfoContent = ({ federationSchemaUrl }) => {
-  const [federationNodes, setFederationNodes] = useState([])
-  const [schemaViewData, setSchemaViewData] = useState({})
+  const [schemaViewData, setSchemaViewData] = useState([])
 
   const {
-    fetchError,
-    isFetching: isSchemaFetching,
-    schema
+    schema,
+    fetchError: fetchSchemaError,
+    isFetching: isSchemaFetching
   } = useSchemaContext({ nonNull: true, caller: FederationInfoContent })
 
-  //TODO move fetchFederationSchema to useFederationInfoSchemaContex
-  const [fetchFederationInfoError, setFetchFederationInfoError] = useState()
-  const [isFederationInfoFetching, setFederationInfoFetching] = useState(true)
+  const { nodesViewData, fetchFederationInfoError, isFederationInfoFetching } =
+    useFederationInfo(federationSchemaUrl)
 
+  //needs both schema and nodesViewData to prepare the schema view
   useEffect(() => {
-    const fetchSchema = async () => {
-      try {
-        const federationSchema = await fetchFederationSchema(
-          federationSchemaUrl
-        )
-        setFederationNodes(parseFederationSchema(federationSchema))
-        setSchemaViewData(prepareSchemaView(federationSchema, schema))
-        setFederationInfoFetching(false)
-      } catch (e) {
-        setFetchFederationInfoError(e)
-      }
+    if (schema && nodesViewData) {
+      setSchemaViewData(prepareSchemaViewData(nodesViewData, schema))
     }
-    setFederationInfoFetching(true)
-    fetchSchema()
-  }, [federationSchemaUrl, schema])
+  }, [schema, nodesViewData])
 
   const isFetching = isFederationInfoFetching || isSchemaFetching
-  const isError = fetchError || fetchFederationInfoError
+  const isError = fetchSchemaError || fetchFederationInfoError
 
-  const [activeTab, setActiveTab] = useState(0)
+  const [activeTab, setActiveTab] = useState(TABS.SCHEMA)
   if (isError) {
     return (
       <div>
@@ -56,7 +44,9 @@ const FederationInfoContent = ({ federationSchemaUrl }) => {
             Error fetching federation schema: {fetchFederationInfoError.message}
           </div>
         )}
-        {fetchError && <div>Error fetching schema: {fetchError.message}</div>}
+        {fetchSchemaError && (
+          <div>Error fetching schema: {fetchSchemaError.message}</div>
+        )}
       </div>
     )
   }
@@ -69,27 +59,23 @@ const FederationInfoContent = ({ federationSchemaUrl }) => {
         <div>
           <TabGroup>
             <TabButton
-              isActive={activeTab === TABS.NODES}
-              onClick={() => setActiveTab(TABS.NODES)}
-            >
-              Nodes
-            </TabButton>
-            <TabButton
               isActive={activeTab === TABS.SCHEMA}
               onClick={() => setActiveTab(TABS.SCHEMA)}
             >
               Schema
             </TabButton>
+            <TabButton
+              isActive={activeTab === TABS.NODES}
+              onClick={() => setActiveTab(TABS.NODES)}
+            >
+              Nodes
+            </TabButton>
           </TabGroup>
           {activeTab === TABS.NODES && (
-            <NodesView federationNodes={federationNodes} />
+            <NodesView federationNodes={nodesViewData} />
           )}
           {activeTab === TABS.SCHEMA && (
-            <SchemaView
-              federationNodes={federationNodes}
-              schema={schema}
-              schemaViewData={schemaViewData}
-            />
+            <SchemaView schemaViewData={schemaViewData} />
           )}
         </div>
       )}

@@ -1,0 +1,903 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`prepareSchemaViewData Returns correct result 1`] = `
+[
+  {
+    "_fields": {
+      "_entities": {
+        "args": [],
+        "astNode": {
+          "arguments": [],
+          "description": undefined,
+          "directives": [],
+          "kind": "FieldDefinition",
+          "loc": {
+            "end": 95,
+            "start": 78,
+          },
+          "name": {
+            "kind": "Name",
+            "loc": {
+              "end": 87,
+              "start": 78,
+            },
+            "value": "_entities",
+          },
+          "type": {
+            "kind": "NamedType",
+            "loc": {
+              "end": 95,
+              "start": 89,
+            },
+            "name": {
+              "kind": "Name",
+              "loc": {
+                "end": 95,
+                "start": 89,
+              },
+              "value": "String",
+            },
+          },
+        },
+        "deprecationReason": undefined,
+        "description": undefined,
+        "extensions": {},
+        "name": "_entities",
+        "resolve": undefined,
+        "subscribe": undefined,
+        "type": "String",
+      },
+      "id": {
+        "args": [],
+        "astNode": {
+          "arguments": [],
+          "description": undefined,
+          "directives": [],
+          "kind": "FieldDefinition",
+          "loc": {
+            "end": 38,
+            "start": 32,
+          },
+          "name": {
+            "kind": "Name",
+            "loc": {
+              "end": 34,
+              "start": 32,
+            },
+            "value": "id",
+          },
+          "type": {
+            "kind": "NamedType",
+            "loc": {
+              "end": 38,
+              "start": 36,
+            },
+            "name": {
+              "kind": "Name",
+              "loc": {
+                "end": 38,
+                "start": 36,
+              },
+              "value": "ID",
+            },
+          },
+        },
+        "deprecationReason": undefined,
+        "description": undefined,
+        "extensions": {},
+        "name": "id",
+        "resolve": undefined,
+        "subscribe": undefined,
+        "type": "ID",
+      },
+      "node2Field": {
+        "args": [],
+        "astNode": {
+          "arguments": [],
+          "description": undefined,
+          "directives": [],
+          "kind": "FieldDefinition",
+          "loc": {
+            "end": 67,
+            "start": 49,
+          },
+          "name": {
+            "kind": "Name",
+            "loc": {
+              "end": 59,
+              "start": 49,
+            },
+            "value": "node2Field",
+          },
+          "type": {
+            "kind": "NamedType",
+            "loc": {
+              "end": 67,
+              "start": 61,
+            },
+            "name": {
+              "kind": "Name",
+              "loc": {
+                "end": 67,
+                "start": 61,
+              },
+              "value": "String",
+            },
+          },
+        },
+        "deprecationReason": undefined,
+        "description": undefined,
+        "extensions": {},
+        "name": "node2Field",
+        "resolve": undefined,
+        "subscribe": undefined,
+        "type": "String",
+      },
+    },
+    "_interfaces": [],
+    "astNode": {
+      "description": undefined,
+      "directives": [],
+      "fields": [
+        {
+          "arguments": [],
+          "description": undefined,
+          "directives": [],
+          "kind": "FieldDefinition",
+          "loc": {
+            "end": 38,
+            "start": 32,
+          },
+          "name": {
+            "kind": "Name",
+            "loc": {
+              "end": 34,
+              "start": 32,
+            },
+            "value": "id",
+          },
+          "type": {
+            "kind": "NamedType",
+            "loc": {
+              "end": 38,
+              "start": 36,
+            },
+            "name": {
+              "kind": "Name",
+              "loc": {
+                "end": 38,
+                "start": 36,
+              },
+              "value": "ID",
+            },
+          },
+        },
+        {
+          "arguments": [],
+          "description": undefined,
+          "directives": [],
+          "kind": "FieldDefinition",
+          "loc": {
+            "end": 67,
+            "start": 49,
+          },
+          "name": {
+            "kind": "Name",
+            "loc": {
+              "end": 59,
+              "start": 49,
+            },
+            "value": "node2Field",
+          },
+          "type": {
+            "kind": "NamedType",
+            "loc": {
+              "end": 67,
+              "start": 61,
+            },
+            "name": {
+              "kind": "Name",
+              "loc": {
+                "end": 67,
+                "start": 61,
+              },
+              "value": "String",
+            },
+          },
+        },
+        {
+          "arguments": [],
+          "description": undefined,
+          "directives": [],
+          "kind": "FieldDefinition",
+          "loc": {
+            "end": 95,
+            "start": 78,
+          },
+          "name": {
+            "kind": "Name",
+            "loc": {
+              "end": 87,
+              "start": 78,
+            },
+            "value": "_entities",
+          },
+          "type": {
+            "kind": "NamedType",
+            "loc": {
+              "end": 95,
+              "start": 89,
+            },
+            "name": {
+              "kind": "Name",
+              "loc": {
+                "end": 95,
+                "start": 89,
+              },
+              "value": "String",
+            },
+          },
+        },
+      ],
+      "interfaces": [],
+      "kind": "ObjectTypeDefinition",
+      "loc": {
+        "end": 105,
+        "start": 10,
+      },
+      "name": {
+        "kind": "Name",
+        "loc": {
+          "end": 19,
+          "start": 15,
+        },
+        "value": "User",
+      },
+    },
+    "description": undefined,
+    "extensionASTNodes": [],
+    "extensions": {},
+    "fields": [
+      {
+        "args": [],
+        "astNode": {
+          "arguments": [],
+          "description": undefined,
+          "directives": [],
+          "kind": "FieldDefinition",
+          "loc": {
+            "end": 38,
+            "start": 32,
+          },
+          "name": {
+            "kind": "Name",
+            "loc": {
+              "end": 34,
+              "start": 32,
+            },
+            "value": "id",
+          },
+          "type": {
+            "kind": "NamedType",
+            "loc": {
+              "end": 38,
+              "start": 36,
+            },
+            "name": {
+              "kind": "Name",
+              "loc": {
+                "end": 38,
+                "start": 36,
+              },
+              "value": "ID",
+            },
+          },
+        },
+        "deprecationReason": undefined,
+        "description": undefined,
+        "extensions": {},
+        "fieldsFromNodes": [
+          {
+            "isExternal": false,
+            "nodeName": "node1",
+          },
+          {
+            "isExternal": true,
+            "nodeName": "node2",
+          },
+        ],
+        "name": "id",
+        "ownerNodes": [
+          "node1",
+        ],
+        "referencedBy": [
+          "node2",
+        ],
+        "resolve": undefined,
+        "subscribe": undefined,
+        "type": "ID",
+      },
+      {
+        "args": [],
+        "astNode": {
+          "arguments": [],
+          "description": undefined,
+          "directives": [],
+          "kind": "FieldDefinition",
+          "loc": {
+            "end": 67,
+            "start": 49,
+          },
+          "name": {
+            "kind": "Name",
+            "loc": {
+              "end": 59,
+              "start": 49,
+            },
+            "value": "node2Field",
+          },
+          "type": {
+            "kind": "NamedType",
+            "loc": {
+              "end": 67,
+              "start": 61,
+            },
+            "name": {
+              "kind": "Name",
+              "loc": {
+                "end": 67,
+                "start": 61,
+              },
+              "value": "String",
+            },
+          },
+        },
+        "deprecationReason": undefined,
+        "description": undefined,
+        "extensions": {},
+        "fieldsFromNodes": [
+          {
+            "isExternal": false,
+            "nodeName": "node2",
+          },
+        ],
+        "name": "node2Field",
+        "ownerNodes": [
+          "node2",
+        ],
+        "referencedBy": [],
+        "resolve": undefined,
+        "subscribe": undefined,
+        "type": "String",
+      },
+      {
+        "args": [],
+        "astNode": {
+          "arguments": [],
+          "description": undefined,
+          "directives": [],
+          "kind": "FieldDefinition",
+          "loc": {
+            "end": 95,
+            "start": 78,
+          },
+          "name": {
+            "kind": "Name",
+            "loc": {
+              "end": 87,
+              "start": 78,
+            },
+            "value": "_entities",
+          },
+          "type": {
+            "kind": "NamedType",
+            "loc": {
+              "end": 95,
+              "start": 89,
+            },
+            "name": {
+              "kind": "Name",
+              "loc": {
+                "end": 95,
+                "start": 89,
+              },
+              "value": "String",
+            },
+          },
+        },
+        "deprecationReason": undefined,
+        "description": undefined,
+        "extensions": {},
+        "fieldsFromNodes": [],
+        "name": "_entities",
+        "ownerNodes": [],
+        "referencedBy": [],
+        "resolve": undefined,
+        "subscribe": undefined,
+        "type": "String",
+      },
+    ],
+    "isTypeOf": undefined,
+    "name": "User",
+    "ownerNodes": [
+      "node1",
+    ],
+    "referencedBy": [
+      {
+        "key": [
+          {
+            "value": "id",
+          },
+        ],
+        "nodeName": "node2",
+      },
+    ],
+  },
+  {
+    "_fields": {
+      "id": {
+        "args": [],
+        "astNode": {
+          "arguments": [],
+          "description": undefined,
+          "directives": [],
+          "kind": "FieldDefinition",
+          "loc": {
+            "end": 155,
+            "start": 149,
+          },
+          "name": {
+            "kind": "Name",
+            "loc": {
+              "end": 151,
+              "start": 149,
+            },
+            "value": "id",
+          },
+          "type": {
+            "kind": "NamedType",
+            "loc": {
+              "end": 155,
+              "start": 153,
+            },
+            "name": {
+              "kind": "Name",
+              "loc": {
+                "end": 155,
+                "start": 153,
+              },
+              "value": "ID",
+            },
+          },
+        },
+        "deprecationReason": undefined,
+        "description": undefined,
+        "extensions": {},
+        "name": "id",
+        "resolve": undefined,
+        "subscribe": undefined,
+        "type": "ID",
+      },
+    },
+    "_interfaces": [],
+    "astNode": {
+      "description": undefined,
+      "directives": [],
+      "fields": [
+        {
+          "arguments": [],
+          "description": undefined,
+          "directives": [],
+          "kind": "FieldDefinition",
+          "loc": {
+            "end": 155,
+            "start": 149,
+          },
+          "name": {
+            "kind": "Name",
+            "loc": {
+              "end": 151,
+              "start": 149,
+            },
+            "value": "id",
+          },
+          "type": {
+            "kind": "NamedType",
+            "loc": {
+              "end": 155,
+              "start": 153,
+            },
+            "name": {
+              "kind": "Name",
+              "loc": {
+                "end": 155,
+                "start": 153,
+              },
+              "value": "ID",
+            },
+          },
+        },
+      ],
+      "interfaces": [],
+      "kind": "ObjectTypeDefinition",
+      "loc": {
+        "end": 165,
+        "start": 122,
+      },
+      "name": {
+        "kind": "Name",
+        "loc": {
+          "end": 136,
+          "start": 127,
+        },
+        "value": "Node2Type",
+      },
+    },
+    "description": undefined,
+    "extensionASTNodes": [],
+    "extensions": {},
+    "fields": [
+      {
+        "args": [],
+        "astNode": {
+          "arguments": [],
+          "description": undefined,
+          "directives": [],
+          "kind": "FieldDefinition",
+          "loc": {
+            "end": 155,
+            "start": 149,
+          },
+          "name": {
+            "kind": "Name",
+            "loc": {
+              "end": 151,
+              "start": 149,
+            },
+            "value": "id",
+          },
+          "type": {
+            "kind": "NamedType",
+            "loc": {
+              "end": 155,
+              "start": 153,
+            },
+            "name": {
+              "kind": "Name",
+              "loc": {
+                "end": 155,
+                "start": 153,
+              },
+              "value": "ID",
+            },
+          },
+        },
+        "deprecationReason": undefined,
+        "description": undefined,
+        "extensions": {},
+        "fieldsFromNodes": [
+          {
+            "name": "id",
+            "nodeName": "node2",
+          },
+        ],
+        "name": "id",
+        "ownerNodes": [
+          "node2",
+        ],
+        "referencedBy": [],
+        "resolve": undefined,
+        "subscribe": undefined,
+        "type": "ID",
+      },
+    ],
+    "isTypeOf": undefined,
+    "name": "Node2Type",
+    "ownerNodes": [
+      "node2",
+    ],
+    "referencedBy": [],
+  },
+  {
+    "_nameLookup": {
+      "one": {
+        "astNode": {
+          "description": undefined,
+          "directives": [],
+          "kind": "EnumValueDefinition",
+          "loc": {
+            "end": 262,
+            "start": 259,
+          },
+          "name": {
+            "kind": "Name",
+            "loc": {
+              "end": 262,
+              "start": 259,
+            },
+            "value": "one",
+          },
+        },
+        "deprecationReason": undefined,
+        "description": undefined,
+        "extensions": {},
+        "name": "one",
+        "value": "one",
+      },
+      "three": {
+        "astNode": {
+          "description": undefined,
+          "directives": [],
+          "kind": "EnumValueDefinition",
+          "loc": {
+            "end": 292,
+            "start": 287,
+          },
+          "name": {
+            "kind": "Name",
+            "loc": {
+              "end": 292,
+              "start": 287,
+            },
+            "value": "three",
+          },
+        },
+        "deprecationReason": undefined,
+        "description": undefined,
+        "extensions": {},
+        "name": "three",
+        "value": "three",
+      },
+      "two": {
+        "astNode": {
+          "description": undefined,
+          "directives": [],
+          "kind": "EnumValueDefinition",
+          "loc": {
+            "end": 276,
+            "start": 273,
+          },
+          "name": {
+            "kind": "Name",
+            "loc": {
+              "end": 276,
+              "start": 273,
+            },
+            "value": "two",
+          },
+        },
+        "deprecationReason": undefined,
+        "description": undefined,
+        "extensions": {},
+        "name": "two",
+        "value": "two",
+      },
+    },
+    "_valueLookup": Map {
+      "one" => {
+        "astNode": {
+          "description": undefined,
+          "directives": [],
+          "kind": "EnumValueDefinition",
+          "loc": {
+            "end": 262,
+            "start": 259,
+          },
+          "name": {
+            "kind": "Name",
+            "loc": {
+              "end": 262,
+              "start": 259,
+            },
+            "value": "one",
+          },
+        },
+        "deprecationReason": undefined,
+        "description": undefined,
+        "extensions": {},
+        "name": "one",
+        "value": "one",
+      },
+      "two" => {
+        "astNode": {
+          "description": undefined,
+          "directives": [],
+          "kind": "EnumValueDefinition",
+          "loc": {
+            "end": 276,
+            "start": 273,
+          },
+          "name": {
+            "kind": "Name",
+            "loc": {
+              "end": 276,
+              "start": 273,
+            },
+            "value": "two",
+          },
+        },
+        "deprecationReason": undefined,
+        "description": undefined,
+        "extensions": {},
+        "name": "two",
+        "value": "two",
+      },
+      "three" => {
+        "astNode": {
+          "description": undefined,
+          "directives": [],
+          "kind": "EnumValueDefinition",
+          "loc": {
+            "end": 292,
+            "start": 287,
+          },
+          "name": {
+            "kind": "Name",
+            "loc": {
+              "end": 292,
+              "start": 287,
+            },
+            "value": "three",
+          },
+        },
+        "deprecationReason": undefined,
+        "description": undefined,
+        "extensions": {},
+        "name": "three",
+        "value": "three",
+      },
+    },
+    "_values": [
+      {
+        "astNode": {
+          "description": undefined,
+          "directives": [],
+          "kind": "EnumValueDefinition",
+          "loc": {
+            "end": 262,
+            "start": 259,
+          },
+          "name": {
+            "kind": "Name",
+            "loc": {
+              "end": 262,
+              "start": 259,
+            },
+            "value": "one",
+          },
+        },
+        "deprecationReason": undefined,
+        "description": undefined,
+        "extensions": {},
+        "name": "one",
+        "value": "one",
+      },
+      {
+        "astNode": {
+          "description": undefined,
+          "directives": [],
+          "kind": "EnumValueDefinition",
+          "loc": {
+            "end": 276,
+            "start": 273,
+          },
+          "name": {
+            "kind": "Name",
+            "loc": {
+              "end": 276,
+              "start": 273,
+            },
+            "value": "two",
+          },
+        },
+        "deprecationReason": undefined,
+        "description": undefined,
+        "extensions": {},
+        "name": "two",
+        "value": "two",
+      },
+      {
+        "astNode": {
+          "description": undefined,
+          "directives": [],
+          "kind": "EnumValueDefinition",
+          "loc": {
+            "end": 292,
+            "start": 287,
+          },
+          "name": {
+            "kind": "Name",
+            "loc": {
+              "end": 292,
+              "start": 287,
+            },
+            "value": "three",
+          },
+        },
+        "deprecationReason": undefined,
+        "description": undefined,
+        "extensions": {},
+        "name": "three",
+        "value": "three",
+      },
+    ],
+    "astNode": {
+      "description": undefined,
+      "directives": [],
+      "kind": "EnumTypeDefinition",
+      "loc": {
+        "end": 302,
+        "start": 232,
+      },
+      "name": {
+        "kind": "Name",
+        "loc": {
+          "end": 245,
+          "start": 237,
+        },
+        "value": "TestEnum",
+      },
+      "values": [
+        {
+          "description": undefined,
+          "directives": [],
+          "kind": "EnumValueDefinition",
+          "loc": {
+            "end": 262,
+            "start": 259,
+          },
+          "name": {
+            "kind": "Name",
+            "loc": {
+              "end": 262,
+              "start": 259,
+            },
+            "value": "one",
+          },
+        },
+        {
+          "description": undefined,
+          "directives": [],
+          "kind": "EnumValueDefinition",
+          "loc": {
+            "end": 276,
+            "start": 273,
+          },
+          "name": {
+            "kind": "Name",
+            "loc": {
+              "end": 276,
+              "start": 273,
+            },
+            "value": "two",
+          },
+        },
+        {
+          "description": undefined,
+          "directives": [],
+          "kind": "EnumValueDefinition",
+          "loc": {
+            "end": 292,
+            "start": 287,
+          },
+          "name": {
+            "kind": "Name",
+            "loc": {
+              "end": 292,
+              "start": 287,
+            },
+            "value": "three",
+          },
+        },
+      ],
+    },
+    "description": undefined,
+    "extensionASTNodes": [],
+    "extensions": {},
+    "fields": [],
+    "name": "TestEnum",
+    "ownerNodes": [],
+    "referencedBy": [],
+  },
+]
+`;
