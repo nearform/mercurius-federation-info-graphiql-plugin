@@ -1,8 +1,7 @@
 {
   "name": "mercurius-federation-info-graphiql-plugin",
-  "version": "0.2.1",
-  "description": "This is a graphiql plugin to dispplay mercurius federation info.",
-  "private": true,
+  "version": "0.2.0",
+  "description": "This is a graphiql plugin to display mercurius federation info.",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nearform/mercurius-federation-info-graphiql-plugin.git"
