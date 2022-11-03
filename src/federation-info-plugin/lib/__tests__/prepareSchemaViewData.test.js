@@ -1,8 +1,8 @@
 import { buildSchema } from 'graphql'
-import { fromNodes, prepareSchemaViewData } from '../prepareSchemaViewData'
-describe('fromNodes', () => {
+import { fromServices, prepareSchemaViewData } from '../prepareSchemaViewData'
+describe('fromServices', () => {
   const correct = { correct: true }
-  it('Finds the correct items in nodes array', () => {
+  it('Finds the correct items in services array', () => {
     const toCheck = [
       {
         itemsMap: {
@@ -18,29 +18,29 @@ describe('fromNodes', () => {
       }
     ]
 
-    expect(fromNodes('correct', toCheck)).toEqual([correct, correct])
+    expect(fromServices('correct', toCheck)).toEqual([correct, correct])
   })
 })
 
 describe('prepareSchemaViewData', () => {
-  it('Returns empty object if schema or nodeViewData is undefined', () => {
+  it('Returns empty object if schema or serviceViewData is undefined', () => {
     expect(prepareSchemaViewData(null)).toEqual({})
     expect(prepareSchemaViewData({}, null)).toEqual({})
     expect(prepareSchemaViewData(null, {})).toEqual({})
   })
 
   it('Returns correct result', () => {
-    const nodeViewData = [
+    const serviceViewData = [
       {
-        nodeName: 'node1',
+        serviceName: 'service1',
         itemsMap: {
           User: {
             kind: 'OBJECT',
-            nodeName: 'node1',
+            serviceName: 'service1',
             name: 'User',
             itemsMap: {
               id: {
-                nodeName: 'node1',
+                serviceName: 'service1',
                 isExternal: false
               }
             }
@@ -48,33 +48,33 @@ describe('prepareSchemaViewData', () => {
         }
       },
       {
-        nodeName: 'node2',
+        serviceName: 'service2',
         itemsMap: {
           User: {
             isExtension: true,
             key: [{ value: 'id' }],
-            nodeName: 'node2',
+            serviceName: 'service2',
             name: 'User',
             kind: 'OBJECT',
             itemsMap: {
               id: {
-                nodeName: 'node2',
+                serviceName: 'service2',
                 isExternal: true
               },
-              node2Field: {
-                nodeName: 'node2',
+              service2Field: {
+                serviceName: 'service2',
                 isExternal: false
               }
             }
           },
-          Node2Type: {
+          Service2Type: {
             isExtension: false,
-            nodeName: 'node2',
-            name: 'Node2Type',
+            serviceName: 'service2',
+            name: 'Service2Type',
             itemsMap: {
               id: {
                 name: 'id',
-                nodeName: 'node2'
+                serviceName: 'service2'
               }
             }
           }
@@ -87,11 +87,11 @@ describe('prepareSchemaViewData', () => {
 
         type User {
           id: ID
-          node2Field: String
+          service2Field: String
           _entities: String
         }
        
-        type Node2Type {
+        type Service2Type {
           id: ID
         }
 
@@ -107,6 +107,6 @@ describe('prepareSchemaViewData', () => {
       `
     )
 
-    expect(prepareSchemaViewData(nodeViewData, schema)).toMatchSnapshot()
+    expect(prepareSchemaViewData(serviceViewData, schema)).toMatchSnapshot()
   })
 })

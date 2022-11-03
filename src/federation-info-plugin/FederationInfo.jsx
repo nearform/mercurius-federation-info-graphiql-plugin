@@ -6,11 +6,11 @@ import { ReactComponent as ShareNodes } from './icons/share-nodes.svg'
 import { TabGroup, TabButton } from './components/Tabs/Tabs'
 import SchemaView from './views/SchemaView'
 import { Spinner, useSchemaContext } from '@graphiql/react'
-import NodesView from './views/NodesView'
+import ServicesView from './views/ServicesView'
 
 const TABS = {
   SCHEMA: 0,
-  NODES: 1
+  SERVICES: 1
 }
 
 const FederationInfoContent = ({ federationSchemaUrl }) => {
@@ -22,15 +22,18 @@ const FederationInfoContent = ({ federationSchemaUrl }) => {
     isFetching: isSchemaFetching
   } = useSchemaContext({ nonNull: true, caller: FederationInfoContent })
 
-  const { nodesViewData, fetchFederationInfoError, isFederationInfoFetching } =
-    useFederationInfo(federationSchemaUrl)
+  const {
+    servicesViewData,
+    fetchFederationInfoError,
+    isFederationInfoFetching
+  } = useFederationInfo(federationSchemaUrl)
 
-  //needs both schema and nodesViewData to prepare the schema view
+  //needs both schema and servicesViewData to prepare the schema view
   useEffect(() => {
-    if (schema && nodesViewData) {
-      setSchemaViewData(prepareSchemaViewData(nodesViewData, schema))
+    if (schema && servicesViewData) {
+      setSchemaViewData(prepareSchemaViewData(servicesViewData, schema))
     }
-  }, [schema, nodesViewData])
+  }, [schema, servicesViewData])
 
   const isFetching = isFederationInfoFetching || isSchemaFetching
   const isError = fetchSchemaError || fetchFederationInfoError
@@ -65,14 +68,14 @@ const FederationInfoContent = ({ federationSchemaUrl }) => {
               Schema
             </TabButton>
             <TabButton
-              isActive={activeTab === TABS.NODES}
-              onClick={() => setActiveTab(TABS.NODES)}
+              isActive={activeTab === TABS.SERVICES}
+              onClick={() => setActiveTab(TABS.SERVICES)}
             >
-              Nodes
+              Services
             </TabButton>
           </TabGroup>
-          {activeTab === TABS.NODES && (
-            <NodesView federationNodes={nodesViewData} />
+          {activeTab === TABS.SERVICES && (
+            <ServicesView federationServices={servicesViewData} />
           )}
           {activeTab === TABS.SCHEMA && (
             <SchemaView schemaViewData={schemaViewData} />
