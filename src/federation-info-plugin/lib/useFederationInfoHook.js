@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import { prepareNodesViewData } from './prepareNodesViewData'
+import { prepareServicesViewData } from './prepareServicesViewData'
 
 export async function fetchFederationSchema(url) {
   const data = await fetch(url, {
@@ -14,7 +14,7 @@ export async function fetchFederationSchema(url) {
 }
 
 export default function useFederationInfo(federationSchemaUrl) {
-  const [nodesViewData, setNodesViewData] = useState([])
+  const [servicesViewData, setServicesViewData] = useState([])
   const [fetchFederationInfoError, setFetchFederationInfoError] = useState()
   const [isFederationInfoFetching, setFederationInfoFetching] = useState(true)
 
@@ -25,9 +25,10 @@ export default function useFederationInfo(federationSchemaUrl) {
           federationSchemaUrl
         )
 
-        setNodesViewData(prepareNodesViewData(federationSchema))
+        setServicesViewData(prepareServicesViewData(federationSchema))
         setFederationInfoFetching(false)
       } catch (e) {
+        console.log(e)
         setFetchFederationInfoError(e)
       }
     }
@@ -37,10 +38,10 @@ export default function useFederationInfo(federationSchemaUrl) {
 
   return useMemo(
     () => ({
-      nodesViewData,
+      servicesViewData,
       fetchFederationInfoError,
       isFederationInfoFetching
     }),
-    [nodesViewData, fetchFederationInfoError, isFederationInfoFetching]
+    [servicesViewData, fetchFederationInfoError, isFederationInfoFetching]
   )
 }

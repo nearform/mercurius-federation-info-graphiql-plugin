@@ -4,7 +4,7 @@ import joinClassNames from '../../utils/joinClassNames'
 
 /**
  *
- * @param {Object} props.type grqphql type
+ * @param {Object} props.type graphql type
  * @param {string} props.className className
  *
  * @returns {JSX.Element}
@@ -19,7 +19,7 @@ const KeyLabel = ({ type, className, ...otherProps }) => {
 
   return (
     <span
-      className={joinClassNames(styles.entityKeyLabel, className)}
+      className={joinClassNames(styles.typeKeyLabel, className)}
       {...otherProps}
     >
       @key({keyNames.join(', ')})

@@ -1,6 +1,9 @@
 import { IGNORED_FIELDS } from '../constants'
 import { buildSchema, introspectionFromSchema } from 'graphql'
-import { indexNodeFields, prepareNodesViewData } from '../prepareNodesViewData'
+import {
+  indexServiceFields,
+  prepareServicesViewData
+} from '../prepareServicesViewData'
 
 const fieldsFromNames = names =>
   names.map(name => ({
@@ -10,24 +13,24 @@ const fieldsFromNames = names =>
     }
   }))
 
-describe('indexNodeFields', () => {
+describe('indexServiceFields', () => {
   it('returns indexed fields', () => {
     const fields = fieldsFromNames([...IGNORED_FIELDS, 'test'])
 
-    expect(indexNodeFields(fields, 'dummyNode')).toEqual({
+    expect(indexServiceFields(fields, 'dummyService')).toEqual({
       test: {
         name: 'test',
         type: { name: 'String' },
-        nodeName: 'dummyNode',
+        serviceName: 'dummyService',
         typeString: 'String'
       }
     })
   })
 })
 
-describe('prepareNodesViewData', () => {
+describe('prepareServicesViewData', () => {
   it('Checks correct result', () => {
-    const testNode = introspectionFromSchema(
+    const testService = introspectionFromSchema(
       buildSchema(
         `
           type Query {
@@ -55,10 +58,10 @@ describe('prepareNodesViewData', () => {
         `
       )
     )
-    const nodesResult = { nodes: { testNode } }
-    expect(prepareNodesViewData(nodesResult)).toMatchSnapshot()
+    const servicesResult = { services: { testService } }
+    expect(prepareServicesViewData(servicesResult)).toMatchSnapshot()
 
-    // Potential replacments for snapshot test
+    // Potential replacements for snapshot test
     // Object.keys(itemsMap) equals ['Query', 'CustomType', 'CustomInput', 'TestEnum']
 
     // itemsMap.Query.itemsMap.test

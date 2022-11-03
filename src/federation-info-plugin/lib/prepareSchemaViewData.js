@@ -1,21 +1,21 @@
 import { IGNORED_TYPES } from './constants'
 
 /**
- * Extracts types or fields (depending if nodeFractions is list of types or list of nodes) from the list of nodes
+ * Extracts types or fields (depending if servicesFractions is list of types or list of services) from the list of services
  *
  * @param {string} name
- * @param {*} nodesFractions
+ * @param {*} servicesFractions
  * @returns
  */
-export const fromNodes = (name, nodesFractions) =>
-  nodesFractions
-    .map(nodeFraction => nodeFraction.itemsMap[name])
+export const fromServices = (name, servicesFractions) =>
+  servicesFractions
+    .map(serviceFraction => serviceFraction.itemsMap[name])
     .filter(i => !!i)
 
 /**
  * Prepares the main schema (of type GraphQLSchema) so it can easily be rendered
  *
- * @param {ReturnType<typeof prepareNodesViewData>} federationSchema
+ * @param {ReturnType<typeof import('./prepareServicesViewData.js').prepareServicesViewData>} federationViewData
  * @param {import('graphql').GraphQLSchema} schema
  *
  * @returns see example
@@ -24,13 +24,13 @@ export const fromNodes = (name, nodesFractions) =>
  * [
  *  {
  *      name: "User"
- *      ownerNodes: ["node1"],
- *      referencedBy: [{ nodeName: "node2", key: "id"}],
+ *      ownerServices: ["service1"],
+ *      referencedBy: [{ serviceName: "service2", key: "id"}],
  *      fields: [
  *          {
  *              name: "id",
- *              ownerNodes: ["node1"],
- *              referencedBy: ["node2"],
+ *              ownerServices: ["service1"],
+ *              referencedBy: ["service2"],
  *              ...other fields properties
  *          }
  *      ],
@@ -39,42 +39,42 @@ export const fromNodes = (name, nodesFractions) =>
  * ]
  * ```
  */
-export const prepareSchemaViewData = (nodeViewData, schema) => {
+export const prepareSchemaViewData = (federationViewData, schema) => {
   // return empty object if either one of the arguments is falsy
-  if (!schema || !nodeViewData) return {}
+  if (!schema || !federationViewData) return {}
 
   // transverse the merged GraphQLSchema and add referencedBy and owner properties to it
   return Object.entries(schema.getTypeMap())
     .filter(([name]) => !IGNORED_TYPES.includes(name))
     .map(([typeName, type]) => {
-      //TODO: const ownedBy = ownedBy(nodeFragment)
-      //TODO: const ownedBy = referencedBy(nodeFragment)
-      const typesFromNodes = fromNodes(typeName, nodeViewData)
-      const ownerNodes = typesFromNodes
+      //TODO: const ownedBy = ownedBy(serviceFragment)
+      //TODO: const ownedBy = referencedBy(serviceFragment)
+      const typesFromServices = fromServices(typeName, federationViewData)
+      const ownerServices = typesFromServices
         .filter(({ isExtension }) => !isExtension)
-        .map(({ nodeName }) => nodeName)
-      const referencedBy = typesFromNodes
+        .map(({ serviceName }) => serviceName)
+      const referencedBy = typesFromServices
         .filter(({ key }) => !!key)
-        .map(({ nodeName, key }) => ({
-          nodeName,
+        .map(({ serviceName, key }) => ({
+          serviceName,
           key
         }))
 
       let fields = []
       if (type.getFields) {
         fields = Object.values(type.getFields()).map(field => {
-          const fieldsFromNodes = fromNodes(field.name, typesFromNodes)
-          const ownerNodes = fieldsFromNodes
+          const fieldsFromServices = fromServices(field.name, typesFromServices)
+          const ownerServices = fieldsFromServices
             .filter(({ isExternal }) => !isExternal)
-            .map(({ nodeName }) => nodeName)
-          const referencedBy = fieldsFromNodes
+            .map(({ serviceName }) => serviceName)
+          const referencedBy = fieldsFromServices
             .filter(({ isExternal }) => isExternal)
-            .map(({ nodeName }) => nodeName)
+            .map(({ serviceName }) => serviceName)
 
-          return { ...field, ownerNodes, referencedBy, fieldsFromNodes }
+          return { ...field, ownerServices, referencedBy, fieldsFromServices }
         })
       }
 
-      return { ...type, ownerNodes, referencedBy, fields }
+      return { ...type, ownerServices, referencedBy, fields }
     })
 }

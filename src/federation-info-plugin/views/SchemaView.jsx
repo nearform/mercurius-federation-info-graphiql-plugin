@@ -11,7 +11,7 @@ const FieldRow = ({ field }) => {
       <td>{field.name}</td>
       <td>{input}</td>
       <td>{field.type.toString()}</td>
-      <td>{field.ownerNodes.join(',')}</td>
+      <td>{field.ownerServices.join(',')}</td>
       <td>{field.referencedBy.join(',')}</td>
     </tr>
   )
@@ -23,10 +23,12 @@ const TypeRow = ({ type }) => {
     <>
       <tr onClick={() => setExpanded(!expanded)}>
         <td>{type.name}</td>
-        <td>{type.ownerNodes.join(', ')}</td>
+        <td>{type.ownerServices.join(', ')}</td>
         <td>
           {type.referencedBy
-            .map(({ nodeName, key }) => `${nodeName} @key(${key[0].value})`)
+            .map(
+              ({ serviceName, key }) => `${serviceName} @key(${key[0].value})`
+            )
             .join(<br />)}
         </td>
       </tr>
@@ -39,7 +41,7 @@ const TypeRow = ({ type }) => {
                   <th>Attribute name</th>
                   <th>Input</th>
                   <th>Type</th>
-                  <th>Owner node</th>
+                  <th>Owner service</th>
                   <th>Referenced by</th>
                 </tr>
               </thead>
@@ -59,11 +61,11 @@ const TypeRow = ({ type }) => {
 const SchemaView = ({ schemaViewData }) => {
   return (
     <div className={styles.schemaView}>
-      <h2>Entities</h2>
-      <table className={styles.entityTable}>
+      <h2>Types</h2>
+      <table>
         <thead>
           <tr>
-            <th>Entity</th>
+            <th>Name</th>
             <th>Defined By</th>
             <th>Extended by</th>
           </tr>
