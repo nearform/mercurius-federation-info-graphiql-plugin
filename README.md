@@ -1,9 +1,23 @@
 # Mercurius Federation Info GraphiQL Plugin
 
 A [`GraphiQL`](https://github.com/graphql/graphiql) extension to show information about federated schema,
-which node is defining specific types and properties and which nodes are referenching them. Requires `mercurius-federation-info` [plugin](https://github.com/nearform/mercurius-federation-info), that provides the neccessary api with the federation info
+which node is defining specific types and properties and which nodes are referencing them. Requires `mercurius-federation-info` [plugin](https://github.com/nearform/mercurius-federation-info), that provides the necessary api with the federation info
+
+## Schema tab:
+Displays a table of GraphQL types showing which node defines it (Defined by column) and which node is extending it (Extended by) and what is using as key.
+Each object type has a sub-table listing its attributes:
+- Input column shows if the attribute has input arguments
+- Type shows what type the attribute is
+- Owner node shows which node defines the attribute
+- Referenced by shows which node is referencing it.
 
 ![alt text](docs/schema.png 'Schema View')
+
+## Nodes tab:
+Displays a node tree and federation related directives (@key, @extends @external):
+- list of nodes names
+  - list of types
+    - list of attributes
 
 ![alt text](docs/nodes.png 'Nodes View')
 
@@ -159,7 +173,6 @@ Import the plugin
 
 ```javascript
 ...
-import { fetcherReturnToPromise } from '@graphiql/toolkit'
 import { federationInfoPlugin } from 'federation-info-plugin'
 ...
 
@@ -234,7 +247,7 @@ The plugin component should be added to the GraphiQL component in the `plugins` 
 
 ## Plugin Development
 
-- Set up the server plugn as [described above](#GraphiqlServer) (server will bind to port 3001)
+- Set up the server plugin as [described above](#GraphiqlServer) (server will bind to port 3001)
 - Clone this repo
 - `cd mercurius-federation-info-graphiql-plugin`
 - `npm run start` (call the server on 3001)
