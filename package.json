@@ -26,7 +26,8 @@
     "eject": "react-scripts eject",
     "prepare": "husky install",
     "lint": "eslint src/**/*.{js,jsx}",
-    "lint:fix": "eslint --fix"
+    "lint:fix": "eslint --fix",
+    "prepublish": "npm run build"
   },
   "devDependencies": {
     "@babel/core": "^7.19.6",
