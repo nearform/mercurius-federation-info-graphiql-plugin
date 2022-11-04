@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState, useMemo } from 'react'
 import styles from './SchemaView.module.scss'
 
-const FieldRow = ({ field }) => {
+const FieldRow = ({ field, showReference }) => {
   const input = field.args
     ? field.args.map(({ type, name }) => `${name}: ${type.toString()}`)
     : ''
@@ -12,8 +12,40 @@ const FieldRow = ({ field }) => {
       <td>{input}</td>
       <td>{field.type.toString()}</td>
       <td>{field.ownerServices.join(',')}</td>
-      <td>{field.referencedBy.join(',')}</td>
+      {showReference && <td>{field.referencedBy.join(',')}</td>}
     </tr>
+  )
+}
+
+const FieldsTable = ({ name, fields, showReference }) => {
+  if (!fields) {
+    return null
+  }
+
+  return (
+    <>
+      {name && <h2>{name}</h2>}
+      <table width="100%">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Input</th>
+            <th>Type</th>
+            <th>Owner service</th>
+            {showReference && <th>Referenced by</th>}
+          </tr>
+        </thead>
+        <tbody>
+          {fields.map(field => (
+            <FieldRow
+              key={field.name}
+              field={field}
+              showReference={showReference}
+            />
+          ))}
+        </tbody>
+      </table>
+    </>
   )
 }
 
@@ -35,22 +67,7 @@ const TypeRow = ({ type }) => {
       {type.fields.length > 0 && expanded && (
         <tr>
           <td colSpan={3} className={styles.attributes}>
-            <table width="100%">
-              <thead>
-                <tr>
-                  <th>Attribute name</th>
-                  <th>Input</th>
-                  <th>Type</th>
-                  <th>Owner service</th>
-                  <th>Referenced by</th>
-                </tr>
-              </thead>
-              <tbody>
-                {type.fields.map(field => (
-                  <FieldRow key={field.name} field={field} />
-                ))}
-              </tbody>
-            </table>
+            <FieldsTable fields={type.fields} showReference />
           </td>
         </tr>
       )}
@@ -58,9 +75,30 @@ const TypeRow = ({ type }) => {
   )
 }
 
-const SchemaView = ({ schemaViewData }) => {
+const SchemaView = ({ schemaViewData, rootTypes }) => {
+  //extracts the root types
+  const { queries, mutations, subscriptions, types } = useMemo(() => {
+    let queries, mutations, subscriptions
+    let types = []
+    for (const type of schemaViewData) {
+      if (type.name === rootTypes.queries) {
+        queries = type.fields
+      } else if (type.name === rootTypes.mutations) {
+        mutations = type.fields
+      } else if (type.name === rootTypes.subscriptions) {
+        subscriptions = type.subscriptions
+      } else {
+        types.push(type)
+      }
+    }
+    return { queries, mutations, subscriptions, types }
+  }, [schemaViewData, rootTypes])
+
   return (
     <div className={styles.schemaView}>
+      <FieldsTable name={'Queries'} fields={queries} />
+      <FieldsTable name={'Mutations'} fields={mutations} />
+      <FieldsTable name={'Subscriptions'} fields={subscriptions} />
       <h2>Types</h2>
       <table>
         <thead>
@@ -71,7 +109,7 @@ const SchemaView = ({ schemaViewData }) => {
           </tr>
         </thead>
         <tbody>
-          {schemaViewData.map(type => (
+          {types.map(type => (
             <TypeRow key={type.name} type={type} />
           ))}
         </tbody>

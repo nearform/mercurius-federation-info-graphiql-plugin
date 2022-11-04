@@ -15,7 +15,7 @@ const TABS = {
 
 const FederationInfoContent = ({ federationSchemaUrl }) => {
   const [schemaViewData, setSchemaViewData] = useState([])
-
+  const [rootTypes, setRootTypes] = useState(null)
   const {
     schema,
     fetchError: fetchSchemaError,
@@ -31,13 +31,17 @@ const FederationInfoContent = ({ federationSchemaUrl }) => {
   //needs both schema and servicesViewData to prepare the schema view
   useEffect(() => {
     if (schema && servicesViewData) {
+      setRootTypes({
+        queries: schema.getQueryType().name,
+        mutations: schema.getMutationType().name,
+        subscriptions: schema.getSubscriptionType().name
+      })
       setSchemaViewData(prepareSchemaViewData(servicesViewData, schema))
     }
   }, [schema, servicesViewData])
 
-  const isFetching = isFederationInfoFetching || isSchemaFetching
+  const isFetching = isFederationInfoFetching || isSchemaFetching || !rootTypes
   const isError = fetchSchemaError || fetchFederationInfoError
-
   const [activeTab, setActiveTab] = useState(TABS.SCHEMA)
   if (isError) {
     return (
@@ -78,7 +82,7 @@ const FederationInfoContent = ({ federationSchemaUrl }) => {
             <ServicesView federationServices={servicesViewData} />
           )}
           {activeTab === TABS.SCHEMA && (
-            <SchemaView schemaViewData={schemaViewData} />
+            <SchemaView schemaViewData={schemaViewData} rootTypes={rootTypes} />
           )}
         </div>
       )}
