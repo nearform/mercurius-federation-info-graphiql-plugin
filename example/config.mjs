@@ -1,5 +1,4 @@
 import { join } from 'desm'
-import { federationInfoGraphiQLPlugin } from 'mercurius-federation-info'
 
 const port = 3001
 
@@ -12,9 +11,13 @@ const config = {
   graphiql: {
     enabled: true,
     plugins: [
-      federationInfoGraphiQLPlugin({
-        umdUrlOverride: `http://localhost:${port}/umd/index.js`
-      })
+      {
+        props: {
+          federationSchemaUrl: '/federation-schema'
+        },
+        name: 'federationInfo',
+        umdUrl: `http://localhost:${port}/umd/index.js`
+      }
     ]
   }
 }
