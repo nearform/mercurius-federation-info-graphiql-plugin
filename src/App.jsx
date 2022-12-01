@@ -1,10 +1,10 @@
 import React from 'react'
-import { GraphiQL } from 'graphiql'
-import { createGraphiQLFetcher } from '@graphiql/toolkit'
 
 import { federationInfoPlugin } from './federation-info-plugin'
 
 import 'graphiql/graphiql.css'
+import { createGraphiQLFetcher } from '@graphiql/toolkit'
+import { GraphiQL } from 'graphiql/src/components/GraphiQL'
 
 function App() {
   const federationSchemaUrl = 'http://localhost:3001/federation-schema'
