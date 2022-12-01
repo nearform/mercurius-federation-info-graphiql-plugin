@@ -7,16 +7,10 @@ import SchemaView from './views/SchemaView'
 import { Spinner, useSchemaContext } from '@graphiql/react'
 import ServicesView from './views/ServicesView'
 import { styled } from '@mui/material/styles'
-import Modal from '@mui/material/Modal'
-import Box from '@mui/material/Box'
-import { createTheme } from '@mui/system'
 
 const FederationInfoContent = ({ federationSchemaUrl }) => {
-  const theme = createTheme()
-
   const [schemaViewData, setSchemaViewData] = useState([])
   const [rootTypes, setRootTypes] = useState(null)
-  const [open, setOpen] = useState(false)
   const {
     schema,
     fetchError: fetchSchemaError,
@@ -42,13 +36,6 @@ const FederationInfoContent = ({ federationSchemaUrl }) => {
   }, [schema, servicesViewData])
 
   const isFetching = isFederationInfoFetching || isSchemaFetching || !rootTypes
-
-  useEffect(() => {
-    if (!isFetching) {
-      setOpen(true)
-    }
-  }, [isFetching])
-
   const isError = fetchSchemaError || fetchFederationInfoError
   if (isError) {
     return (
@@ -66,65 +53,25 @@ const FederationInfoContent = ({ federationSchemaUrl }) => {
   }
 
   return (
-    <Root className="graphiql-container">
+    <div>
       <h1>Federation Info</h1>
       {isFetching && <Spinner />}
       {!isFetching && (
-        <Modal
-          open={open}
-          onClose={() => setOpen(false)}
-          aria-labelledby="modal-modal-title"
-          aria-describedby="modal-modal-description"
-          disableScrollLock={false}
-        >
-          <Box
-            sx={{
-              backgroundColor: 'white',
-              width: '90%',
-              height: '90%',
-              position: 'relative',
-              top: '50%',
-              left: '50%',
-              transform: 'translate(-50%, -50%)',
-              padding: theme.spacing(3)
-            }}
-          >
-            <h1>Federation Info</h1>
-
-            <Box
-              sx={{
-                display: 'flex',
-                flexDirection: 'row',
-                overflow: 'auto',
-                height: 'inherit',
-                marginTop: theme.spacing(2)
-              }}
-            >
-              <ServicesView federationServices={servicesViewData} />
-              <SchemaView
-                schemaViewData={schemaViewData}
-                rootTypes={rootTypes}
-              />
-            </Box>
-          </Box>
-        </Modal>
+        <Root>
+          <ServicesView federationServices={servicesViewData} />
+          <SchemaView schemaViewData={schemaViewData} rootTypes={rootTypes} />
+        </Root>
       )}
-    </Root>
+    </div>
   )
 }
 
 const Icon = () => <ShareNodes fill="currentColor" data-testid="plugin-icon" />
 
-const PREFIX = 'FederationInfo'
-const classes = {
-  viewContainer: `${PREFIX}-viewContainer`
-}
-
-const Root = styled('div')(() => ({
-  [`& .${classes.viewContainer}`]: {
-    display: 'flex',
-    flexDirection: 'row'
-  }
+const Root = styled('div')(({ theme }) => ({
+  display: 'flex',
+  flexDirection: 'row',
+  marginTop: theme.spacing(1)
 }))
 
 export { FederationInfoContent, Icon }

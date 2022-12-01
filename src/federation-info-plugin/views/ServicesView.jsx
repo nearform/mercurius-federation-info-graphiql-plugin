@@ -42,22 +42,25 @@ const ServiceGraphqlType = ({ type }) => (
  * @returns  {JSX.Element}
  */
 const ServicesView = ({ federationServices }) => (
-  <div>
-    {federationServices.map(({ serviceName, itemsMap }, index) => (
-      <div key={serviceName} className={styles.container}>
-        <div className={styles.serviceTitle}>
-          <strong>{serviceName}</strong> service:
+  <div className={styles.servicesContainer}>
+    <h3>Services</h3>
+    <div className={styles.servicesList}>
+      {federationServices.map(({ serviceName, itemsMap }, index) => (
+        <div key={serviceName} className={styles.container}>
+          <div className={styles.serviceTitle}>
+            <strong>{serviceName}</strong> service:
+          </div>
+          <div className={styles.sectionsList}>
+            {Object.values(itemsMap).map(
+              type =>
+                !UNSUPPORTED_TYPES.includes(type.kind) && (
+                  <ServiceGraphqlType key={type.name} type={type} />
+                )
+            )}
+          </div>
         </div>
-        <div className={styles.sectionsList}>
-          {Object.values(itemsMap).map(
-            type =>
-              !UNSUPPORTED_TYPES.includes(type.kind) && (
-                <ServiceGraphqlType key={type.name} type={type} />
-              )
-          )}
-        </div>
-      </div>
-    ))}
+      ))}
+    </div>
   </div>
 )
 
