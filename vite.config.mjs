@@ -8,9 +8,12 @@ export default defineConfig({
     react({
       jsxRuntime: 'classic'
     }),
-    replace({
-      'process.env.NODE_ENV': JSON.stringify('production'),
-    }),
+    {
+      ...replace({
+        'process.env.NODE_ENV': JSON.stringify('production')
+      }),
+      apply: 'build'
+    },
     svgr()
   ],
   esbuild: {
