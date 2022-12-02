@@ -8,6 +8,7 @@ import { ReactComponent as ShareNodes } from '../icons/share-nodes.svg'
 import SchemaView from '../views/SchemaView/SchemaView'
 import { Spinner, useSchemaContext } from '@graphiql/react'
 import ServicesView from '../views/ServicesView/ServicesView'
+import { Box } from '@mui/material'
 
 const FederationInfoContent = ({ federationSchemaUrl }) => {
   const [schemaViewData, setSchemaViewData] = useState([])
@@ -58,10 +59,10 @@ const FederationInfoContent = ({ federationSchemaUrl }) => {
       <h1>Federation Info</h1>
       {isFetching && <Spinner />}
       {!isFetching && (
-        <div className={styles.container}>
+        <Box className={styles.container}>
           <ServicesView federationServices={servicesViewData} />
           <SchemaView schemaViewData={schemaViewData} rootTypes={rootTypes} />
-        </div>
+        </Box>
       )}
     </div>
   )
