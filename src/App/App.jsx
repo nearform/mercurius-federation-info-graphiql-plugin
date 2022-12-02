@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { GraphiQL } from 'graphiql'
 import { createGraphiQLFetcher } from '@graphiql/toolkit'
 
-import { federationInfoPlugin } from './federation-info-plugin'
+import { federationInfoPlugin } from '../federation-info-plugin'
 
 import 'graphiql/graphiql.css'
 import './App.scss'

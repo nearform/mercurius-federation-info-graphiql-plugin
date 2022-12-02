@@ -1,10 +1,10 @@
 import React from 'react'
 import styles from './ServicesView.module.scss'
 import { TypeKind } from 'graphql'
-import ExternalLabel from '../components/ExternalLabel/ExternalLabel'
-import ExtendsLabel from '../components/ExtendsLabel/ExtendsLabel'
-import KeyLabel from '../components/KeyLabel/KeyLabel'
-import FieldInput from '../components/FieldInput/FieldInput'
+import ExternalLabel from '../../components/ExternalLabel/ExternalLabel'
+import ExtendsLabel from '../../components/ExtendsLabel/ExtendsLabel'
+import KeyLabel from '../../components/KeyLabel/KeyLabel'
+import FieldInput from '../../components/FieldInput/FieldInput'
 
 const UNSUPPORTED_TYPES = [TypeKind.INTERFACE, TypeKind.SCALAR, TypeKind.ENUM]
 

@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react'
 
 import styles from './FederationInfo.module.scss'
 
-import { prepareSchemaViewData } from './lib/prepareSchemaViewData'
-import useFederationInfo from './lib/useFederationInfoHook'
-import { ReactComponent as ShareNodes } from './icons/share-nodes.svg'
-import SchemaView from './views/SchemaView'
+import { prepareSchemaViewData } from '../lib/prepareSchemaViewData'
+import useFederationInfo from '../lib/useFederationInfoHook'
+import { ReactComponent as ShareNodes } from '../icons/share-nodes.svg'
+import SchemaView from '../views/SchemaView/SchemaView'
 import { Spinner, useSchemaContext } from '@graphiql/react'
-import ServicesView from './views/ServicesView'
+import ServicesView from '../views/ServicesView/ServicesView'
 
 const FederationInfoContent = ({ federationSchemaUrl }) => {
   const [schemaViewData, setSchemaViewData] = useState([])
