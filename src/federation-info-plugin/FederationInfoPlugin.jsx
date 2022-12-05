@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Icon, FederationInfoContent } from './FederationInfo'
+import { Icon, FederationInfoContent } from './FederationInfo/FederationInfo'
 
 export function federationInfoPlugin(props) {
   return {

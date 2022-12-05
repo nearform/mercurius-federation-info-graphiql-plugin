@@ -95,25 +95,28 @@ const SchemaView = ({ schemaViewData, rootTypes }) => {
   }, [schemaViewData, rootTypes])
 
   return (
-    <div className={styles.schemaView}>
-      <FieldsTable name={'Queries'} fields={queries} />
-      <FieldsTable name={'Mutations'} fields={mutations} />
-      <FieldsTable name={'Subscriptions'} fields={subscriptions} />
-      <h2>Types</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Defined By</th>
-            <th>Extended by</th>
-          </tr>
-        </thead>
-        <tbody>
-          {types.map(type => (
-            <TypeRow key={type.name} type={type} />
-          ))}
-        </tbody>
-      </table>
+    <div className={styles.schemaViewContainer}>
+      <h3>Overall schema</h3>
+      <div className={styles.schemaView}>
+        <FieldsTable name={'Queries'} fields={queries} />
+        <FieldsTable name={'Mutations'} fields={mutations} />
+        <FieldsTable name={'Subscriptions'} fields={subscriptions} />
+        <h2>Types</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Defined By</th>
+              <th>Extended by</th>
+            </tr>
+          </thead>
+          <tbody>
+            {types.map(type => (
+              <TypeRow key={type.name} type={type} />
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   )
 }

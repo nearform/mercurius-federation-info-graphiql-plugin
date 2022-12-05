@@ -1,17 +1,14 @@
 import React, { useEffect, useState } from 'react'
 
-import { prepareSchemaViewData } from './lib/prepareSchemaViewData'
-import useFederationInfo from './lib/useFederationInfoHook'
-import { ReactComponent as ShareNodes } from './icons/share-nodes.svg'
-import { TabGroup, TabButton } from './components/Tabs/Tabs'
-import SchemaView from './views/SchemaView'
-import { Spinner, useSchemaContext } from '@graphiql/react'
-import ServicesView from './views/ServicesView'
+import styles from './FederationInfo.module.scss'
 
-const TABS = {
-  SCHEMA: 0,
-  SERVICES: 1
-}
+import { prepareSchemaViewData } from '../lib/prepareSchemaViewData'
+import useFederationInfo from '../lib/useFederationInfoHook'
+import { ReactComponent as ShareNodes } from '../icons/share-nodes.svg'
+import SchemaView from '../views/SchemaView/SchemaView'
+import { Spinner, useSchemaContext } from '@graphiql/react'
+import ServicesView from '../views/ServicesView/ServicesView'
+import { Box } from '@mui/material'
 
 const FederationInfoContent = ({ federationSchemaUrl }) => {
   const [schemaViewData, setSchemaViewData] = useState([])
@@ -42,7 +39,6 @@ const FederationInfoContent = ({ federationSchemaUrl }) => {
 
   const isFetching = isFederationInfoFetching || isSchemaFetching || !rootTypes
   const isError = fetchSchemaError || fetchFederationInfoError
-  const [activeTab, setActiveTab] = useState(TABS.SCHEMA)
   if (isError) {
     return (
       <div>
@@ -60,31 +56,13 @@ const FederationInfoContent = ({ federationSchemaUrl }) => {
 
   return (
     <div>
-      <h3>Federation Info</h3>
+      <h1>Federation Info</h1>
       {isFetching && <Spinner />}
       {!isFetching && (
-        <div>
-          <TabGroup>
-            <TabButton
-              isActive={activeTab === TABS.SCHEMA}
-              onClick={() => setActiveTab(TABS.SCHEMA)}
-            >
-              Schema
-            </TabButton>
-            <TabButton
-              isActive={activeTab === TABS.SERVICES}
-              onClick={() => setActiveTab(TABS.SERVICES)}
-            >
-              Services
-            </TabButton>
-          </TabGroup>
-          {activeTab === TABS.SERVICES && (
-            <ServicesView federationServices={servicesViewData} />
-          )}
-          {activeTab === TABS.SCHEMA && (
-            <SchemaView schemaViewData={schemaViewData} rootTypes={rootTypes} />
-          )}
-        </div>
+        <Box className={styles.container}>
+          <ServicesView federationServices={servicesViewData} />
+          <SchemaView schemaViewData={schemaViewData} rootTypes={rootTypes} />
+        </Box>
       )}
     </div>
   )

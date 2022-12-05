@@ -1,4 +1,13 @@
+.schemaViewContainer {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  margin-left: 80px;
+}
+
 .schemaView {
+  overflow: auto;
+  height: 82vh;
   table {
     width: 100%;
     text-align: left;
