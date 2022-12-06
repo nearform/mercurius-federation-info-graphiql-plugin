@@ -11,9 +11,9 @@ import ServiceInfo from '../../components/ServiceInfo/ServiceInfo'
  */
 const ServicesView = ({ federationServices }) => {
   return (
-    <Box xs={{ display: 'flex', flexDirection: 'column', minWidth: '200px' }}>
-      <PanelTitle>Services</PanelTitle>
-      <Box xs={{ overflow: 'auto', height: '82vh' }}>
+    <Box sx={{ display: 'flex', flexDirection: 'column', minWidth: '200px' }}>
+      <PanelTitle total={federationServices.length}>Services</PanelTitle>
+      <Box sx={{ overflow: 'auto', height: '82vh' }}>
         {federationServices.map(({ serviceName, itemsMap }) => (
           <ServiceInfo
             key={serviceName}
