@@ -5,12 +5,17 @@ import { ToggleButton, Chip, Box } from '@mui/material'
 const ServiceButton = ({ serviceName, total, onChange, selected = false }) => {
   return (
     <ToggleButton
-      variant="contained"
       fullWidth={true}
-      sx={{ borderRadius: 8, paddingX: 2, textTransform: 'capitalize' }}
+      sx={{
+        borderRadius: 8,
+        paddingX: 2,
+        textTransform: 'capitalize'
+      }}
+      color="primary"
       size="small"
       selected={selected}
       onChange={onChange}
+      value={serviceName}
     >
       <Box
         sx={{
