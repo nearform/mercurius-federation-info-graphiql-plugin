@@ -43,6 +43,8 @@
     "@fastify/cors": "^8.1.1",
     "@graphiql/react": "^0.15.0",
     "@graphiql/toolkit": "^0.8.0",
+    "@mui/icons-material": "^5.10.16",
+    "@mui/lab": "^5.0.0-alpha.110",
     "@mui/material": "^5.10.16",
     "@rollup/plugin-replace": "^5.0.1",
     "@testing-library/jest-dom": "^5.16.5",

@@ -1,29 +1,20 @@
 import React from 'react'
-import styles from './KeyLabel.module.scss'
-import joinClassNames from '../../utils/joinClassNames'
+import { Chip } from '@mui/material'
 
 /**
- *
  * @param {Object} props.type graphql type
- * @param {string} props.className className
  *
  * @returns {JSX.Element}
  */
-const KeyLabel = ({ type, className, ...otherProps }) => {
+const KeyLabel = ({ type }) => {
   const { key } = type || {}
   if (!key) {
     return undefined
   }
-
   const keyNames = key.map(key => key.value)
 
   return (
-    <span
-      className={joinClassNames(styles.typeKeyLabel, className)}
-      {...otherProps}
-    >
-      @key({keyNames.join(', ')})
-    </span>
+    <Chip label={`@key(${keyNames.join(', ')})`} size="small" color="primary" />
   )
 }
 
