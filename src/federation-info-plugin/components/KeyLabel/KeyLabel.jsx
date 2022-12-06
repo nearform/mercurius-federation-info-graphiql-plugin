@@ -9,7 +9,7 @@ const KeyLabel = () => {
   return (
     <Chip
       size="small"
-      color="primary"
+      color="success"
       icon={<KeyIcon />}
       sx={{
         '.MuiChip-label': {

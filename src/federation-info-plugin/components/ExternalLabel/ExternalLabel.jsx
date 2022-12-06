@@ -11,7 +11,7 @@ const ExternalLabel = ({ field }) => {
     return undefined
   }
 
-  return <Chip label="@external" size="small" color="primary" />
+  return <Chip label="@external" size="small" color="warning" />
 }
 
 export default ExternalLabel
