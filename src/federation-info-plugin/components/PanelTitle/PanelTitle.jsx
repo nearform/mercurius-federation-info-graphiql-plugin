@@ -1,18 +1,25 @@
 import React from 'react'
-import { useTheme } from '@mui/material'
+import { Chip, Box } from '@mui/material'
 
-const PanelTitle = ({ children }) => {
-  const theme = useTheme()
-  return (
-    <h2
-      style={{
-        paddingTop: theme.spacing(1),
-        paddingBottom: theme.spacing(1)
-      }}
-    >
-      {children}
-    </h2>
-  )
-}
+/**
+ *
+ * @param {number} props.total number of elements to display near the title
+ *
+ * @returns {JSX.Element}
+ */
+const PanelTitle = ({ children, total }) => (
+  <Box
+    sx={{
+      width: '100%',
+      paddingY: 1,
+      display: 'flex',
+      alignItems: 'center',
+      gap: 1
+    }}
+  >
+    <h2 style={{ padding: 0 }}>{children}</h2>
+    {total && <Chip label={total} size="small" color="info" />}
+  </Box>
+)
 
 export default PanelTitle
