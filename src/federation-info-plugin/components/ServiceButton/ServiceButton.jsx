@@ -12,7 +12,6 @@ const ServiceButton = ({ serviceName, total, onChange, selected = false }) => {
         textTransform: 'capitalize'
       }}
       color="primary"
-      size="small"
       selected={selected}
       onChange={onChange}
       value={serviceName}

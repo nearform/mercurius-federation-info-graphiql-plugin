@@ -1,7 +1,9 @@
 import React from 'react'
-import styles from './ServicesView.module.scss'
+import { Box } from '@mui/material'
 
+import PanelTitle from '../../components/PanelTitle/PanelTitle'
 import ServiceInfo from '../../components/ServiceInfo/ServiceInfo'
+
 /**
  *
  * @param {Object} props.federationServices result of prepareServicesViewData
@@ -9,9 +11,9 @@ import ServiceInfo from '../../components/ServiceInfo/ServiceInfo'
  */
 const ServicesView = ({ federationServices }) => {
   return (
-    <div className={styles.servicesContainer}>
-      <h3>Services</h3>
-      <div className={styles.servicesList}>
+    <Box xs={{ display: 'flex', flexDirection: 'column', minWidth: '200px' }}>
+      <PanelTitle>Services</PanelTitle>
+      <Box xs={{ overflow: 'auto', height: '82vh' }}>
         {federationServices.map(({ serviceName, itemsMap }) => (
           <ServiceInfo
             key={serviceName}
@@ -19,8 +21,8 @@ const ServicesView = ({ federationServices }) => {
             itemsMap={itemsMap}
           />
         ))}
-      </div>
-    </div>
+      </Box>
+    </Box>
   )
 }
 
