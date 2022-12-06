@@ -1,20 +1,25 @@
 import React from 'react'
 import { Chip } from '@mui/material'
+import KeyIcon from '@mui/icons-material/Key'
 
 /**
- * @param {Object} props.type graphql type
- *
  * @returns {JSX.Element}
  */
-const KeyLabel = ({ type }) => {
-  const { key } = type || {}
-  if (!key) {
-    return undefined
-  }
-  const keyNames = key.map(key => key.value)
-
+const KeyLabel = () => {
   return (
-    <Chip label={`@key(${keyNames.join(', ')})`} size="small" color="primary" />
+    <Chip
+      size="small"
+      color="primary"
+      icon={<KeyIcon />}
+      sx={{
+        '.MuiChip-label': {
+          display: 'none'
+        },
+        '.MuiChip-icon': {
+          marginRight: 0.5
+        }
+      }}
+    />
   )
 }
 

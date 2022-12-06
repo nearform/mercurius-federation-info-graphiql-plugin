@@ -9,6 +9,7 @@ import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked'
 import ExternalLabel from '../ExternalLabel/ExternalLabel'
 import FieldInput from '../FieldInput/FieldInput'
 import KeyLabel from '../KeyLabel/KeyLabel'
+
 import ExtendsLabel from '../ExtendsLabel/ExtendsLabel'
 
 const FieldFlexbox = ({ children }) => (
@@ -23,10 +24,11 @@ const FieldFlexbox = ({ children }) => (
   </Box>
 )
 
-const ServiceGraphqlField = ({ field }) => (
+const ServiceGraphqlField = ({ field, isKey = false }) => (
   <FieldFlexbox>
     {field.name}
     <FieldInput field={field} />
+    {isKey && <KeyLabel />}
     <ExternalLabel field={field} />
   </FieldFlexbox>
 )
@@ -34,13 +36,12 @@ const ServiceGraphqlField = ({ field }) => (
 const ServiceGraphqFieldTypeName = ({ type }) => (
   <FieldFlexbox>
     {type.name}
-    <KeyLabel type={type} />
     <ExtendsLabel type={type} />
   </FieldFlexbox>
 )
 
 const ServiceItemTree = props => (
-  <TreeItem {...props} sx={{ paddingTop: 0.5, paddingBottom: 0.5 }} />
+  <TreeItem {...props} sx={{ paddingTop: 1, paddingBottom: 1 }} />
 )
 
 const ServiceGraphqlType = ({ type, serviceName }) => {
@@ -52,11 +53,12 @@ const ServiceGraphqlType = ({ type, serviceName }) => {
     >
       {itemValues.map((field, index) => {
         const nodeId = `${serviceName}-${type.name}-${index}`
+        const isKey = type?.key?.find(key => key.value === field.name)
         return (
           <ServiceItemTree
             nodeId={nodeId}
             key={index}
-            label={<ServiceGraphqlField field={field} />}
+            label={<ServiceGraphqlField field={field} isKey={isKey} />}
           >
             <ServiceItemTree
               nodeId={`${nodeId}-${field.typeString}`}
