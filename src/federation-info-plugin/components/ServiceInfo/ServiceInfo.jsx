@@ -9,7 +9,7 @@ import { Collapse, Box } from '@mui/material'
 const UNSUPPORTED_TYPES = [TypeKind.INTERFACE, TypeKind.SCALAR, TypeKind.ENUM]
 
 const ServiceInfo = ({ serviceName, itemsMap }) => {
-  const [showTree, setShowTree] = useState(true) //FIXME: false
+  const [showTree, setShowTree] = useState(false)
   const supportedItemsMap = Object.values(itemsMap).filter(
     type => !UNSUPPORTED_TYPES.includes(type.kind)
   )
