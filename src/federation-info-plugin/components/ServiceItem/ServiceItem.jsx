@@ -17,6 +17,7 @@ const FieldFlexbox = ({ children }) => (
     sx={{
       display: 'flex',
       flexWrap: 'wrap',
+      alignItems: 'center',
       gap: 0.5
     }}
   >
@@ -26,8 +27,10 @@ const FieldFlexbox = ({ children }) => (
 
 const ServiceGraphqlField = ({ field, isKey = false }) => (
   <FieldFlexbox>
-    {field.name}
-    <FieldInput field={field} />
+    <Box>
+      {field.name}
+      <FieldInput field={field} />
+    </Box>
     {isKey && <KeyLabel />}
     <ExternalLabel field={field} />
   </FieldFlexbox>
