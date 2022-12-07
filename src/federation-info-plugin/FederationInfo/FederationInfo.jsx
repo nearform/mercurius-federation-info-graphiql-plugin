@@ -56,7 +56,9 @@ const FederationInfoContent = ({ federationSchemaUrl }) => {
       <h1>Federation Info</h1>
       {isFetching && <Spinner />}
       {!isFetching && (
-        <Box sx={{ display: 'flex', flexDirection: 'row', marginTop: 1 }}>
+        <Box
+          sx={{ display: 'flex', flexDirection: 'row', marginTop: 1, gap: 5 }}
+        >
           <ServicesView federationServices={servicesViewData} />
           <SchemaView schemaViewData={schemaViewData} rootTypes={rootTypes} />
         </Box>
