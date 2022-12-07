@@ -9,8 +9,8 @@ import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked'
 import ExternalLabel from '../ExternalLabel/ExternalLabel'
 import FieldInput from '../FieldInput/FieldInput'
 import KeyLabel from '../KeyLabel/KeyLabel'
-
 import ExtendsLabel from '../ExtendsLabel/ExtendsLabel'
+import { usePluginState } from '../../context/PluginState'
 
 const FieldFlexbox = ({ children }) => (
   <Box
@@ -72,12 +72,20 @@ const ServiceGraphqlType = ({ type, serviceName }) => {
 }
 
 const ServiceItem = ({ supportedItemsMap, serviceName, sx }) => {
+  const { openServiceTreeNodes, setOpenServiceTreeNodes } = usePluginState()
+
+  const handleNodeToggle = (event, nodeIds) => {
+    setOpenServiceTreeNodes(nodeIds)
+  }
+
   return (
     <TreeView
       defaultCollapseIcon={<RemoveCircleOutlineIcon />}
       defaultExpandIcon={<AddCircleOutlineIcon />}
       defaultEndIcon={<RadioButtonUncheckedIcon />}
       sx={sx}
+      expanded={openServiceTreeNodes}
+      onNodeToggle={handleNodeToggle}
     >
       {supportedItemsMap.map(type => (
         <ServiceGraphqlType

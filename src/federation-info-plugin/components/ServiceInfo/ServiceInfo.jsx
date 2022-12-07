@@ -1,15 +1,22 @@
-import React, { useState } from 'react'
+import React, { useMemo } from 'react'
 import { TypeKind } from 'graphql'
 
 import ServiceButton from '../ServiceButton/ServiceButton'
 import ServiceItem from '../ServiceItem/ServiceItem'
+import { usePluginState } from '../../context/PluginState'
 
 import { Collapse, Box } from '@mui/material'
 
 const UNSUPPORTED_TYPES = [TypeKind.INTERFACE, TypeKind.SCALAR, TypeKind.ENUM]
 
 const ServiceInfo = ({ serviceName, itemsMap }) => {
-  const [showTree, setShowTree] = useState(false)
+  const { openServices, setServiceOpen, setServiceClosed } = usePluginState()
+
+  const showTree = useMemo(
+    () => openServices.includes(serviceName),
+    [openServices, serviceName]
+  )
+
   const supportedItemsMap = Object.values(itemsMap).filter(
     type => !UNSUPPORTED_TYPES.includes(type.kind)
   )
@@ -20,7 +27,9 @@ const ServiceInfo = ({ serviceName, itemsMap }) => {
   )
 
   const handleButtonChange = () => {
-    setShowTree(oldValue => !oldValue)
+    // Need to negate the showTree because it still contains the old value
+    const isTreeVisible = !showTree
+    isTreeVisible ? setServiceOpen(serviceName) : setServiceClosed(serviceName)
   }
 
   return (

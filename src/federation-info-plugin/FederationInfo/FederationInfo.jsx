@@ -4,7 +4,6 @@ import { Box } from '@mui/material'
 
 import { prepareSchemaViewData } from '../lib/prepareSchemaViewData'
 import useFederationInfo from '../lib/useFederationInfoHook'
-import { ReactComponent as ShareNodes } from '../icons/share-nodes.svg'
 import SchemaView from '../views/SchemaView/SchemaView'
 import ServicesView from '../views/ServicesView/ServicesView'
 

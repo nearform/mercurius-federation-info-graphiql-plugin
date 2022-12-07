@@ -6,6 +6,7 @@ import { useTheme } from '@graphiql/react'
 import { ReactComponent as ShareNodes } from '../icons/share-nodes.svg'
 
 import FederationInfoContent from '../FederationInfo/FederationInfo'
+import { PluginStateProvider } from '../context/PluginState'
 
 const lightTheme = createTheme({
   palette: {
@@ -25,10 +26,12 @@ const FederationInfoEntryPoint = props => {
   const { theme } = useTheme()
 
   return (
-    <ThemeProvider theme={theme === 'dark' ? darkTheme : lightTheme}>
-      <CssBaseline />
-      <FederationInfoContent {...props} />
-    </ThemeProvider>
+    <PluginStateProvider>
+      <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
+        <CssBaseline />
+        <FederationInfoContent {...props} />
+      </ThemeProvider>
+    </PluginStateProvider>
   )
 }
 
