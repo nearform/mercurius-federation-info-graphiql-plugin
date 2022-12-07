@@ -26,11 +26,7 @@ const ServiceButton = ({ serviceName, total, onChange, selected = false }) => {
         }}
       >
         {serviceName}
-        <Chip
-          label={total}
-          size="small"
-          sx={{ bgcolor: 'white', color: 'primary' }}
-        />
+        <Chip label={total} size="small" />
       </Box>
     </ToggleButton>
   )

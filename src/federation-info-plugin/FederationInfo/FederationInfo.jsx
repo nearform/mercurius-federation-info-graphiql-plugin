@@ -66,6 +66,4 @@ const FederationInfoContent = ({ federationSchemaUrl }) => {
   )
 }
 
-const Icon = () => <ShareNodes fill="currentColor" data-testid="plugin-icon" />
-
-export { FederationInfoContent, Icon }
+export default FederationInfoContent
