@@ -23,6 +23,7 @@ const ServiceButton = ({ serviceName, total, onChange, selected = false }) => {
       selected={selected}
       onChange={onChange}
       value={serviceName}
+      size="small"
     >
       <Box
         sx={{
