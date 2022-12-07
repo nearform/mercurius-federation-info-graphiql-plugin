@@ -71,6 +71,13 @@ const ServiceGraphqlType = ({ type, serviceName }) => {
   )
 }
 
+/**
+ * @param {Object} props.supportedItemsMap GraphQL definitions exposed by the service and supported by the plugin
+ * @param {string} props.serviceName name of the service
+ * @param {Object} props.sx MaterialUI property that allows defining system overrides as well as additional CSS styles
+ *
+ * @returns {JSX.Element}
+ */
 const ServiceItem = ({ supportedItemsMap, serviceName, sx }) => {
   const { openServiceTreeNodes, setOpenServiceTreeNodes } = usePluginState()
 

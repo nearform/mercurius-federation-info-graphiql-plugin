@@ -20,8 +20,6 @@ const darkTheme = createTheme({
   }
 })
 
-const Icon = () => <ShareNodes fill="currentColor" data-testid="plugin-icon" />
-
 const FederationInfoEntryPoint = props => {
   const { theme } = useTheme()
 
@@ -34,5 +32,7 @@ const FederationInfoEntryPoint = props => {
     </PluginStateProvider>
   )
 }
+
+const Icon = () => <ShareNodes fill="currentColor" data-testid="plugin-icon" />
 
 export { FederationInfoEntryPoint, Icon }

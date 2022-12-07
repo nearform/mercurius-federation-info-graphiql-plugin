@@ -9,6 +9,13 @@ import { Collapse, Box } from '@mui/material'
 
 const UNSUPPORTED_TYPES = [TypeKind.INTERFACE, TypeKind.SCALAR, TypeKind.ENUM]
 
+/**
+ *
+ * @param {number} props.serviceName name of the service
+ * @param {Object} props.itemsMap GraphQL definitions exposed by the service
+ *
+ * @returns {JSX.Element}
+ */
 const ServiceInfo = ({ serviceName, itemsMap }) => {
   const { openServices, setServiceOpen, setServiceClosed } = usePluginState()
 

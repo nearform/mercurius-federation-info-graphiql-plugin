@@ -2,7 +2,6 @@ import React from 'react'
 import { Chip, Box } from '@mui/material'
 
 /**
- *
  * @param {number} props.total number of elements to display near the title
  *
  * @returns {JSX.Element}

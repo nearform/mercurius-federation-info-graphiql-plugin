@@ -2,6 +2,14 @@ import React from 'react'
 
 import { ToggleButton, Chip, Box } from '@mui/material'
 
+/**
+ * @param {string} props.serviceName name of the service
+ * @param {number} props.total number of services to display next to the service name
+ * @param {boolean} props.selected 	if true, the button is rendered in an active state
+ * @param {Function} props.onChange callback fired when the state changes
+ *
+ * @returns {JSX.Element}
+ */
 const ServiceButton = ({ serviceName, total, onChange, selected = false }) => {
   return (
     <ToggleButton
