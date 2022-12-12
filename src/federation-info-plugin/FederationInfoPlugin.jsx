@@ -1,12 +1,15 @@
 import React from 'react'
 
-import { Icon, FederationInfoContent } from './FederationInfo/FederationInfo'
+import {
+  Icon,
+  FederationInfoEntryPoint
+} from './FederationInfoEntryPoint/FederationInfoEntryPoint'
 
 export function federationInfoPlugin(props) {
   return {
     title: props.title || 'Federation info explorer',
     icon: () => <Icon />,
-    content: () => <FederationInfoContent {...props} />
+    content: () => <FederationInfoEntryPoint {...props} />
   }
 }
 

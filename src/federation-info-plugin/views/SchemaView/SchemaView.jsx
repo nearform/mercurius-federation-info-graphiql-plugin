@@ -1,4 +1,7 @@
 import React, { useState, useMemo } from 'react'
+
+import PanelTitle from '../../components/PanelTitle/PanelTitle'
+
 import styles from './SchemaView.module.scss'
 
 const FieldRow = ({ field, showReference }) => {
@@ -96,7 +99,7 @@ const SchemaView = ({ schemaViewData, rootTypes }) => {
 
   return (
     <div className={styles.schemaViewContainer}>
-      <h3>Overall schema</h3>
+      <PanelTitle>Overall schema</PanelTitle>
       <div className={styles.schemaView}>
         <FieldsTable name={'Queries'} fields={queries} />
         <FieldsTable name={'Mutations'} fields={mutations} />

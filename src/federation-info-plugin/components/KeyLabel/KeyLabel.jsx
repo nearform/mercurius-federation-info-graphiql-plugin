@@ -1,29 +1,25 @@
 import React from 'react'
-import styles from './KeyLabel.module.scss'
-import joinClassNames from '../../utils/joinClassNames'
+import { Chip } from '@mui/material'
+import KeyIcon from '@mui/icons-material/Key'
 
 /**
- *
- * @param {Object} props.type graphql type
- * @param {string} props.className className
- *
  * @returns {JSX.Element}
  */
-const KeyLabel = ({ type, className, ...otherProps }) => {
-  const { key } = type || {}
-  if (!key) {
-    return undefined
-  }
-
-  const keyNames = key.map(key => key.value)
-
+const KeyLabel = () => {
   return (
-    <span
-      className={joinClassNames(styles.typeKeyLabel, className)}
-      {...otherProps}
-    >
-      @key({keyNames.join(', ')})
-    </span>
+    <Chip
+      size="small"
+      color="success"
+      icon={<KeyIcon />}
+      sx={{
+        '.MuiChip-label': {
+          display: 'none'
+        },
+        '.MuiChip-icon': {
+          marginRight: 0.5
+        }
+      }}
+    />
   )
 }
 

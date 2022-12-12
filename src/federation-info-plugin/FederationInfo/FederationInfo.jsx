@@ -1,14 +1,11 @@
 import React, { useEffect, useState } from 'react'
-
-import styles from './FederationInfo.module.scss'
+import { Spinner, useSchemaContext } from '@graphiql/react'
+import { Box } from '@mui/material'
 
 import { prepareSchemaViewData } from '../lib/prepareSchemaViewData'
 import useFederationInfo from '../lib/useFederationInfoHook'
-import { ReactComponent as ShareNodes } from '../icons/share-nodes.svg'
 import SchemaView from '../views/SchemaView/SchemaView'
-import { Spinner, useSchemaContext } from '@graphiql/react'
 import ServicesView from '../views/ServicesView/ServicesView'
-import { Box } from '@mui/material'
 
 const FederationInfoContent = ({ federationSchemaUrl }) => {
   const [schemaViewData, setSchemaViewData] = useState([])
@@ -55,19 +52,19 @@ const FederationInfoContent = ({ federationSchemaUrl }) => {
   }
 
   return (
-    <div>
+    <Box>
       <h1>Federation Info</h1>
       {isFetching && <Spinner />}
       {!isFetching && (
-        <Box className={styles.container}>
+        <Box
+          sx={{ display: 'flex', flexDirection: 'row', marginTop: 1, gap: 5 }}
+        >
           <ServicesView federationServices={servicesViewData} />
           <SchemaView schemaViewData={schemaViewData} rootTypes={rootTypes} />
         </Box>
       )}
-    </div>
+    </Box>
   )
 }
 
-const Icon = () => <ShareNodes fill="currentColor" data-testid="plugin-icon" />
-
-export { FederationInfoContent, Icon }
+export default FederationInfoContent
