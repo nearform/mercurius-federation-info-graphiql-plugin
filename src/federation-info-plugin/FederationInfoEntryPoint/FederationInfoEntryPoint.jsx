@@ -1,31 +1,25 @@
 import React from 'react'
 import { ThemeProvider, createTheme } from '@mui/material/styles'
 import CssBaseline from '@mui/material/CssBaseline'
-import { useTheme } from '@graphiql/react'
 
 import { ReactComponent as ShareNodes } from '../icons/share-nodes.svg'
 
 import FederationInfoContent from '../FederationInfo/FederationInfo'
 import { PluginStateProvider } from '../context/PluginState'
-
-const lightTheme = createTheme({
-  palette: {
-    mode: 'light'
-  }
-})
-
-const darkTheme = createTheme({
-  palette: {
-    mode: 'dark'
-  }
-})
+import useGraphiqlTheme from '../hooks/useGraphiqlTheme'
 
 const FederationInfoEntryPoint = props => {
-  const { theme } = useTheme()
+  const themeMode = useGraphiqlTheme()
+
+  const theme = createTheme({
+    palette: {
+      mode: themeMode
+    }
+  })
 
   return (
     <PluginStateProvider>
-      <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
+      <ThemeProvider theme={theme}>
         <CssBaseline />
         <FederationInfoContent {...props} />
       </ThemeProvider>
