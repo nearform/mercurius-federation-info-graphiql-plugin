@@ -48,12 +48,13 @@ const TypeHeader = ({ orderBy, order, createSortHandler }) => {
 }
 
 const TypeRow = ({ id, type, onTypeTableSortChange }) => {
-  const { openSchemas, setSchemaOpen, setSchemaClosed } = usePluginState()
+  const { openSchemaTables, setSchemaTableOpen, setSchemaTableClosed } =
+    usePluginState()
   const areTypeFieldsEmpty = type.fields.length === 0
 
-  const isExpanded = openSchemas.includes(id)
+  const isExpanded = openSchemaTables.includes(id)
   const handleExpandButtonClick = () => {
-    isExpanded ? setSchemaClosed(id) : setSchemaOpen(id)
+    isExpanded ? setSchemaTableClosed(id) : setSchemaTableOpen(id)
   }
 
   return (

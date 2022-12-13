@@ -10,7 +10,7 @@ const isArrayOrReset = value => (Array.isArray(value) ? value : [])
 const initialState = {
   openServices: [],
   openServiceTreeNodes: [],
-  openSchemas: []
+  openSchemaTables: []
 }
 
 export const PluginStateProvider = ({ children }) => {
@@ -51,20 +51,20 @@ export const PluginStateProvider = ({ children }) => {
     })
   }
 
-  const setSchemaOpen = schemaId => {
-    const existingOpenSchemas = isArrayOrReset(value.openSchemas)
-    const existingOpenSchemasSet = new Set([...existingOpenSchemas, schemaId])
+  const setSchemaTableOpen = tableId => {
+    const existingOpenTables = isArrayOrReset(value.openSchemaTables)
+    const existingOpenTablesSet = new Set([...existingOpenTables, tableId])
 
-    setValue({ ...value, openSchemas: Array.from(existingOpenSchemasSet) })
+    setValue({ ...value, openSchemaTables: Array.from(existingOpenTablesSet) })
   }
 
-  const setSchemaClosed = schemaId => {
-    const existingOpenSchemas = isArrayOrReset(value.openSchemas)
-    const existingOpenSchemasSet = new Set([...existingOpenSchemas, schemaId])
+  const setSchemaTableClosed = tableId => {
+    const existingOpenTables = isArrayOrReset(value.openSchemaTables)
+    const existingOpenTablesSet = new Set([...existingOpenTables, tableId])
 
-    existingOpenSchemasSet.delete(schemaId)
+    existingOpenTablesSet.delete(tableId)
 
-    setValue({ ...value, openSchemas: Array.from(existingOpenSchemasSet) })
+    setValue({ ...value, openSchemaTables: Array.from(existingOpenTablesSet) })
   }
 
   // Manually set the values or use the initial state.
@@ -74,12 +74,12 @@ export const PluginStateProvider = ({ children }) => {
     openServices: value.openServices || initialState.openServices,
     openServiceTreeNodes:
       value.openServiceTreeNodes || initialState.openServiceTreeNodes,
-    openSchemas: value.openSchemas || initialState.openSchemas,
+    openSchemaTables: value.openSchemaTables || initialState.openSchemaTables,
     setServiceOpen,
     setServiceClosed,
     setOpenServiceTreeNodes,
-    setSchemaOpen,
-    setSchemaClosed
+    setSchemaTableOpen,
+    setSchemaTableClosed
   }
 
   return (

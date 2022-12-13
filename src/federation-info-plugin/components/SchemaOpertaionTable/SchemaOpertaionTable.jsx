@@ -19,17 +19,20 @@ const SchemaOperationTable = ({
   headerRender,
   rowRender
 }) => {
-  const { openSchemas, setSchemaOpen, setSchemaClosed } = usePluginState()
+  const { openSchemaTables, setSchemaTableOpen, setSchemaTableClosed } =
+    usePluginState()
+
   if (!fields) {
     return null
   }
 
   const accordionId = id || name
-
-  const isExpanded = openSchemas.includes(accordionId)
+  const isExpanded = openSchemaTables.includes(accordionId)
 
   const handleAccordionChange = (event, expanded) => {
-    expanded ? setSchemaOpen(accordionId) : setSchemaClosed(accordionId)
+    expanded
+      ? setSchemaTableOpen(accordionId)
+      : setSchemaTableClosed(accordionId)
   }
 
   return (
