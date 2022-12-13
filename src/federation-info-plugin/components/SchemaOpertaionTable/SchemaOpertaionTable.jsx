@@ -9,19 +9,31 @@ import {
   TableRow
 } from '@mui/material'
 
+import { usePluginState } from '../../context/PluginState'
+
 const SchemaOperationTable = ({
+  id,
   name,
   fields,
   showReference,
   headerRender,
   rowRender
 }) => {
+  const { openSchemas, setSchemaOpen, setSchemaClosed } = usePluginState()
   if (!fields) {
     return null
   }
 
+  const accordionId = id || name
+
+  const isExpanded = openSchemas.includes(accordionId)
+
+  const handleAccordionChange = (event, expanded) => {
+    expanded ? setSchemaOpen(accordionId) : setSchemaClosed(accordionId)
+  }
+
   return (
-    <Accordion>
+    <Accordion expanded={isExpanded} onChange={handleAccordionChange}>
       {name && (
         <AccordionSummary>
           <h2>{name}</h2>

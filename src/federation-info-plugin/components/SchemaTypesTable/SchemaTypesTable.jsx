@@ -10,6 +10,7 @@ import {
   typeOwnerServicesToValue,
   typeReferencedByToValue
 } from '../../utils/schemaFieldToTableCellValue'
+import { usePluginState } from '../../context/PluginState'
 
 const TypeHeader = ({ orderBy, order, createSortHandler }) => {
   return (
@@ -46,9 +47,15 @@ const TypeHeader = ({ orderBy, order, createSortHandler }) => {
   )
 }
 
-const TypeRow = ({ type, onTypeTableSortChange }) => {
-  const [open, setOpen] = useState(false)
+const TypeRow = ({ id, type, onTypeTableSortChange }) => {
+  const { openSchemas, setSchemaOpen, setSchemaClosed } = usePluginState()
   const areTypeFieldsEmpty = type.fields.length === 0
+
+  const isExpanded = openSchemas.includes(id)
+  const handleExpandButtonClick = () => {
+    isExpanded ? setSchemaClosed(id) : setSchemaOpen(id)
+  }
+
   return (
     <>
       <TableRow>
@@ -56,9 +63,9 @@ const TypeRow = ({ type, onTypeTableSortChange }) => {
           <IconButton
             size="small"
             disabled={areTypeFieldsEmpty}
-            onClick={() => setOpen(!open)}
+            onClick={handleExpandButtonClick}
           >
-            {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+            {isExpanded ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
           </IconButton>
         </TableCell>
         <TableCell>{type.name}</TableCell>
@@ -68,8 +75,9 @@ const TypeRow = ({ type, onTypeTableSortChange }) => {
       <TableRow>
         <TableCell sx={{ padding: 0 }} colSpan={4}>
           {!areTypeFieldsEmpty && (
-            <Collapse in={open} timeout="auto">
+            <Collapse in={isExpanded} timeout="auto">
               <SchemaFieldsTable
+                id={id}
                 fields={type.fields}
                 onSortChange={onTypeTableSortChange(type.name)}
                 showReference
@@ -109,7 +117,7 @@ const SchemaTypesTable = ({ onSortChange, onTypeTableSortChange, ...rest }) => {
       )}
       rowRender={({ field }) => (
         <TypeRow
-          key={field.name}
+          id={`${rest.id}_${field.name}`}
           type={field}
           onTypeTableSortChange={createTypeTableSortHandler}
         />
