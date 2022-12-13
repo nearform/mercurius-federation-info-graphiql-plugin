@@ -1,8 +1,56 @@
 import React, { useState, useMemo } from 'react'
+import {
+  Box,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
+  Table,
+  TableHead,
+  TableBody,
+  TableRow,
+  TableCell,
+  TableSortLabel,
+  Collapse
+} from '@mui/material'
+import IconButton from '@mui/material/IconButton'
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
 
 import PanelTitle from '../../components/PanelTitle/PanelTitle'
+import OldSchemaView from './OldSchemaView'
 
-import styles from './SchemaView.module.scss'
+const OperationsTable = ({
+  name,
+  fields,
+  showReference,
+  headerRender,
+  rowRender
+}) => {
+  if (!fields) {
+    return null
+  }
+
+  return (
+    <Accordion>
+      {name && (
+        <AccordionSummary>
+          <h2>{name}</h2>
+        </AccordionSummary>
+      )}
+      <AccordionDetails>
+        <Table>
+          <TableHead>
+            <TableRow>{headerRender({ showReference })}</TableRow>
+          </TableHead>
+
+          <TableBody>
+            {fields.map(field => rowRender({ field, showReference }))}
+          </TableBody>
+        </Table>
+      </AccordionDetails>
+    </Accordion>
+  )
+}
 
 const FieldRow = ({ field, showReference }) => {
   const input = field.args
@@ -10,73 +58,98 @@ const FieldRow = ({ field, showReference }) => {
     : ''
 
   return (
-    <tr key={field.name}>
-      <td>{field.name}</td>
-      <td>{input}</td>
-      <td>{field.type.toString()}</td>
-      <td>{field.ownerServices.join(',')}</td>
-      {showReference && <td>{field.referencedBy.join(',')}</td>}
-    </tr>
+    <TableRow key={field.name}>
+      <TableCell>{field.name}</TableCell>
+      <TableCell>{input}</TableCell>
+      <TableCell>{field.type.toString()}</TableCell>
+      <TableCell>{field.ownerServices.join(',')}</TableCell>
+      {showReference && <TableCell>{field.referencedBy.join(',')}</TableCell>}
+    </TableRow>
   )
 }
 
-const FieldsTable = ({ name, fields, showReference }) => {
-  if (!fields) {
-    return null
-  }
-
-  return (
-    <>
-      {name && <h2>{name}</h2>}
-      <table width="100%">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Input</th>
-            <th>Type</th>
-            <th>Owner service</th>
-            {showReference && <th>Referenced by</th>}
-          </tr>
-        </thead>
-        <tbody>
-          {fields.map(field => (
-            <FieldRow
-              key={field.name}
-              field={field}
-              showReference={showReference}
-            />
-          ))}
-        </tbody>
-      </table>
-    </>
-  )
-}
+const FieldsTable = props => (
+  <OperationsTable
+    {...props}
+    headerRender={({ showReference }) => (
+      <>
+        <TableCell>
+          <TableSortLabel>Name</TableSortLabel>
+        </TableCell>
+        <TableCell>
+          <TableSortLabel>Input</TableSortLabel>
+        </TableCell>
+        <TableCell>
+          <TableSortLabel>Type</TableSortLabel>
+        </TableCell>
+        <TableCell>
+          <TableSortLabel>Owner service</TableSortLabel>
+        </TableCell>
+        {showReference && (
+          <TableCell>
+            <TableSortLabel>Referenced by</TableSortLabel>
+          </TableCell>
+        )}
+      </>
+    )}
+    rowRender={({ field, showReference }) => (
+      <FieldRow field={field} showReference={showReference} />
+    )}
+  />
+)
 
 const TypeRow = ({ type }) => {
-  const [expanded, setExpanded] = useState(true)
+  const [open, setOpen] = useState(false)
+  const areTypeFieldsEmpty = type.fields.length === 0
   return (
     <>
-      <tr onClick={() => setExpanded(!expanded)}>
-        <td>{type.name}</td>
-        <td>{type.ownerServices.join(', ')}</td>
-        <td>
+      <TableRow>
+        <TableCell>
+          <IconButton
+            size="small"
+            disabled={areTypeFieldsEmpty}
+            onClick={() => setOpen(!open)}
+          >
+            {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+          </IconButton>
+        </TableCell>
+        <TableCell>{type.name}</TableCell>
+        <TableCell>{type.ownerServices.join(', ')}</TableCell>
+        <TableCell>
           {type.referencedBy
             .map(
               ({ serviceName, key }) => `${serviceName} @key(${key[0].value})`
             )
             .join(<br />)}
-        </td>
-      </tr>
-      {type.fields.length > 0 && expanded && (
-        <tr>
-          <td colSpan={3} className={styles.attributes}>
-            <FieldsTable fields={type.fields} showReference />
-          </td>
-        </tr>
-      )}
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell sx={{ padding: 0 }} colSpan={4}>
+          {!areTypeFieldsEmpty && (
+            <Collapse in={open} timeout="auto">
+              <FieldsTable fields={type.fields} showReference />
+            </Collapse>
+          )}
+        </TableCell>
+      </TableRow>
     </>
   )
 }
+
+const TypeFieldsTable = props => (
+  <OperationsTable
+    {...props}
+    headerRender={() => (
+      <>
+        <TableCell />
+        <TableCell>Name</TableCell>
+        <TableCell>Defined By</TableCell>
+        <TableCell>Extended by</TableCell>
+      </>
+    )}
+    rowRender={({ field }) => <TypeRow key={field.name} type={field} />}
+  />
+)
 
 const SchemaView = ({ schemaViewData, rootTypes }) => {
   //extracts the root types
@@ -98,29 +171,18 @@ const SchemaView = ({ schemaViewData, rootTypes }) => {
   }, [schemaViewData, rootTypes])
 
   return (
-    <div className={styles.schemaViewContainer}>
+    <Box sx={{ display: 'flex', flex: '4', flexDirection: 'column' }}>
       <PanelTitle>Overall schema</PanelTitle>
-      <div className={styles.schemaView}>
+
+      <Box>
         <FieldsTable name={'Queries'} fields={queries} />
         <FieldsTable name={'Mutations'} fields={mutations} />
         <FieldsTable name={'Subscriptions'} fields={subscriptions} />
-        <h2>Types</h2>
-        <table>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Defined By</th>
-              <th>Extended by</th>
-            </tr>
-          </thead>
-          <tbody>
-            {types.map(type => (
-              <TypeRow key={type.name} type={type} />
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </div>
+        <TypeFieldsTable name={'Types'} fields={types} />
+      </Box>
+
+      <OldSchemaView {...{ queries, mutations, subscriptions, types }} />
+    </Box>
   )
 }
 
