@@ -14,8 +14,6 @@ import {
   typeReferencedByToValue
 } from '../../utils/schemaFieldToTableCellValue'
 
-// import OldSchemaView from './OldSchemaView'
-
 const sortFieldsByProperty = (property, order) => (a, b) => {
   let propertyA = a[property]
   let propertyB = b[property]
@@ -94,7 +92,6 @@ const SchemaView = ({ schemaViewData, rootTypes }) => {
   return (
     <Box sx={{ display: 'flex', flex: '4', flexDirection: 'column' }}>
       <PanelTitle>Overall schema</PanelTitle>
-
       <Box>
         <SchemaFieldsTable
           name={'Queries'}
@@ -118,8 +115,6 @@ const SchemaView = ({ schemaViewData, rootTypes }) => {
           onTypeTableSortChange={sortTypeFieldTable}
         />
       </Box>
-
-      {/* <OldSchemaView {...{ queries, mutations, subscriptions, types }} /> */}
     </Box>
   )
 }
