@@ -118,7 +118,7 @@ const SchemaTypesTable = ({ onSortChange, onTypeTableSortChange, ...rest }) => {
       )}
       rowRender={({ field }) => (
         <TypeRow
-          id={`${rest.id}_${field.name}`}
+          id={`${rest.name}_${field.name}`}
           type={field}
           onTypeTableSortChange={createTypeTableSortHandler}
         />
