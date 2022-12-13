@@ -10,6 +10,60 @@ import {
   fieldReferencedByToValue
 } from '../../utils/schemaFieldToTableCellValue'
 
+const FieldHeader = ({ showReference, order, orderBy, createSortHandler }) => {
+  return (
+    <>
+      <TableCell>
+        <TableSortLabel
+          active={orderBy === 'name'}
+          direction={orderBy === 'name' ? order : 'asc'}
+          onClick={createSortHandler('name')}
+        >
+          Name
+        </TableSortLabel>
+      </TableCell>
+      <TableCell>
+        <TableSortLabel
+          active={orderBy === 'input'}
+          direction={orderBy === 'input' ? order : 'asc'}
+          onClick={createSortHandler('input')}
+        >
+          Input
+        </TableSortLabel>
+      </TableCell>
+      <TableCell>
+        <TableSortLabel
+          active={orderBy === 'type'}
+          direction={orderBy === 'type' ? order : 'asc'}
+          onClick={createSortHandler('type')}
+        >
+          Type
+        </TableSortLabel>
+      </TableCell>
+      <TableCell>
+        <TableSortLabel
+          active={orderBy === 'ownerServices'}
+          direction={orderBy === 'ownerServices' ? order : 'asc'}
+          onClick={createSortHandler('ownerServices')}
+        >
+          Owner service
+        </TableSortLabel>
+      </TableCell>
+      {showReference && (
+        <TableCell>
+          <TableSortLabel
+            active={orderBy === 'referencedBy'}
+            direction={orderBy === 'referencedBy' ? order : 'asc'}
+            onClick={createSortHandler('referencedBy')}
+          >
+            Referenced by
+          </TableSortLabel>
+        </TableCell>
+      )}
+    </>
+  )
+}
+
 const FieldRow = ({ field, showReference }) => (
   <TableRow key={field.name}>
     <TableCell>{field.name}</TableCell>
@@ -38,55 +92,12 @@ const SchemaFieldsTable = ({ onSortChange, ...rest }) => {
     <SchemaOperationTable
       {...rest}
       headerRender={({ showReference }) => (
-        <>
-          <TableCell>
-            <TableSortLabel
-              active={orderBy === 'name'}
-              direction={orderBy === 'name' ? order : 'asc'}
-              onClick={createSortHandler('name')}
-            >
-              Name
-            </TableSortLabel>
-          </TableCell>
-          <TableCell>
-            <TableSortLabel
-              active={orderBy === 'input'}
-              direction={orderBy === 'input' ? order : 'asc'}
-              onClick={createSortHandler('input')}
-            >
-              Input
-            </TableSortLabel>
-          </TableCell>
-          <TableCell>
-            <TableSortLabel
-              active={orderBy === 'type'}
-              direction={orderBy === 'type' ? order : 'asc'}
-              onClick={createSortHandler('type')}
-            >
-              Type
-            </TableSortLabel>
-          </TableCell>
-          <TableCell>
-            <TableSortLabel
-              active={orderBy === 'ownerServices'}
-              direction={orderBy === 'ownerServices' ? order : 'asc'}
-              onClick={createSortHandler('ownerServices')}
-            >
-              Owner service
-            </TableSortLabel>
-          </TableCell>
-          {showReference && (
-            <TableCell>
-              <TableSortLabel
-                active={orderBy === 'referencedBy'}
-                direction={orderBy === 'referencedBy' ? order : 'asc'}
-                onClick={createSortHandler('referencedBy')}
-              >
-                Referenced by
-              </TableSortLabel>
-            </TableCell>
-          )}
-        </>
+        <FieldHeader
+          showReference={showReference}
+          order={order}
+          orderBy={orderBy}
+          createSortHandler={createSortHandler}
+        />
       )}
       rowRender={({ field, showReference }) => (
         <FieldRow field={field} showReference={showReference} />

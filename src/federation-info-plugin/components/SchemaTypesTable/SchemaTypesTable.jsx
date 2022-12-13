@@ -11,6 +11,41 @@ import {
   typeReferencedByToValue
 } from '../../utils/schemaFieldToTableCellValue'
 
+const TypeHeader = ({ orderBy, order, createSortHandler }) => {
+  return (
+    <>
+      <TableCell />
+      <TableCell>
+        <TableSortLabel
+          active={orderBy === 'name'}
+          direction={orderBy === 'name' ? order : 'asc'}
+          onClick={createSortHandler('name')}
+        >
+          Name
+        </TableSortLabel>
+      </TableCell>
+      <TableCell>
+        <TableSortLabel
+          active={orderBy === 'ownerServices'}
+          direction={orderBy === 'ownerServices' ? order : 'asc'}
+          onClick={createSortHandler('ownerServices')}
+        >
+          Defined By
+        </TableSortLabel>
+      </TableCell>
+      <TableCell>
+        <TableSortLabel
+          active={orderBy === 'referencedBy'}
+          direction={orderBy === 'referencedBy' ? order : 'asc'}
+          onClick={createSortHandler('referencedBy')}
+        >
+          Extended by
+        </TableSortLabel>
+      </TableCell>
+    </>
+  )
+}
+
 const TypeRow = ({ type, onTypeTableSortChange }) => {
   const [open, setOpen] = useState(false)
   const areTypeFieldsEmpty = type.fields.length === 0
@@ -66,36 +101,11 @@ const SchemaTypesTable = ({ onSortChange, onTypeTableSortChange, ...rest }) => {
     <SchemaOperationTable
       {...rest}
       headerRender={() => (
-        <>
-          <TableCell />
-          <TableCell>
-            <TableSortLabel
-              active={orderBy === 'name'}
-              direction={orderBy === 'name' ? order : 'asc'}
-              onClick={createSortHandler('name')}
-            >
-              Name
-            </TableSortLabel>
-          </TableCell>
-          <TableCell>
-            <TableSortLabel
-              active={orderBy === 'ownerServices'}
-              direction={orderBy === 'ownerServices' ? order : 'asc'}
-              onClick={createSortHandler('ownerServices')}
-            >
-              Defined By
-            </TableSortLabel>
-          </TableCell>
-          <TableCell>
-            <TableSortLabel
-              active={orderBy === 'referencedBy'}
-              direction={orderBy === 'referencedBy' ? order : 'asc'}
-              onClick={createSortHandler('referencedBy')}
-            >
-              Extended by
-            </TableSortLabel>
-          </TableCell>
-        </>
+        <TypeHeader
+          order={order}
+          orderBy={orderBy}
+          createSortHandler={createSortHandler}
+        />
       )}
       rowRender={({ field }) => (
         <TypeRow
