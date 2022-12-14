@@ -78,7 +78,6 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-use": "^17.4.0",
-    "sass": "^1.55.0",
     "vite": "^4.0.0",
     "vite-plugin-svgr": "^2.4.0"
   },
