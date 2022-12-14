@@ -91,7 +91,7 @@ const TypeRow = ({ id, type, onTypeTableSortChange }) => {
         <TableCell>{typeReferencedByToValue(type.referencedBy)}</TableCell>
       </TableRow>
       <TableRow>
-        <TableCell sx={{ padding: 0 }} colSpan={4}>
+        <TableCell sx={{ padding: 0, borderBottomWidth: 0 }} colSpan={4}>
           {!areTypeFieldsEmpty && (
             <Collapse in={isExpanded} timeout="auto">
               <SchemaFieldsTable
