@@ -53,7 +53,7 @@ const FederationInfoContent = ({ federationSchemaUrl }) => {
 
   return (
     <Box>
-      <h1>Federation Info</h1>
+      <h1 style={{ margin: 0 }}>Federation Info</h1>
       {isFetching && <Spinner />}
       {!isFetching && (
         <Box

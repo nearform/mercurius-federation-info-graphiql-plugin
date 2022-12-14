@@ -90,7 +90,7 @@ const SchemaOperationTable = ({
     <Accordion expanded={isExpanded} onChange={handleAccordionChange}>
       {name && (
         <StyledAccordionSummary>
-          <h3>{name}</h3>
+          <h3 style={{ margin: 0 }}>{name}</h3>
         </StyledAccordionSummary>
       )}
       <AccordionDetails sx={{ ...(nested ? { paddingY: 0 } : { padding: 0 }) }}>
