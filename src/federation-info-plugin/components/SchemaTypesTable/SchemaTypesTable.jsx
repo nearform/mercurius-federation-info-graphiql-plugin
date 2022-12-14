@@ -86,7 +86,7 @@ const TypeRow = ({ id, type, onTypeTableSortChange }) => {
                 transform: 'rotate(0deg)'
               }
             }}
-            className={isExpanded && ' expanded'}
+            className={isExpanded ? ' expanded' : ''}
           >
             {buttonIcon}
           </IconButton>
@@ -138,13 +138,17 @@ const SchemaTypesTable = ({ onSortChange, onTypeTableSortChange, ...rest }) => {
           createSortHandler={createSortHandler}
         />
       )}
-      rowRender={({ field }) => (
-        <TypeRow
-          id={`${rest.name}_${field.name}`}
-          type={field}
-          onTypeTableSortChange={createTypeTableSortHandler}
-        />
-      )}
+      rowRender={({ field }) => {
+        const id = `${rest.name}_${field.name}`
+        return (
+          <TypeRow
+            key={id}
+            id={id}
+            type={field}
+            onTypeTableSortChange={createTypeTableSortHandler}
+          />
+        )
+      }}
     />
   )
 }

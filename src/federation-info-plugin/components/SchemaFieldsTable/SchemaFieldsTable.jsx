@@ -100,7 +100,11 @@ const SchemaFieldsTable = ({ onSortChange, ...rest }) => {
         />
       )}
       rowRender={({ field, showReference }) => (
-        <FieldRow field={field} showReference={showReference} />
+        <FieldRow
+          key={field.name}
+          field={field}
+          showReference={showReference}
+        />
       )}
     />
   )
