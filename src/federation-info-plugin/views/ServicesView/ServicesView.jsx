@@ -19,7 +19,7 @@ const ServicesView = ({ federationServices }) => (
     }}
   >
     <PanelTitle total={federationServices.length}>Services</PanelTitle>
-    <Box sx={{ overflow: 'auto', height: '82vh', paddingRight: 2 }}>
+    <Box sx={{ overflow: 'auto', paddingRight: 2 }}>
       {federationServices.map(({ serviceName, itemsMap }) => (
         <ServiceInfo
           key={serviceName}
