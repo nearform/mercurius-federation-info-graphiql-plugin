@@ -4,7 +4,13 @@ import IconButton from '@mui/material/IconButton'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
 
-import SchemaOperationTable from '../SchemaOpertaionTable/SchemaOpertaionTable'
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
+import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline'
+import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked'
+
+import ExpandCircleDownOutlinedIcon from '@mui/icons-material/ExpandCircleDownOutlined'
+
+import SchemaOperationTable from '../SchemaOperationTable/SchemaOperationTable'
 import SchemaFieldsTable from '../SchemaFieldsTable/SchemaFieldsTable'
 import {
   typeOwnerServicesToValue,
@@ -57,16 +63,32 @@ const TypeRow = ({ id, type, onTypeTableSortChange }) => {
     isExpanded ? setSchemaTableClosed(id) : setSchemaTableOpen(id)
   }
 
+  const buttonIcon = areTypeFieldsEmpty ? (
+    <RadioButtonUncheckedIcon />
+  ) : (
+    <ExpandCircleDownOutlinedIcon />
+  )
+
   return (
     <>
-      <TableRow>
+      <TableRow hover>
         <TableCell>
           <IconButton
             size="small"
+            disableRipple
             disabled={areTypeFieldsEmpty}
             onClick={handleExpandButtonClick}
+            sx={{
+              '& .MuiSvgIcon-root': {
+                transform: 'rotate(270deg)'
+              },
+              '&.expanded .MuiSvgIcon-root': {
+                transform: 'rotate(0deg)'
+              }
+            }}
+            className={isExpanded && ' expanded'}
           >
-            {isExpanded ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+            {buttonIcon}
           </IconButton>
         </TableCell>
         <TableCell>{type.name}</TableCell>

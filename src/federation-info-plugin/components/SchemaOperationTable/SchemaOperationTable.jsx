@@ -8,6 +8,7 @@ import {
   TableBody,
   TableRow
 } from '@mui/material'
+import ExpandCircleDownOutlinedIcon from '@mui/icons-material/ExpandCircleDownOutlined'
 
 import { usePluginState } from '../../context/PluginState'
 
@@ -38,8 +39,20 @@ const SchemaOperationTable = ({
   return (
     <Accordion expanded={isExpanded} onChange={handleAccordionChange}>
       {name && (
-        <AccordionSummary>
-          <h2>{name}</h2>
+        <AccordionSummary
+          expandIcon={<ExpandCircleDownOutlinedIcon />}
+          sx={{
+            flexDirection: 'row-reverse',
+            '& .MuiAccordionSummary-expandIconWrapper': {
+              paddingX: 1,
+              transform: 'rotate(270deg)'
+            },
+            '& .MuiAccordionSummary-expandIconWrapper.Mui-expanded': {
+              transform: 'rotate(360deg)'
+            }
+          }}
+        >
+          <h3>{name}</h3>
         </AccordionSummary>
       )}
       <AccordionDetails>

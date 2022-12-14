@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { TableRow, TableCell, TableSortLabel } from '@mui/material'
 
-import SchemaOperationTable from '../SchemaOpertaionTable/SchemaOpertaionTable'
+import SchemaOperationTable from '../SchemaOperationTable/SchemaOperationTable'
 
 import {
   fieldArgsToValue,
@@ -65,7 +65,7 @@ const FieldHeader = ({ showReference, order, orderBy, createSortHandler }) => {
 }
 
 const FieldRow = ({ field, showReference }) => (
-  <TableRow key={field.name}>
+  <TableRow key={field.name} hover>
     <TableCell>{field.name}</TableCell>
     <TableCell>{fieldArgsToValue(field.args)}</TableCell>
     <TableCell>{fieldTypeToValue(field.type)}</TableCell>

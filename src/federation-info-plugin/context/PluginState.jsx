@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect } from 'react'
+import React, { createContext, useContext } from 'react'
 import useLocalStorage from 'react-use/lib/useLocalStorage'
 
 export const PluginStateContext = createContext()
