@@ -1,13 +1,7 @@
 import React, { useState } from 'react'
 import { TableRow, TableCell, TableSortLabel, Collapse } from '@mui/material'
 import IconButton from '@mui/material/IconButton'
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
-import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
-
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
-import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline'
 import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked'
-
 import ExpandCircleDownOutlinedIcon from '@mui/icons-material/ExpandCircleDownOutlined'
 
 import SchemaOperationTable from '../SchemaOperationTable/SchemaOperationTable'
@@ -83,6 +77,7 @@ const TypeRow = ({ id, type, onTypeTableSortChange }) => {
                 transform: 'rotate(270deg)'
               },
               '&.expanded .MuiSvgIcon-root': {
+                color: 'primary.main',
                 transform: 'rotate(0deg)'
               }
             }}
@@ -104,6 +99,7 @@ const TypeRow = ({ id, type, onTypeTableSortChange }) => {
                 fields={type.fields}
                 onSortChange={onTypeTableSortChange(type.name)}
                 showReference
+                nested
               />
             </Collapse>
           )}
