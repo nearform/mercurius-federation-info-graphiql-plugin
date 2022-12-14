@@ -19,7 +19,11 @@ const SearchServiceInput = ({ query, setQuery }) => (
           </InputAdornment>
         ),
         endAdornment: (
-          <InputAdornment position="end" onClick={() => setQuery('')}>
+          <InputAdornment
+            position="end"
+            onClick={() => setQuery('')}
+            style={{ height: 'auto' }}
+          >
             {!!query && <ClearIcon />}
           </InputAdornment>
         )

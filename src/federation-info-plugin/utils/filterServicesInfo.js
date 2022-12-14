@@ -5,8 +5,8 @@ const filterServicesInfo = (services, query) => {
     ? filterDeep(
         services[0],
         serviceInfo =>
-          serviceInfo?.serviceName?.indexOf(query) > -1 ||
-          serviceInfo?.name?.indexOf(query) > -1,
+          serviceInfo?.serviceName?.localeCompare(query) > -1 ||
+          serviceInfo?.name?.localeCompare(query) > -1,
         { childrenPath: 'itemsMap' }
       )
     : null
