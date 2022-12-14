@@ -73,7 +73,7 @@ const SchemaOperationTable = ({
   const { openSchemaTables, setSchemaTableOpen, setSchemaTableClosed } =
     usePluginState()
 
-  if (!fields) {
+  if (!fields || fields?.length === 0) {
     return null
   }
 
