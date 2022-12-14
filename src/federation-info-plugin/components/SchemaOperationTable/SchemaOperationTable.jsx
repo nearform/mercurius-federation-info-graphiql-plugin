@@ -14,6 +14,11 @@ import ExpandCircleDownOutlinedIcon from '@mui/icons-material/ExpandCircleDownOu
 
 import { usePluginState } from '../../context/PluginState'
 
+/**
+ * The component takes as input the same props of the [Material UI Accordion](https://mui.com/material-ui/api/accordion-summary/#props)
+ *
+ * @returns {JSX.Element}
+ */
 const StyledAccordionSummary = props => {
   const theme = useTheme()
   return (
@@ -44,6 +49,17 @@ const StyledAccordionSummary = props => {
   )
 }
 
+/**
+ * @param {String} props.id the ID of the table
+ * @param {String} props.name the name of the table displayed in the accordion
+ * @param {Array} props.fields the list of data to display in the table
+ * @param {boolean} props.nested `true` if it is a nested table, `false` otherwise (default)
+ * @param {boolean} props.showReference show the "Referenced by" column if it is `true`
+ * @param {Function} props.headerRender function to render the header's components
+ * @param {Function} props.rowRender function to render the row's components
+ *
+ * @returns {JSX.Element}
+ */
 const SchemaOperationTable = ({
   id,
   name,

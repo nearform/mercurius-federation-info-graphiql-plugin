@@ -7,7 +7,7 @@ import ServiceInfo from '../../components/ServiceInfo/ServiceInfo'
 /**
  *
  * @param {Object} props.federationServices result of prepareServicesViewData
- * @returns  {JSX.Element}
+ * @returns {JSX.Element}
  */
 const ServicesView = ({ federationServices }) => (
   <Box

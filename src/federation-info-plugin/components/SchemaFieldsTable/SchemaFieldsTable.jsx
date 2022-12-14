@@ -76,6 +76,14 @@ const FieldRow = ({ field, showReference }) => (
   </TableRow>
 )
 
+/**
+ * The component also accepts all the properties defined into the
+ * `SchemaOperationTable` component.
+ *
+ * @param {Function} props.onSortChange called when the user changes the sort order of one of the table's column
+ *
+ * @returns {JSX.Element}
+ */
 const SchemaFieldsTable = ({ onSortChange, ...rest }) => {
   const [order, setOrder] = useState('desc')
   const [orderBy, setOrderBy] = useState(null)

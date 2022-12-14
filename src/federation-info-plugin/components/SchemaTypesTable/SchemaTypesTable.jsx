@@ -109,6 +109,15 @@ const TypeRow = ({ id, type, onTypeTableSortChange }) => {
   )
 }
 
+/**
+ * The component also accepts all the properties defined into the
+ * `SchemaOperationTable` component.
+ *
+ * @param {Function} props.onSortChange called when the user changes the sort order of one of the table's column
+ * @param {Function} props.onTypeTableSortChange called when the user changes the sort order of one of the nested table's column
+ *
+ * @returns {JSX.Element}
+ */
 const SchemaTypesTable = ({ onSortChange, onTypeTableSortChange, ...rest }) => {
   const [order, setOrder] = useState('desc')
   const [orderBy, setOrderBy] = useState(null)
