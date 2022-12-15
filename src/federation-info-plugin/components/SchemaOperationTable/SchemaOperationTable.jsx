@@ -13,6 +13,7 @@ import {
 } from '@mui/material'
 import { useTheme } from '@mui/material/styles'
 import ExpandCircleDownOutlinedIcon from '@mui/icons-material/ExpandCircleDownOutlined'
+import { accordionSummaryClasses } from '@mui/material/AccordionSummary'
 
 import { usePluginState } from '../../context/PluginState'
 
@@ -29,23 +30,24 @@ const StyledAccordionSummary = props => {
       expandIcon={<ExpandCircleDownOutlinedIcon />}
       sx={{
         flexDirection: 'row-reverse',
-        '& .MuiAccordionSummary-expandIconWrapper': {
-          paddingX: 1,
-          transform: 'rotate(270deg)'
-        },
-        '& .MuiAccordionSummary-expandIconWrapper.Mui-expanded': {
-          color: 'primary.main',
-          transform: 'rotate(360deg)'
-        },
         '& h3': {
           fontWeight: 'normal'
         },
-        '&.Mui-expanded h3': {
+        [`&.${accordionSummaryClasses.expanded}`]: {
+          backgroundColor: theme.status.expanded
+        },
+        [`&.${accordionSummaryClasses.expanded} h3`]: {
           fontWeight: 'bold'
         },
-        '&.Mui-expanded': {
-          backgroundColor: alpha(theme.palette.primary.main, 0.05)
-        }
+        [`& .${accordionSummaryClasses.expandIconWrapper}`]: {
+          paddingX: 1,
+          transform: 'rotate(270deg)'
+        },
+        [`& .${accordionSummaryClasses.expandIconWrapper}.${accordionSummaryClasses.expanded}`]:
+          {
+            color: 'primary.main',
+            transform: 'rotate(360deg)'
+          }
       }}
     />
   )
