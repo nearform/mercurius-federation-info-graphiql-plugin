@@ -1,6 +1,6 @@
 import React from 'react'
 import TreeView from '@mui/lab/TreeView'
-import TreeItem from '@mui/lab/TreeItem'
+import TreeItem, { treeItemClasses } from '@mui/lab/TreeItem'
 import { Box } from '@mui/material'
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline'
@@ -30,6 +30,7 @@ const ServiceGraphqlField = ({ field, isKey = false }) => (
     <Box>
       {field.name}
       <FieldInput field={field} />
+      {field.typeString ? `: ${field.typeString}` : ''}
     </Box>
     {isKey && <KeyLabel />}
     <ExternalLabel field={field} />
@@ -44,7 +45,12 @@ const ServiceGraphqFieldTypeName = ({ type }) => (
 )
 
 const ServiceItemTree = props => (
-  <TreeItem {...props} sx={{ paddingTop: 1, paddingBottom: 1 }} />
+  <TreeItem
+    {...props}
+    sx={{
+      [`& .${treeItemClasses.content}`]: { paddingY: 1 }
+    }}
+  />
 )
 
 const ServiceGraphqlType = ({ type, serviceName }) => {
@@ -62,12 +68,7 @@ const ServiceGraphqlType = ({ type, serviceName }) => {
             nodeId={nodeId}
             key={index}
             label={<ServiceGraphqlField field={field} isKey={isKey} />}
-          >
-            <ServiceItemTree
-              nodeId={`${nodeId}-${field.typeString}`}
-              label={field.typeString}
-            />
-          </ServiceItemTree>
+          />
         )
       })}
     </ServiceItemTree>
