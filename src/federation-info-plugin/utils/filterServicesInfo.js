@@ -12,15 +12,12 @@ const filterServicesInfo = (services, query) => {
           return (
             serviceInfo?.name?.toLowerCase()?.indexOf(query?.toLowerCase()) >
               -1 ||
-            serviceInfo?.type?.name
-              ?.toLowerCase()
-              ?.indexOf(query?.toLowerCase()) > -1 ||
             serviceInfo?.serviceName
               ?.toLowerCase()
               ?.indexOf(query?.toLowerCase()) > -1
           )
         },
-        { childrenPath: 'itemsMap' }
+        { childrenPath: 'itemsMap' } // this is where the recursion magic happen
       )
 
       if (filteredServiceSubtree) {
