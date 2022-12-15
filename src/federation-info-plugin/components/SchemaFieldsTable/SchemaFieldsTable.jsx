@@ -10,17 +10,24 @@ import {
   fieldReferencedByToValue
 } from '../../utils/schemaFieldToTableCellValue'
 
-const FieldRow = ({ field, showReference }) => (
-  <TableRow key={field.name} hover>
-    <TableCell>{field.name}</TableCell>
-    <TableCell>{fieldArgsToValue(field.args)}</TableCell>
-    <TableCell>{fieldTypeToValue(field.type)}</TableCell>
-    <TableCell>{fieldOwnerServicesToValue(field.ownerServices)}</TableCell>
-    {showReference && (
-      <TableCell>{fieldReferencedByToValue(field.referencedBy)}</TableCell>
-    )}
-  </TableRow>
-)
+const FieldRow = ({ field, showReference, isLast }) => {
+  const noBorderIfLast = isLast ? { borderBottomColor: 'transparent' } : {}
+  return (
+    <TableRow key={field.name} hover>
+      <TableCell sx={noBorderIfLast}>{field.name}</TableCell>
+      <TableCell sx={noBorderIfLast}>{fieldArgsToValue(field.args)}</TableCell>
+      <TableCell sx={noBorderIfLast}>{fieldTypeToValue(field.type)}</TableCell>
+      <TableCell sx={noBorderIfLast}>
+        {fieldOwnerServicesToValue(field.ownerServices)}
+      </TableCell>
+      {showReference && (
+        <TableCell sx={noBorderIfLast}>
+          {fieldReferencedByToValue(field.referencedBy)}
+        </TableCell>
+      )}
+    </TableRow>
+  )
+}
 
 const tableColumns = [
   { key: 'name', label: 'Name' },
@@ -34,10 +41,17 @@ const tableColumns = [
  * `SchemaOperationTable` component.
  *
  * @param {Function} props.onSortChange called when the user changes the sort order of one of the table's column
- *
+ * @param {boolean} props.showReference show the "Referenced by" column if it is `true`
+ * @param {Array} props.fields the list of data to display in the table
+
  * @returns {JSX.Element}
  */
-const SchemaFieldsTable = ({ onSortChange, showReference, ...rest }) => {
+const SchemaFieldsTable = ({
+  onSortChange,
+  showReference,
+  fields,
+  ...rest
+}) => {
   const [order, setOrder] = useState('desc')
   const [orderBy, setOrderBy] = useState(null)
 
@@ -71,11 +85,13 @@ const SchemaFieldsTable = ({ onSortChange, showReference, ...rest }) => {
   return (
     <SchemaOperationTable
       {...rest}
+      fields={fields}
       header={header}
-      rowRender={({ field }) => (
+      rowRender={({ field, index }) => (
         <FieldRow
           key={field.name}
           field={field}
+          isLast={index === fields.length - 1}
           showReference={showReference}
         />
       )}

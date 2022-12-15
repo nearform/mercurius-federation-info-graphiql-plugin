@@ -108,7 +108,9 @@ const SchemaOperationTable = ({
               <TableRow>{header}</TableRow>
             </TableHead>
 
-            <TableBody>{fields.map(field => rowRender({ field }))}</TableBody>
+            <TableBody>
+              {fields.map((field, index) => rowRender({ field, index }))}
+            </TableBody>
           </Table>
         </TableContainer>
       </AccordionDetails>
