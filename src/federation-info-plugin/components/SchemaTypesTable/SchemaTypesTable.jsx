@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useMemo, useCallback } from 'react'
 import { TableRow, TableCell, TableSortLabel, Collapse } from '@mui/material'
 import IconButton from '@mui/material/IconButton'
 import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked'
@@ -12,40 +12,23 @@ import {
 } from '../../utils/schemaFieldToTableCellValue'
 import { usePluginState } from '../../context/PluginState'
 
-const TypeHeader = ({ orderBy, order, createSortHandler }) => {
-  return (
-    <>
-      <TableCell />
-      <TableCell>
-        <TableSortLabel
-          active={orderBy === 'name'}
-          direction={orderBy === 'name' ? order : 'asc'}
-          onClick={createSortHandler('name')}
-        >
-          Name
-        </TableSortLabel>
-      </TableCell>
-      <TableCell>
-        <TableSortLabel
-          active={orderBy === 'ownerServices'}
-          direction={orderBy === 'ownerServices' ? order : 'asc'}
-          onClick={createSortHandler('ownerServices')}
-        >
-          Defined By
-        </TableSortLabel>
-      </TableCell>
-      <TableCell>
-        <TableSortLabel
-          active={orderBy === 'referencedBy'}
-          direction={orderBy === 'referencedBy' ? order : 'asc'}
-          onClick={createSortHandler('referencedBy')}
-        >
-          Extended by
-        </TableSortLabel>
-      </TableCell>
-    </>
-  )
-}
+const StyledIconButton = ({ isExpanded, ...rest }) => (
+  <IconButton
+    {...rest}
+    size="small"
+    disableRipple
+    sx={{
+      '& .MuiSvgIcon-root': {
+        transform: 'rotate(270deg)'
+      },
+      '&.expanded .MuiSvgIcon-root': {
+        color: 'primary.main',
+        transform: 'rotate(0deg)'
+      }
+    }}
+    className={isExpanded ? ' expanded' : ''}
+  />
+)
 
 const TypeRow = ({ id, type, onTypeTableSortChange }) => {
   const { openSchemaTables, setSchemaTableOpen, setSchemaTableClosed } =
@@ -67,24 +50,13 @@ const TypeRow = ({ id, type, onTypeTableSortChange }) => {
     <>
       <TableRow hover>
         <TableCell>
-          <IconButton
-            size="small"
-            disableRipple
+          <StyledIconButton
             disabled={areTypeFieldsEmpty}
             onClick={handleExpandButtonClick}
-            sx={{
-              '& .MuiSvgIcon-root': {
-                transform: 'rotate(270deg)'
-              },
-              '&.expanded .MuiSvgIcon-root': {
-                color: 'primary.main',
-                transform: 'rotate(0deg)'
-              }
-            }}
-            className={isExpanded ? ' expanded' : ''}
+            isExpanded={isExpanded}
           >
             {buttonIcon}
-          </IconButton>
+          </StyledIconButton>
         </TableCell>
         <TableCell>{type.name}</TableCell>
         <TableCell>{typeOwnerServicesToValue(type.ownerServices)}</TableCell>
@@ -109,6 +81,12 @@ const TypeRow = ({ id, type, onTypeTableSortChange }) => {
   )
 }
 
+const tableColumns = [
+  { key: 'name', label: 'Name' },
+  { key: 'ownerServices', label: 'Defined By' },
+  { key: 'referencedBy', label: 'Extended by' }
+]
+
 /**
  * The component also accepts all the properties defined into the
  * `SchemaOperationTable` component.
@@ -122,27 +100,43 @@ const SchemaTypesTable = ({ onSortChange, onTypeTableSortChange, ...rest }) => {
   const [order, setOrder] = useState('desc')
   const [orderBy, setOrderBy] = useState(null)
 
-  const createSortHandler = property => () => {
-    const isAsc = orderBy === property && order === 'asc'
-    setOrder(isAsc ? 'desc' : 'asc')
-    setOrderBy(property)
+  const createTypeTableSortHandler = useCallback(
+    typeName => (property, order) =>
+      onTypeTableSortChange && onTypeTableSortChange(typeName, property, order),
+    [onTypeTableSortChange]
+  )
 
-    onSortChange && onSortChange(property, order)
-  }
+  const header = useMemo(() => {
+    const createSortHandler = property => () => {
+      const isAsc = orderBy === property && order === 'asc'
+      setOrder(isAsc ? 'desc' : 'asc')
+      setOrderBy(property)
 
-  const createTypeTableSortHandler = typeName => (property, order) =>
-    onTypeTableSortChange && onTypeTableSortChange(typeName, property, order)
+      onSortChange && onSortChange(property, order)
+    }
+
+    return (
+      <>
+        <TableCell />
+        {tableColumns.map(({ key, label }) => (
+          <TableCell key={key}>
+            <TableSortLabel
+              active={orderBy === key}
+              direction={orderBy === key ? order : 'asc'}
+              onClick={createSortHandler(key)}
+            >
+              {label}
+            </TableSortLabel>
+          </TableCell>
+        ))}
+      </>
+    )
+  }, [onSortChange, order, orderBy])
 
   return (
     <SchemaOperationTable
       {...rest}
-      headerRender={() => (
-        <TypeHeader
-          order={order}
-          orderBy={orderBy}
-          createSortHandler={createSortHandler}
-        />
-      )}
+      header={header}
       rowRender={({ field }) => {
         const id = `${rest.name}_${field.name}`
         return (

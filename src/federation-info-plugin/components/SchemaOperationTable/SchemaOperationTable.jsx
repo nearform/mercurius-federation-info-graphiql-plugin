@@ -7,6 +7,8 @@ import {
   TableHead,
   TableBody,
   TableRow,
+  TableContainer,
+  Paper,
   alpha
 } from '@mui/material'
 import { useTheme } from '@mui/material/styles'
@@ -55,7 +57,7 @@ const StyledAccordionSummary = props => {
  * @param {Array} props.fields the list of data to display in the table
  * @param {boolean} props.nested `true` if it is a nested table, `false` otherwise (default)
  * @param {boolean} props.showReference show the "Referenced by" column if it is `true`
- * @param {Function} props.headerRender function to render the header's components
+ * @param {JSX.Element} props.header the table header component
  * @param {Function} props.rowRender function to render the row's components
  *
  * @returns {JSX.Element}
@@ -65,8 +67,7 @@ const SchemaOperationTable = ({
   name,
   fields,
   nested = false,
-  showReference,
-  headerRender,
+  header,
   rowRender
 }) => {
   const theme = useTheme()
@@ -94,20 +95,20 @@ const SchemaOperationTable = ({
         </StyledAccordionSummary>
       )}
       <AccordionDetails sx={{ ...(nested ? { paddingY: 0 } : { padding: 0 }) }}>
-        <Table>
-          <TableHead
-            sx={{
-              textTransform: 'uppercase',
-              backgroundColor: alpha(theme.palette.primary.main, 0.1)
-            }}
-          >
-            <TableRow>{headerRender({ showReference })}</TableRow>
-          </TableHead>
+        <TableContainer component={Paper}>
+          <Table size="small">
+            <TableHead
+              sx={{
+                textTransform: 'uppercase',
+                backgroundColor: alpha(theme.palette.primary.main, 0.1)
+              }}
+            >
+              <TableRow>{header}</TableRow>
+            </TableHead>
 
-          <TableBody>
-            {fields.map(field => rowRender({ field, showReference }))}
-          </TableBody>
-        </Table>
+            <TableBody>{fields.map(field => rowRender({ field }))}</TableBody>
+          </Table>
+        </TableContainer>
       </AccordionDetails>
     </Accordion>
   )

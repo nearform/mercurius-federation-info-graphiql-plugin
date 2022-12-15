@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useCallback, useState, useMemo } from 'react'
 import { TableRow, TableCell, TableSortLabel } from '@mui/material'
 
 import SchemaOperationTable from '../SchemaOperationTable/SchemaOperationTable'
@@ -9,60 +9,6 @@ import {
   fieldOwnerServicesToValue,
   fieldReferencedByToValue
 } from '../../utils/schemaFieldToTableCellValue'
-
-const FieldHeader = ({ showReference, order, orderBy, createSortHandler }) => {
-  return (
-    <>
-      <TableCell>
-        <TableSortLabel
-          active={orderBy === 'name'}
-          direction={orderBy === 'name' ? order : 'asc'}
-          onClick={createSortHandler('name')}
-        >
-          Name
-        </TableSortLabel>
-      </TableCell>
-      <TableCell>
-        <TableSortLabel
-          active={orderBy === 'input'}
-          direction={orderBy === 'input' ? order : 'asc'}
-          onClick={createSortHandler('input')}
-        >
-          Input
-        </TableSortLabel>
-      </TableCell>
-      <TableCell>
-        <TableSortLabel
-          active={orderBy === 'type'}
-          direction={orderBy === 'type' ? order : 'asc'}
-          onClick={createSortHandler('type')}
-        >
-          Type
-        </TableSortLabel>
-      </TableCell>
-      <TableCell>
-        <TableSortLabel
-          active={orderBy === 'ownerServices'}
-          direction={orderBy === 'ownerServices' ? order : 'asc'}
-          onClick={createSortHandler('ownerServices')}
-        >
-          Owner service
-        </TableSortLabel>
-      </TableCell>
-      {showReference && (
-        <TableCell>
-          <TableSortLabel
-            active={orderBy === 'referencedBy'}
-            direction={orderBy === 'referencedBy' ? order : 'asc'}
-            onClick={createSortHandler('referencedBy')}
-          >
-            Referenced by
-          </TableSortLabel>
-        </TableCell>
-      )}
-    </>
-  )
-}
 
 const FieldRow = ({ field, showReference }) => (
   <TableRow key={field.name} hover>
@@ -76,6 +22,13 @@ const FieldRow = ({ field, showReference }) => (
   </TableRow>
 )
 
+const tableColumns = [
+  { key: 'name', label: 'Name' },
+  { key: 'input', label: 'Input' },
+  { key: 'type', label: 'Type' },
+  { key: 'ownerServices', label: 'Owner service' }
+]
+
 /**
  * The component also accepts all the properties defined into the
  * `SchemaOperationTable` component.
@@ -84,30 +37,42 @@ const FieldRow = ({ field, showReference }) => (
  *
  * @returns {JSX.Element}
  */
-const SchemaFieldsTable = ({ onSortChange, ...rest }) => {
+const SchemaFieldsTable = ({ onSortChange, showReference, ...rest }) => {
   const [order, setOrder] = useState('desc')
   const [orderBy, setOrderBy] = useState(null)
 
-  const createSortHandler = property => () => {
-    const isAsc = orderBy === property && order === 'asc'
-    setOrder(isAsc ? 'desc' : 'asc')
-    setOrderBy(property)
+  const header = useMemo(() => {
+    const createSortHandler = property => () => {
+      const isAsc = orderBy === property && order === 'asc'
+      setOrder(isAsc ? 'desc' : 'asc')
+      setOrderBy(property)
 
-    onSortChange && onSortChange(property, order)
-  }
+      onSortChange && onSortChange(property, order)
+    }
+
+    const allTableColumns = [...tableColumns]
+    if (showReference) {
+      allTableColumns.push({ key: 'referencedBy', label: 'Referenced by' })
+    }
+
+    return allTableColumns.map(({ key, label }) => (
+      <TableCell key={key}>
+        <TableSortLabel
+          active={orderBy === key}
+          direction={orderBy === key ? order : 'asc'}
+          onClick={createSortHandler(key)}
+        >
+          {label}
+        </TableSortLabel>
+      </TableCell>
+    ))
+  }, [onSortChange, order, orderBy, showReference])
 
   return (
     <SchemaOperationTable
       {...rest}
-      headerRender={({ showReference }) => (
-        <FieldHeader
-          showReference={showReference}
-          order={order}
-          orderBy={orderBy}
-          createSortHandler={createSortHandler}
-        />
-      )}
-      rowRender={({ field, showReference }) => (
+      header={header}
+      rowRender={({ field }) => (
         <FieldRow
           key={field.name}
           field={field}

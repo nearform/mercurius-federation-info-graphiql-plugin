@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import React, { useCallback, useMemo } from 'react'
 import { Box } from '@mui/material'
 
 import PanelTitle from '../../components/PanelTitle/PanelTitle'
@@ -70,28 +70,40 @@ const SchemaView = ({ schemaViewData, rootTypes }) => {
     return { queries, mutations, subscriptions, types }
   }, [schemaViewData, rootTypes])
 
-  const sortQueries = (property, order) =>
-    queries.sort(sortFieldsByProperty(property, order))
+  const sortQueries = useCallback(
+    (property, order) => queries.sort(sortFieldsByProperty(property, order)),
+    [queries]
+  )
 
-  const sortMutations = (property, order) =>
-    mutations.sort(sortFieldsByProperty(property, order))
+  const sortMutations = useCallback(
+    (property, order) => mutations.sort(sortFieldsByProperty(property, order)),
+    [mutations]
+  )
 
-  const sortSubscriptions = (property, order) =>
-    subscriptions.sort(sortFieldsByProperty(property, order))
+  const sortSubscriptions = useCallback(
+    (property, order) =>
+      subscriptions.sort(sortFieldsByProperty(property, order)),
+    [subscriptions]
+  )
 
-  const sortTypes = (property, order) =>
-    types.sort(sortTypesByProperty(property, order))
+  const sortTypes = useCallback(
+    (property, order) => types.sort(sortTypesByProperty(property, order)),
+    [types]
+  )
 
-  const sortTypeFieldTable = (typeName, property, order) => {
-    const selectedType = types.find(type => type.name === typeName)
-    if (selectedType) {
-      selectedType.fields.sort(sortFieldsByProperty(property, order))
-    }
-  }
+  const sortTypeFieldTable = useCallback(
+    (typeName, property, order) => {
+      const selectedType = types.find(type => type.name === typeName)
+      if (selectedType) {
+        selectedType.fields.sort(sortFieldsByProperty(property, order))
+      }
+    },
+    [types]
+  )
 
   return (
     <Box sx={{ display: 'flex', flex: '4', flexDirection: 'column' }}>
-      <PanelTitle>Overall schema</PanelTitle>
+      <PanelTitle>Unified schema</PanelTitle>
       <Box>
         <SchemaFieldsTable
           name={'Queries'}
