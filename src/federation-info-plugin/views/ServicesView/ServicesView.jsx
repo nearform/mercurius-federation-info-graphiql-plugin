@@ -19,11 +19,7 @@ const ServicesView = ({ federationServices }) => {
     [defferedQuery]
   )
 
-  const services = defferedQuery
-    ? filteredServices
-      ? [filteredServices]
-      : []
-    : federationServices
+  const services = defferedQuery ? filteredServices : federationServices
 
   return (
     <Box

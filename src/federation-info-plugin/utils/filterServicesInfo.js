@@ -1,15 +1,35 @@
 import { filterDeep } from 'deepdash-es/standalone'
 
 const filterServicesInfo = (services, query) => {
-  return query
-    ? filterDeep(
-        services[0],
-        serviceInfo =>
-          serviceInfo?.serviceName?.localeCompare(query) > -1 ||
-          serviceInfo?.name?.localeCompare(query) > -1,
+  const filteredServices = []
+
+  if (query && services.length) {
+    services.map(service => {
+      const filteredServiceSubtree = filterDeep(
+        service,
+        serviceInfo => {
+          // filter if the query text is found in either the name, service name or type name
+          return (
+            serviceInfo?.name?.toLowerCase()?.indexOf(query?.toLowerCase()) >
+              -1 ||
+            serviceInfo?.type?.name
+              ?.toLowerCase()
+              ?.indexOf(query?.toLowerCase()) > -1 ||
+            serviceInfo?.serviceName
+              ?.toLowerCase()
+              ?.indexOf(query?.toLowerCase()) > -1
+          )
+        },
         { childrenPath: 'itemsMap' }
       )
-    : null
+
+      if (filteredServiceSubtree) {
+        filteredServices.push(filteredServiceSubtree)
+      }
+    })
+  }
+
+  return filteredServices
 }
 
 export default filterServicesInfo
