@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useMemo } from 'react'
+import React, { useState, useMemo } from 'react'
 import { TableRow, TableCell, TableSortLabel } from '@mui/material'
 
 import SchemaOperationTable from '../SchemaOperationTable/SchemaOperationTable'
