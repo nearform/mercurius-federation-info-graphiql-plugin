@@ -26,7 +26,7 @@ export default fp(
       hello: String
     }
 
-    type Subscription @extends{ 
+    type Subscription { 
       newUserAdded: User
     }
 

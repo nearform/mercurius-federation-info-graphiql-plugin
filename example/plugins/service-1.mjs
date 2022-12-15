@@ -39,7 +39,7 @@ export default fp(
         author: User @requires(fields: "pid title")
       }
 
-      type Query @extends {
+      type Query {
         topPosts(count: Int): [Post]
       }
 
