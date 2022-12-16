@@ -26,9 +26,9 @@ const FederationInfoContent = ({ federationSchemaUrl }) => {
   useEffect(() => {
     if (schema && servicesViewData) {
       setRootTypes({
-        queries: schema.getQueryType().name,
-        mutations: schema.getMutationType().name,
-        subscriptions: schema.getSubscriptionType().name
+        queries: schema.getQueryType()?.name,
+        mutations: schema.getMutationType()?.name,
+        subscriptions: schema.getSubscriptionType()?.name
       })
       setSchemaViewData(prepareSchemaViewData(servicesViewData, schema))
     }
