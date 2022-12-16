@@ -4,6 +4,13 @@ updates:
     directory: '/'
     schedule:
       interval: 'daily'
+    ignore:
+      - dependency-name: "react"
+        update-types: ["version-update:semver-minor"]
+      - dependency-name: "react-dom"
+        update-types: ["version-update:semver-minor"]
+      - dependency-name: "@testing-library/react"
+        update-types: ["version-update:semver-minor"]
   - package-ecosystem: 'github-actions'
     directory: '/'
     schedule:
