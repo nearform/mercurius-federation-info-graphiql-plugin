@@ -12,7 +12,7 @@ import introspectionTypeToString from '../../lib/introspectionTypeToString'
 const FieldInput = ({ field }) => {
   const { args } = field || {}
   if (!args || !args.length) {
-    return undefined
+    return null
   }
 
   return (

@@ -8,7 +8,7 @@ import { Chip } from '@mui/material'
  */
 const ExtendsLabel = ({ type }) => {
   if (!(type || {}).isExtension) {
-    return undefined
+    return null
   }
 
   return <Chip label="@extends" size="small" color="primary" />

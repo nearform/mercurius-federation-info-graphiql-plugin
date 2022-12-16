@@ -5,7 +5,6 @@ import { createGraphiQLFetcher } from '@graphiql/toolkit'
 import { federationInfoPlugin } from '../../src/federation-info-plugin'
 
 import 'graphiql/graphiql.css'
-import './App.scss'
 
 function App() {
   const federationSchemaUrl = 'http://localhost:3001/federation-schema'
@@ -15,7 +14,7 @@ function App() {
   })
 
   return (
-    <div className="full-height">
+    <div style={{ height: '100vh' }}>
       <GraphiQL
         fetcher={fetcher}
         plugins={[federationInfoPlugin({ federationSchemaUrl })]}
