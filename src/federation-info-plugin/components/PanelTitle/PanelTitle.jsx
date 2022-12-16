@@ -16,7 +16,7 @@ const PanelTitle = ({ children, total }) => (
       gap: 1
     }}
   >
-    <h2 style={{ padding: 0 }}>{children}</h2>
+    <h2 style={{ margin: 0 }}>{children}</h2>
     {total && <Chip label={total} size="small" color="info" />}
   </Box>
 )

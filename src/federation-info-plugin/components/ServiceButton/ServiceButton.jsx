@@ -17,7 +17,7 @@ const ServiceButton = ({ serviceName, total, onChange, selected = false }) => {
       sx={{
         borderRadius: 8,
         paddingX: 2,
-        textTransform: 'capitalize'
+        textTransform: 'none'
       }}
       color="primary"
       selected={selected}

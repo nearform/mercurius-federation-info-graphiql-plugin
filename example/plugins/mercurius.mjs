@@ -9,11 +9,11 @@ export default fp(
       gateway: {
         services: [
           {
-            name: 'user',
+            name: 'user service',
             url: 'http://localhost:4001/graphql'
           },
           {
-            name: 'post',
+            name: 'post service',
             url: 'http://localhost:4002/graphql'
           }
         ]

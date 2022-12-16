@@ -1,32 +1,33 @@
 import React from 'react'
-import styles from './FieldInput.module.scss'
-import joinClassNames from '../../utils/joinClassNames'
+import { Box } from '@mui/material'
+
 import introspectionTypeToString from '../../lib/introspectionTypeToString'
 
 /**
  *
  * @param {Object} props.field grqphql field
- * @param {string} props.className className
  *
  * @returns {JSX.Element}
  */
-const FieldInput = ({ field, className, ...otherProps }) => {
+const FieldInput = ({ field }) => {
   const { args } = field || {}
   if (!args || !args.length) {
     return undefined
   }
 
   return (
-    <span
-      className={joinClassNames(styles.fieldInput, className)}
-      {...otherProps}
+    <Box
+      component="span"
+      sx={{
+        paddingLeft: 0.4
+      }}
     >
       (
       {args.map(
         ({ type, name }) => `${name}: ${introspectionTypeToString(type)}`
       )}
       )
-    </span>
+    </Box>
   )
 }
 

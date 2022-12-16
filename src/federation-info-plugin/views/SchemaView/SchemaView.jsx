@@ -1,81 +1,53 @@
-import React, { useState, useMemo } from 'react'
+import React, { useCallback, useMemo } from 'react'
+import { Box } from '@mui/material'
 
 import PanelTitle from '../../components/PanelTitle/PanelTitle'
+import SchemaFieldsTable from '../../components/SchemaFieldsTable/SchemaFieldsTable'
+import SchemaTypesTable from '../../components/SchemaTypesTable/SchemaTypesTable'
 
-import styles from './SchemaView.module.scss'
+import {
+  fieldArgsToValue,
+  fieldTypeToValue,
+  fieldOwnerServicesToValue,
+  fieldReferencedByToValue,
+  typeOwnerServicesToValue,
+  typeReferencedByToValue
+} from '../../utils/schemaFieldToTableCellValue'
 
-const FieldRow = ({ field, showReference }) => {
-  const input = field.args
-    ? field.args.map(({ type, name }) => `${name}: ${type.toString()}`)
-    : ''
-
-  return (
-    <tr key={field.name}>
-      <td>{field.name}</td>
-      <td>{input}</td>
-      <td>{field.type.toString()}</td>
-      <td>{field.ownerServices.join(',')}</td>
-      {showReference && <td>{field.referencedBy.join(',')}</td>}
-    </tr>
-  )
-}
-
-const FieldsTable = ({ name, fields, showReference }) => {
-  if (!fields) {
-    return null
+const sortFieldsByProperty = (property, order) => (a, b) => {
+  let propertyA = a[property]
+  let propertyB = b[property]
+  if (property === 'input') {
+    propertyA = fieldArgsToValue(a.args)
+    propertyB = fieldArgsToValue(b.args)
+  } else if (property === 'type') {
+    propertyA = fieldTypeToValue(propertyA)
+    propertyB = fieldTypeToValue(propertyB)
+  } else if (property === 'ownerServices') {
+    propertyA = fieldOwnerServicesToValue(propertyA)
+    propertyB = fieldOwnerServicesToValue(propertyB)
+  } else if (property === 'referencedBy') {
+    propertyA = fieldReferencedByToValue(propertyA)
+    propertyB = fieldReferencedByToValue(propertyB)
   }
 
-  return (
-    <>
-      {name && <h2>{name}</h2>}
-      <table width="100%">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Input</th>
-            <th>Type</th>
-            <th>Owner service</th>
-            {showReference && <th>Referenced by</th>}
-          </tr>
-        </thead>
-        <tbody>
-          {fields.map(field => (
-            <FieldRow
-              key={field.name}
-              field={field}
-              showReference={showReference}
-            />
-          ))}
-        </tbody>
-      </table>
-    </>
-  )
+  const compareValues = propertyA.localeCompare(propertyB)
+  return order === 'asc' ? compareValues : compareValues * -1
 }
 
-const TypeRow = ({ type }) => {
-  const [expanded, setExpanded] = useState(true)
-  return (
-    <>
-      <tr onClick={() => setExpanded(!expanded)}>
-        <td>{type.name}</td>
-        <td>{type.ownerServices.join(', ')}</td>
-        <td>
-          {type.referencedBy
-            .map(
-              ({ serviceName, key }) => `${serviceName} @key(${key[0].value})`
-            )
-            .join(<br />)}
-        </td>
-      </tr>
-      {type.fields.length > 0 && expanded && (
-        <tr>
-          <td colSpan={3} className={styles.attributes}>
-            <FieldsTable fields={type.fields} showReference />
-          </td>
-        </tr>
-      )}
-    </>
-  )
+const sortTypesByProperty = (property, order) => (a, b) => {
+  let propertyA = a[property]
+  let propertyB = b[property]
+  if (property === 'referencedBy') {
+    propertyA = typeReferencedByToValue(propertyA)
+    propertyB = typeReferencedByToValue(propertyB)
+  } else if (property === 'ownerServices') {
+    propertyA = typeOwnerServicesToValue(propertyA)
+    propertyB = typeOwnerServicesToValue(propertyB)
+  }
+
+  const compareValues = propertyA.localeCompare(propertyB)
+  return order === 'asc' ? compareValues : compareValues * -1
 }
 
 const SchemaView = ({ schemaViewData, rootTypes }) => {
@@ -89,38 +61,73 @@ const SchemaView = ({ schemaViewData, rootTypes }) => {
       } else if (type.name === rootTypes.mutations) {
         mutations = type.fields
       } else if (type.name === rootTypes.subscriptions) {
-        subscriptions = type.subscriptions
+        subscriptions = type.fields
       } else {
         types.push(type)
       }
     }
+
     return { queries, mutations, subscriptions, types }
   }, [schemaViewData, rootTypes])
 
+  const sortQueries = useCallback(
+    (property, order) => queries.sort(sortFieldsByProperty(property, order)),
+    [queries]
+  )
+
+  const sortMutations = useCallback(
+    (property, order) => mutations.sort(sortFieldsByProperty(property, order)),
+    [mutations]
+  )
+
+  const sortSubscriptions = useCallback(
+    (property, order) =>
+      subscriptions.sort(sortFieldsByProperty(property, order)),
+    [subscriptions]
+  )
+
+  const sortTypes = useCallback(
+    (property, order) => types.sort(sortTypesByProperty(property, order)),
+    [types]
+  )
+
+  const sortTypeFieldTable = useCallback(
+    (typeName, property, order) => {
+      const selectedType = types.find(type => type.name === typeName)
+      if (selectedType) {
+        selectedType.fields.sort(sortFieldsByProperty(property, order))
+      }
+    },
+    [types]
+  )
+
   return (
-    <div className={styles.schemaViewContainer}>
-      <PanelTitle>Overall schema</PanelTitle>
-      <div className={styles.schemaView}>
-        <FieldsTable name={'Queries'} fields={queries} />
-        <FieldsTable name={'Mutations'} fields={mutations} />
-        <FieldsTable name={'Subscriptions'} fields={subscriptions} />
-        <h2>Types</h2>
-        <table>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Defined By</th>
-              <th>Extended by</th>
-            </tr>
-          </thead>
-          <tbody>
-            {types.map(type => (
-              <TypeRow key={type.name} type={type} />
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </div>
+    <Box sx={{ display: 'flex', flex: '4', flexDirection: 'column' }}>
+      <PanelTitle>Unified schema</PanelTitle>
+      <Box>
+        <SchemaFieldsTable
+          name={'Queries'}
+          fields={queries}
+          onSortChange={sortQueries}
+        />
+        <SchemaFieldsTable
+          name={'Mutations'}
+          fields={mutations}
+          onSortChange={sortMutations}
+        />
+        <SchemaFieldsTable
+          name={'Subscriptions'}
+          fields={subscriptions}
+          onSortChange={sortSubscriptions}
+        />
+        <SchemaTypesTable
+          name={'Types'}
+          fields={types}
+          onSortChange={sortTypes}
+          onTypeTableSortChange={sortTypeFieldTable}
+        />
+      </Box>
+    </Box>
   )
 }
 
