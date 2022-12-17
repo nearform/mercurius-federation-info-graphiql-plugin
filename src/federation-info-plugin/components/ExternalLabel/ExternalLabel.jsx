@@ -8,7 +8,7 @@ import { Chip } from '@mui/material'
  */
 const ExternalLabel = ({ field }) => {
   if (!(field || {}).isExternal) {
-    return undefined
+    return null
   }
 
   return <Chip label="@external" size="small" color="warning" />
