@@ -3,17 +3,7 @@
 A [`GraphiQL`](https://github.com/graphql/graphiql) extension to show information about federated schema,
 which service is defining specific types and properties and which services are referencing them. Requires `mercurius-federation-info` [plugin](https://github.com/nearform/mercurius-federation-info), that provides the necessary api with the federation info
 
-## Schema tab:
-Displays a table of GraphQL types showing which service defines it (Defined by column) and which service is extending it (Extended by) and what is using as key.
-Each object type has a sub-table listing its attributes:
-- Input column shows if the attribute has input arguments
-- Type shows what type the attribute is
-- Owner service shows which service defines the attribute
-- Referenced by shows which service is referencing it.
-
-![alt text](docs/schema.png 'Schema View')
-
-## Services tab:
+## Services pane:
 Displays a service tree and federation related directives (@key, @extends @external):
 - list of services names
   - list of types
@@ -22,6 +12,16 @@ Displays a service tree and federation related directives (@key, @extends @exter
 ![alt text](docs/services.png 'Services View')
 
 Check the `mercurius-federation-info` [Github Repo](https://github.com/nearform/mercurius-federation-info) for detailed information.
+
+## Schema pane:
+Displays a table of GraphQL types showing which service defines it (Defined by column) and which service is extending it (Extended by) and what is using as key.
+Each object type has a sub-table listing its attributes:
+- Input column shows if the attribute has input arguments
+- Type shows what type the attribute is
+- Owner service shows which service defines the attribute
+- Referenced by shows which service is referencing it.
+
+![alt text](docs/schema.png 'Schema View')
 
 ## Quick start
 
@@ -62,7 +62,7 @@ app.register(mercurius, {
   },
   graphiql: {
     enabled: true, // Enable GraphiQL
-    plugins: [federationInfoGraphiQLPlugin()] // Add Mercurius Federation Info Graphiql Plugin
+    plugins: [federationInfoGraphiQLPlugin()] // Add Mercurius Federation Info GraphiQL Plugin
   }
 })
 
