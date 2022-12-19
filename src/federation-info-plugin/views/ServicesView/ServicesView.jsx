@@ -12,15 +12,15 @@ import { useDebounce } from 'use-debounce'
  * @returns {JSX.Element}
  */
 const ServicesView = ({ federationServices }) => {
-  const [query, setQuery] = useState('')
-  const [defferedQuery] = useDebounce(query, 400)
+  const [searchText, setSearchText] = useState('')
+  const [debouncedSearchText] = useDebounce(searchText, 150)
 
   const filteredServices = useMemo(
-    () => filterServicesInfo(federationServices, query),
-    [defferedQuery]
+    () => filterServicesInfo(federationServices, debouncedSearchText),
+    [federationServices, debouncedSearchText]
   )
 
-  const services = defferedQuery ? filteredServices : federationServices
+  const services = debouncedSearchText ? filteredServices : federationServices
 
   return (
     <Box
@@ -33,8 +33,8 @@ const ServicesView = ({ federationServices }) => {
     >
       <PanelTitle total={federationServices.length}>Services</PanelTitle>
       <SearchServiceInput
-        query={query}
-        setQuery={setQuery}
+        query={searchText}
+        setQuery={setSearchText}
       ></SearchServiceInput>
       <Box sx={{ overflow: 'auto', paddingRight: 2 }}>
         {services.map(({ serviceName, itemsMap }) => (

@@ -3,8 +3,8 @@ import filterDeep from 'deepdash/filterDeep'
 const filterServicesInfo = (services, query) => {
   const filteredServices = []
 
-  if (query && services.length) {
-    services.map(service => {
+  if (query && services && services.length) {
+    for (const service of services) {
       const filteredServiceSubtree = filterDeep(
         service,
         serviceInfo => {
@@ -23,7 +23,7 @@ const filterServicesInfo = (services, query) => {
       if (filteredServiceSubtree) {
         filteredServices.push(filteredServiceSubtree)
       }
-    })
+    }
   }
 
   return filteredServices
