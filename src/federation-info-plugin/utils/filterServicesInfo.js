@@ -1,4 +1,4 @@
-import { filterDeep } from 'deepdash-es/standalone'
+import filterDeep from 'deepdash/filterDeep'
 
 const filterServicesInfo = (services, query) => {
   const filteredServices = []

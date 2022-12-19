@@ -1,10 +1,11 @@
-import React, { useMemo, useState, useDeferredValue } from 'react'
+import React, { useMemo, useState } from 'react'
 import { Box } from '@mui/material'
 
 import PanelTitle from '../../components/PanelTitle/PanelTitle'
 import ServiceInfo from '../../components/ServiceInfo/ServiceInfo'
 import SearchServiceInput from '../../components/SearchServiceInput/SearchServiceInput'
 import filterServicesInfo from '../../utils/filterServicesInfo'
+import { useDebounce } from 'use-debounce'
 /**
  *
  * @param {Object} props.federationServices result of prepareServicesViewData
@@ -12,7 +13,7 @@ import filterServicesInfo from '../../utils/filterServicesInfo'
  */
 const ServicesView = ({ federationServices }) => {
   const [query, setQuery] = useState('')
-  const defferedQuery = useDeferredValue(query)
+  const [defferedQuery] = useDebounce(query, 400)
 
   const filteredServices = useMemo(
     () => filterServicesInfo(federationServices, query),
@@ -32,7 +33,7 @@ const ServicesView = ({ federationServices }) => {
     >
       <PanelTitle total={federationServices.length}>Services</PanelTitle>
       <SearchServiceInput
-        query={defferedQuery}
+        query={query}
         setQuery={setQuery}
       ></SearchServiceInput>
       <Box sx={{ overflow: 'auto', paddingRight: 2 }}>
