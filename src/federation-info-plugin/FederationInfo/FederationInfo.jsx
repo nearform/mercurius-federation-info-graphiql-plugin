@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Spinner, useSchemaContext } from '@graphiql/react'
+import { Spinner, useSchemaContext, useDragResize } from '@graphiql/react'
 import { Box } from '@mui/material'
 
 import { prepareSchemaViewData } from '../lib/prepareSchemaViewData'
@@ -22,6 +22,12 @@ const FederationInfoContent = ({ federationSchemaUrl }) => {
     isFederationInfoFetching
   } = useFederationInfo(federationSchemaUrl)
 
+  const servicesSchemaResize = useDragResize({
+    defaultSizeRelation: 0.32,
+    direction: 'horizontal',
+    sizeThresholdSecond: 250,
+    storageKey: 'serviceSchemaResize'
+  })
   //needs both schema and servicesViewData to prepare the schema view
   useEffect(() => {
     if (schema && servicesViewData) {
@@ -51,18 +57,31 @@ const FederationInfoContent = ({ federationSchemaUrl }) => {
     )
   }
 
+  console.log(servicesSchemaResize)
   return (
     <Box>
       <h1 style={{ margin: 0 }}>Federation Info</h1>
-      {isFetching && <Spinner />}
-      {!isFetching && (
-        <Box
-          sx={{ display: 'flex', flexDirection: 'row', marginTop: 1, gap: 5 }}
+      <Box sx={{ display: 'flex', flex: 1, marginTop: 1, gap: 0 }}>
+        <div
+          ref={servicesSchemaResize.firstRef}
+          style={{
+            minWidth: '200px'
+          }}
         >
-          <ServicesView federationServices={servicesViewData} />
-          <SchemaView schemaViewData={schemaViewData} rootTypes={rootTypes} />
-        </Box>
-      )}
+          {!isFetching && (
+            <ServicesView federationServices={servicesViewData} />
+          )}
+        </div>
+        <div ref={servicesSchemaResize.dragBarRef}>
+          <div className="graphiql-horizontal-drag-bar" />
+        </div>
+        <div ref={servicesSchemaResize.secondRef} style={{ minWidth: '200px' }}>
+          {isFetching && <Spinner />}
+          {!isFetching && (
+            <SchemaView schemaViewData={schemaViewData} rootTypes={rootTypes} />
+          )}
+        </div>
+      </Box>
     </Box>
   )
 }
