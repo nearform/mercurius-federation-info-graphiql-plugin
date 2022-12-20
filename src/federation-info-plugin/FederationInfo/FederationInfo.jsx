@@ -57,7 +57,6 @@ const FederationInfoContent = ({ federationSchemaUrl }) => {
     )
   }
 
-  console.log(servicesSchemaResize)
   return (
     <Box>
       <h1 style={{ margin: 0 }}>Federation Info</h1>
