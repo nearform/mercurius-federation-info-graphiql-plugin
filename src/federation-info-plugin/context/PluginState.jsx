@@ -3,92 +3,101 @@ import useLocalStorage from 'react-use/lib/useLocalStorage'
 
 export const PluginStateContext = createContext()
 
-const LOCAL_STORAGE_KEY = 'mercuriusFederetionInfoGraphiqlPluginState'
+const LOCAL_STORAGE_PREFIX = 'mercuriusFederetionInfoGraphiqlPluginState'
 
 const isArrayOrReset = value => (Array.isArray(value) ? value : [])
 
 const initialState = {
   openServices: [],
   openServiceTreeNodes: [],
-  openSchemaTables: []
+  openSchemaTables: [],
+  searchServicesQuery: ''
 }
 
 export const PluginStateProvider = ({ children }) => {
-  const [value, setValue] = useLocalStorage(LOCAL_STORAGE_KEY, initialState)
+  const [openServices, persistServiceOpen] = useLocalStorage(
+    `${LOCAL_STORAGE_PREFIX}:openServices`,
+    initialState.openServices
+  )
+  const [openServiceTreeNodes, persistOpenServiceTreeNodes] = useLocalStorage(
+    `${LOCAL_STORAGE_PREFIX}:openServiceTreeNodes`,
+    initialState.openServiceTreeNodes
+  )
+  const [searchServicesQuery, persistServicesSearchQuery] = useLocalStorage(
+    `${LOCAL_STORAGE_PREFIX}:searchServicesQuery`,
+    initialState.searchServicesQuery
+  )
+  const [openSchemaTables, persistSchemaTableOpen] = useLocalStorage(
+    `${LOCAL_STORAGE_PREFIX}:openSchemaTables`,
+    initialState.openSchemaTables
+  )
 
   const setServiceOpen = serviceName => {
-    const existingOpenServices = isArrayOrReset(value.openServices)
+    const existingOpenServices = isArrayOrReset(openServices)
 
     const existingOpenServicesSet = new Set([
       ...existingOpenServices,
       serviceName
     ])
 
-    setValue({
-      ...value,
-      openServices: Array.from(existingOpenServicesSet)
-    })
+    persistServiceOpen(Array.from(existingOpenServicesSet))
   }
 
   const setServiceClosed = serviceName => {
-    const existingOpenServices = isArrayOrReset(value.openServices)
+    const existingOpenServices = isArrayOrReset(openServices)
     const existingOpenServicesSet = new Set([
       ...existingOpenServices,
       serviceName
     ])
 
     existingOpenServicesSet.delete(serviceName)
-    setValue({
-      ...value,
-      openServices: Array.from(existingOpenServicesSet)
-    })
+    persistServiceOpen(Array.from(existingOpenServicesSet))
   }
 
   const setTreeOpenState = ({ openServices, openServiceTreeNodes }) => {
-    setValue({
-      ...value,
-      openServices,
-      openServiceTreeNodes
-    })
+    persistServiceOpen(openServices)
+    persistOpenServiceTreeNodes(openServiceTreeNodes)
   }
 
   const setOpenServiceTreeNodes = nodeIds => {
-    setValue({
-      ...value,
-      openServiceTreeNodes: nodeIds
-    })
+    persistOpenServiceTreeNodes(nodeIds)
   }
 
   const setSchemaTableOpen = tableId => {
-    const existingOpenTables = isArrayOrReset(value.openSchemaTables)
+    const existingOpenTables = isArrayOrReset(openSchemaTables)
     const existingOpenTablesSet = new Set([...existingOpenTables, tableId])
 
-    setValue({ ...value, openSchemaTables: Array.from(existingOpenTablesSet) })
+    persistSchemaTableOpen(Array.from(existingOpenTablesSet))
   }
 
   const setSchemaTableClosed = tableId => {
-    const existingOpenTables = isArrayOrReset(value.openSchemaTables)
+    const existingOpenTables = isArrayOrReset(openSchemaTables)
     const existingOpenTablesSet = new Set([...existingOpenTables, tableId])
 
     existingOpenTablesSet.delete(tableId)
 
-    setValue({ ...value, openSchemaTables: Array.from(existingOpenTablesSet) })
+    persistSchemaTableOpen(Array.from(existingOpenTablesSet))
+  }
+
+  const setServicesSearchQuery = query => {
+    persistServicesSearchQuery(query)
   }
 
   // Manually set the values or use the initial state.
   // This avoids the case there is a previous, old, local state
   // that does not have some fields in it.
   const providerValue = {
-    openServices: value.openServices || initialState.openServices,
-    openServiceTreeNodes:
-      value.openServiceTreeNodes || initialState.openServiceTreeNodes,
-    openSchemaTables: value.openSchemaTables || initialState.openSchemaTables,
+    openServices,
+    openServiceTreeNodes,
+    openSchemaTables,
+    searchServicesQuery,
     setServiceOpen,
     setServiceClosed,
     setTreeOpenState,
     setOpenServiceTreeNodes,
     setSchemaTableOpen,
-    setSchemaTableClosed
+    setSchemaTableClosed,
+    setServicesSearchQuery
   }
 
   return (

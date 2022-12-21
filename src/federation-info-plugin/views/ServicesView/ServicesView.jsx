@@ -13,14 +13,22 @@ import { usePluginState } from '../../context/PluginState'
  * @returns {JSX.Element}
  */
 const ServicesView = ({ federationServices }) => {
-  const [searchText, setSearchText] = useState('')
+  const { setTreeOpenState, setServicesSearchQuery, searchServicesQuery } =
+    usePluginState()
+  const [searchText, setSearchText] = useState(searchServicesQuery)
   const [debouncedSearchText] = useDebounce(searchText, 150)
-  const { setTreeOpenState } = usePluginState()
 
-  const { filteredServices, treeOpenState } = useMemo(
-    () => filterServicesInfo(federationServices, debouncedSearchText),
-    [federationServices, debouncedSearchText]
-  )
+  const { filteredServices, treeOpenState } = useMemo(() => {
+    return filterServicesInfo(federationServices, debouncedSearchText)
+  }, [federationServices, debouncedSearchText])
+
+  useEffect(() => {
+    if (searchServicesQuery !== debouncedSearchText) {
+      setServicesSearchQuery(debouncedSearchText)
+    }
+    //not including the setServicesSearchQuery, should never change
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [debouncedSearchText])
 
   useEffect(() => {
     if (searchText && treeOpenState) {
