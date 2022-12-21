@@ -28,7 +28,6 @@ export default function useFederationInfo(federationSchemaUrl) {
         setServicesViewData(prepareServicesViewData(federationSchema))
         setFederationInfoFetching(false)
       } catch (e) {
-        console.log(e)
         setFetchFederationInfoError(e)
       }
     }

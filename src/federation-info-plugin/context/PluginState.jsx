@@ -18,6 +18,7 @@ export const PluginStateProvider = ({ children }) => {
 
   const setServiceOpen = serviceName => {
     const existingOpenServices = isArrayOrReset(value.openServices)
+
     const existingOpenServicesSet = new Set([
       ...existingOpenServices,
       serviceName
@@ -37,10 +38,17 @@ export const PluginStateProvider = ({ children }) => {
     ])
 
     existingOpenServicesSet.delete(serviceName)
-
     setValue({
       ...value,
       openServices: Array.from(existingOpenServicesSet)
+    })
+  }
+
+  const setTreeOpenState = ({ openServices, openServiceTreeNodes }) => {
+    setValue({
+      ...value,
+      openServices,
+      openServiceTreeNodes
     })
   }
 
@@ -77,6 +85,7 @@ export const PluginStateProvider = ({ children }) => {
     openSchemaTables: value.openSchemaTables || initialState.openSchemaTables,
     setServiceOpen,
     setServiceClosed,
+    setTreeOpenState,
     setOpenServiceTreeNodes,
     setSchemaTableOpen,
     setSchemaTableClosed

@@ -1,32 +1,62 @@
-import filterDeep from 'deepdash/filterDeep'
+const matchesSearchInput = (search, toCompare) =>
+  toCompare?.toLowerCase()?.indexOf(search?.toLowerCase()) > -1
 
+const hasMatches = obj => obj && Object.keys(obj).length > 0
+//make it a hook maybe?
 const filterServicesInfo = (services, query) => {
   const filteredServices = []
+  const treeOpenState = {
+    openServices: [],
+    openServiceTreeNodes: []
+  }
 
+  if (!query || query.length < 2) {
+    return { filteredServices: services }
+  }
+
+  //check if we even do any filtering at all
   if (query && services && services.length) {
+    //loop and search in services
     for (const service of services) {
-      const filteredServiceSubtree = filterDeep(
-        service,
-        serviceInfo => {
-          // filter if the query text is found in either the name, service name or type name
-          return (
-            serviceInfo?.name?.toLowerCase()?.indexOf(query?.toLowerCase()) >
-              -1 ||
-            serviceInfo?.serviceName
-              ?.toLowerCase()
-              ?.indexOf(query?.toLowerCase()) > -1
+      let matchingTypes = {}
+      //loop and search in types
+      for (const [typeName, typeDetails] of Object.entries(service.itemsMap)) {
+        const matchingFields = {}
+        if (typeDetails.itemsMap) {
+          //loop and search in fields
+          for (const [fieldName, fieldDetails] of Object.entries(
+            typeDetails.itemsMap
+          )) {
+            if (matchesSearchInput(query, fieldName)) {
+              matchingFields[fieldName] = fieldDetails
+            }
+          }
+        }
+        //handle found field
+        if (hasMatches(matchingFields)) {
+          //todo add directly to the thing
+          treeOpenState.openServiceTreeNodes.push(
+            `${service.serviceName}-${typeName}`
           )
-        },
-        { childrenPath: 'itemsMap' } // this is where the recursion magic happen
-      )
+          matchingTypes[typeName] = { ...typeDetails, itemsMap: matchingFields }
+          //find types
+        } else if (matchesSearchInput(query, typeName)) {
+          matchingTypes[typeName] = { ...typeDetails }
+        }
+      }
+      //handle found  types
+      if (hasMatches(matchingTypes)) {
+        treeOpenState.openServices.push(service.serviceName)
 
-      if (filteredServiceSubtree) {
-        filteredServices.push(filteredServiceSubtree)
+        filteredServices.push({ ...service, itemsMap: matchingTypes })
+        //find services
+      } else if (matchesSearchInput(query, service.serviceName)) {
+        filteredServices.push(service)
       }
     }
   }
 
-  return filteredServices
+  return { filteredServices, treeOpenState }
 }
 
 export default filterServicesInfo
