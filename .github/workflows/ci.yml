@@ -37,9 +37,7 @@ jobs:
         uses: cypress-io/github-action@v5.0.2
         with:
             browser: chrome
-            start: npm run example
-            # wait-on: 'http://localhost:3001'
-            wait-on-timeout: 120
+            start: npm ci && npm run example
 
   automerge:
     name: Merge dependabot's PRs
