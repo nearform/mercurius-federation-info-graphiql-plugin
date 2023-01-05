@@ -21,9 +21,22 @@ jobs:
           npm test
           npm run build
 
+  e2e: 
+    name: Run Cypress Tests
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v3
+        - uses: actions/setup-node@v3
+          with:
+            node-version-file: '.nvmrc'
+        - run: |
+            npm ci
+            npm run example
+            npm run e2e
+
   automerge:
     name: Merge dependabot's PRs
-    needs: test
+    needs: [test, e2e]
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
