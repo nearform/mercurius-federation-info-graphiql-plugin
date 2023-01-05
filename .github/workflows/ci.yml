@@ -21,18 +21,25 @@ jobs:
           npm test
           npm run build
 
-  e2e: 
+  e2e:
     name: Run Cypress Tests
-      runs-on: ubuntu-latest
-      steps:
-        - uses: actions/checkout@v3
-        - uses: actions/setup-node@v3
-          with:
-            node-version-file: '.nvmrc'
-        - run: |
-            npm ci
-            npm run example
-            npm run e2e
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3 
+
+      - name: Node
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: '.nvmrc'
+      
+      - name: Cypress run
+        uses: cypress-io/github-action@v5.0.2
+        with:
+            browser: chrome
+            start: npm run example
+            wait-on: 'http://localhost:3001'
+            wait-on-timeout: 120
 
   automerge:
     name: Merge dependabot's PRs
