@@ -32,12 +32,18 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version-file: '.nvmrc'
-      
+      - name: Install dependencies
+        uses: cypress-io/github-action@v5.0.2
+        with:
+          # just perform install
+          runTests: false
+      - run: npm ci
+
       - name: Cypress run
         uses: cypress-io/github-action@v5.0.2
         with:
             browser: chrome
-            start: npm ci && npm run example
+            start: npm run example
 
   automerge:
     name: Merge dependabot's PRs
