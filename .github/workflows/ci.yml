@@ -39,7 +39,7 @@ jobs:
             browser: chrome
             start: npm run example
             # wait-on: 'http://localhost:3001'
-            # wait-on-timeout: 120
+            wait-on-timeout: 120
 
   automerge:
     name: Merge dependabot's PRs
