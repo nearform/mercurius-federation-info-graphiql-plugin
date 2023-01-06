@@ -4,6 +4,6 @@ describe('plugin page', () => {
     cy.get('[aria-label="Show Federation info explorer"]').click()
     cy.contains('Federation Info')
     cy.contains('Services')
-    cy.contains('Welcome to GraphiQL')
+    cy.contains('Welcome to GraphiQL') //
   })
 })
