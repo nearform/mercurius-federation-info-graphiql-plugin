@@ -51,9 +51,6 @@ jobs:
         with:
             browser: chrome
             start: npm run example
-            runTests: false
-
-      - run: npm run e2e
 
   automerge:
     name: Merge dependabot's PRs
