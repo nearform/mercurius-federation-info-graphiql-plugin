@@ -1,6 +1,7 @@
 Cypress.Commands.add('resolve', (name, options = {}) => {
   const getValue = () => {
     const win = cy.state('window')
+    console.log(' win[name]', win[name])
     return win[name]
   }
   const resolveValue = () => {
