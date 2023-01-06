@@ -114,8 +114,5 @@
   "umd": "dist/umd/index.js",
   "files": [
     "dist"
-  ],
-  "dependencies": {
-    "cypress-network-idle": "^1.11.2"
-  }
+  ]
 }
