@@ -28,6 +28,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3 
 
+      - name: Upload screenshots
+        uses: actions/upload-artifact@latest
+        if: failure()
+        with:
+          name: cypress-snapshots
+          path: cypress/snapshots
+
       - name: Node
         uses: actions/setup-node@v3
         with:
@@ -44,6 +51,9 @@ jobs:
         with:
             browser: chrome
             start: npm run example
+            runTests: false
+
+      - run: npm run e2e
 
   automerge:
     name: Merge dependabot's PRs
