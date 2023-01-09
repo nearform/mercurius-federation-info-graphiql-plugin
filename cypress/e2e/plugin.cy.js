@@ -7,10 +7,7 @@ describe('plugin page', () => {
       }
       return true
   })
-    //saving graphql request as an alias
-    cy.intercept('graphql').as('graphql')
     cy.visit('/graphiql')
-    cy.wait('@graphql')
     cy.get('[aria-label="Show Federation info explorer"]').click()
     cy.contains('Federation Info')
     cy.contains('Services')
