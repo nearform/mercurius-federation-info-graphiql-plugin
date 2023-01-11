@@ -79,16 +79,15 @@ const config = {
     //     channel: 'chrome',
     //   },
     // },
-  ]
-
+  ],
+  /* Run your local dev server before starting the tests */
+  webServer: {
+    command: 'npm run example',
+    port: 3001,
+    reuseExistingServer: true
+  }
   /* Folder for test artifacts such as screenshots, videos, traces, etc. */
   // outputDir: 'test-results/',
-
-  /* Run your local dev server before starting the tests */
-  // webServer: {
-  //   command: 'npm run start',
-  //   port: 3000,
-  // },
 }
 
 module.exports = config
