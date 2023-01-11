@@ -87,6 +87,7 @@
   },
   "jest": {
     "testEnvironment": "jsdom",
+    "testPathIgnorePatterns": ["spec.js"],
     "moduleNameMapper": {
       "\\.(css|less|scss)$": "<rootDir>/src/__mocks__/styleMock.js",
       "\\.svg$": "<rootDir>/src/__mocks__/svgMock.js"
