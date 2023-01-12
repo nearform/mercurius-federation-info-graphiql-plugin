@@ -257,5 +257,6 @@ A design refactoring of the plugin is planned to improve the user experience.
 The `figma` project with the definition can be found [here](https://www.figma.com/file/Qf8hgYpM5kUzItgVdesLbu)
 
 ### E2E Testing
-
-- npx playwright test 
+To run Playwright tests locally: 
+```npx playwright test 
+This will start the sample graphQL server and run the tests on Chrome. 
