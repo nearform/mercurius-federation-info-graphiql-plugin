@@ -258,5 +258,5 @@ The `figma` project with the definition can be found [here](https://www.figma.co
 
 ### E2E Testing
 To run Playwright tests locally: 
-```npx playwright test 
+`npx playwright test` 
 This will start the sample graphQL server and run the tests on Chrome. 
