@@ -21,9 +21,26 @@ jobs:
           npm test
           npm run build
 
+  e2e:
+    name: Playwright Tests
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-node@v3
+      with:
+        node-version-file: '.nvmrc'
+    - run: npm ci
+    - run: npx playwright install --with-deps
+    - run: npx playwright test
+    - uses: actions/upload-artifact@v3
+      with:
+        name: playwright-report
+        path: playwright-report/
+        retention-days: 30
+
   automerge:
     name: Merge dependabot's PRs
-    needs: test
+    needs: [test, e2e]
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
