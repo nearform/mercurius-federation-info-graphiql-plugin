@@ -29,9 +29,9 @@ jobs:
     - uses: actions/setup-node@v3
       with:
         node-version-file: '.nvmrc'
-      run: npm ci
-      run: npx playwright install --with-deps
-      run: npx playwright test
+    - run: npm ci
+    - run: npx playwright install --with-deps
+    - run: npx playwright test
     - uses: actions/upload-artifact@v3
       with:
         name: playwright-report
