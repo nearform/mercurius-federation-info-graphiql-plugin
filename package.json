@@ -1,6 +1,6 @@
 {
   "name": "mercurius-federation-info-graphiql-plugin",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "This is a graphiql plugin to display mercurius federation info.",
   "repository": {
     "type": "git",
@@ -87,7 +87,9 @@
   },
   "jest": {
     "testEnvironment": "jsdom",
-    "testPathIgnorePatterns": ["spec.js"],
+    "testPathIgnorePatterns": [
+      "spec.js"
+    ],
     "moduleNameMapper": {
       "\\.(css|less|scss)$": "<rootDir>/src/__mocks__/styleMock.js",
       "\\.svg$": "<rootDir>/src/__mocks__/svgMock.js"
