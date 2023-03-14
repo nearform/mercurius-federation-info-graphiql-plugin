@@ -30,7 +30,8 @@ without a direct install in the `GraphiQL` `mercurius` integration.
 
 ```javascript
 import Fastify from 'fastify'
-import mercurius from 'mercurius'
+import mercuriusGateway from '@mercuriusjs/gateway'
+
 import federationInfo, {
   federationInfoGraphiQLPlugin
 } from 'mercurius-federation-info'
@@ -47,7 +48,7 @@ const resolvers = {
   }
 }
 
-app.register(mercurius, {
+app.register(mercuriusGateway, {
   gateway: {
     services: [
       {

@@ -1,9 +1,9 @@
-import mercurius from 'mercurius'
+import mercuriusGateway from '@mercuriusjs/gateway'
 import fp from 'fastify-plugin'
 
 export default fp(
   async (fastify, options) => {
-    fastify.register(mercurius, {
+    fastify.register(mercuriusGateway, {
       graphiql: options.graphiql,
       jit: 1,
       gateway: {
