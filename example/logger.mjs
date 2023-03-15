@@ -3,7 +3,7 @@ import pino from 'pino'
 const logger = options => {
   return pino(
     {
-      name: 'mercurius-federation-sample',
+      name: 'mercurius-federation-info-graphiql-plugin-example',
       level: options.level || 'info',
       formatters: {
         level(label) {
