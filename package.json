@@ -1,6 +1,6 @@
 {
   "name": "mercurius-federation-info-graphiql-plugin",
-  "version": "0.3.10",
+  "version": "0.3.11",
   "description": "This is a graphiql plugin to display mercurius federation info.",
   "repository": {
     "type": "git",
