@@ -45,7 +45,7 @@
     "@graphiql/react": "^0.17.0",
     "@graphiql/toolkit": "^0.8.0",
     "@mercuriusjs/federation": "^2.0.0",
-    "@mercuriusjs/gateway": "^1.2.0",
+    "@mercuriusjs/gateway": "^2.0.0",
     "@mui/icons-material": "^5.10.16",
     "@mui/lab": "^5.0.0-alpha.111",
     "@mui/material": "^5.10.16",
