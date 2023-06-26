@@ -42,7 +42,7 @@
     "@emotion/styled": "^11.10.5",
     "@fastify/autoload": "^5.4.1",
     "@fastify/cors": "^8.1.1",
-    "@graphiql/react": "^0.17.0",
+    "@graphiql/react": "^0.18.0",
     "@graphiql/toolkit": "^0.8.0",
     "@mercuriusjs/federation": "^2.0.0",
     "@mercuriusjs/gateway": "^2.0.0",
