@@ -77,7 +77,7 @@
     "jest-environment-jsdom": "^29.3.1",
     "lint-staged": "^13.0.3",
     "mercurius-federation-info": "*",
-    "prettier": "^2.7.1",
+    "prettier": "^3.0.1",
     "prop-types": "^15.8.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
