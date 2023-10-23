@@ -75,7 +75,7 @@
     "husky": "^8.0.1",
     "jest": "^29.2.2",
     "jest-environment-jsdom": "^29.3.1",
-    "lint-staged": "^14.0.1",
+    "lint-staged": "^15.0.2",
     "mercurius-federation-info": "*",
     "prettier": "^2.7.1",
     "prop-types": "^15.8.1",
