@@ -255,7 +255,9 @@ The plugin component should be added to the GraphiQL component in the `plugins` 
 
 ### Design
 A design refactoring of the plugin is planned to improve the user experience. 
-The `figma` project with the definition can be found [here](https://www.figma.com/design/12Tx7kmqV5MSEgx7k0FEoe/Mercurius-Federation-info?node-id=68-4267&t=cYyQrFbwJR1SB1Aq-1)
+
+The `figma` project with the definition can be found [here](https://www.figma.com/design/12Tx7kmqV5MSEgx7k0FEoe/Mercurius-Federation-info?node-id=68-4267&t=NZiKDPwdeFXkXFye-1)
+
 
 ### E2E Testing
 To run Playwright tests locally: 
