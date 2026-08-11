@@ -5,7 +5,7 @@ import FederationInfoContent from '../FederationInfo/FederationInfo'
 import { PluginStateProvider } from '../context/PluginState'
 import PluginThemeProvider from '../context/PluginThemeProvider'
 
-import { ReactComponent as ShareNodes } from '../icons/share-nodes.svg'
+import ShareNodes from '../icons/share-nodes.svg?react'
 
 const FederationInfoEntryPoint = props => (
   <PluginStateProvider>
