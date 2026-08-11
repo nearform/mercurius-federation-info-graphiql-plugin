@@ -21,9 +21,8 @@ export default function useFederationInfo(federationSchemaUrl) {
   useEffect(() => {
     const fetchSchema = async () => {
       try {
-        const federationSchema = await fetchFederationSchema(
-          federationSchemaUrl
-        )
+        const federationSchema =
+          await fetchFederationSchema(federationSchemaUrl)
 
         setServicesViewData(prepareServicesViewData(federationSchema))
         setFederationInfoFetching(false)
