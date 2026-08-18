@@ -1,4 +1,4 @@
-require('@testing-library/jest-dom/extend-expect')
+require('@testing-library/jest-dom')
 
 // seems the graphql toolkit is using this and causing an error after changing to the non-builtin jest-environment-jsdom
 const { TextEncoder, TextDecoder } = require('util')

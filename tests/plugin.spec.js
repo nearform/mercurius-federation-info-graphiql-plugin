@@ -15,8 +15,10 @@ test('checks Federation Info headings and buttons', async ({ page }) => {
   await expect(
     page.getByRole('heading', { name: 'Unified schema' })
   ).toBeVisible()
-  await page.getByText('heading', { name: 'Queries' }).isVisible()
-  await page.getByText('heading', { name: 'Mutations' }).isVisible()
-  await page.getByText('heading', { name: 'Subscriptions' }).isVisible()
-  await page.getByText('heading', { name: 'Types' }).isVisible()
+  await expect(page.getByRole('heading', { name: 'Queries' })).toBeVisible()
+  await expect(page.getByRole('heading', { name: 'Mutations' })).toBeVisible()
+  await expect(
+    page.getByRole('heading', { name: 'Subscriptions' })
+  ).toBeVisible()
+  await expect(page.getByRole('heading', { name: 'Types' })).toBeVisible()
 })
