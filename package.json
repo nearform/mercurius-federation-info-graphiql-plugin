@@ -40,12 +40,12 @@
     "@commitlint/config-conventional": "^18.1.0",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
-    "@fastify/autoload": "^5.4.1",
-    "@fastify/cors": "^8.1.1",
+    "@fastify/autoload": "^6.5.0",
+    "@fastify/cors": "^11.3.0",
     "@graphiql/react": "^0.17.0",
     "@graphiql/toolkit": "^0.9.1",
-    "@mercuriusjs/federation": "^2.0.0",
-    "@mercuriusjs/gateway": "^2.0.0",
+    "@mercuriusjs/federation": "^5.1.1",
+    "@mercuriusjs/gateway": "^5.2.0",
     "@mui/icons-material": "^5.10.16",
     "@mui/lab": "^5.0.0-alpha.111",
     "@mui/material": "^5.10.16",
@@ -68,7 +68,7 @@
     "eslint-plugin-prettier": "^5.5.6",
     "eslint-plugin-react": "^7.31.10",
     "eslint-plugin-react-hooks": "^4.6.0",
-    "fastify": "^4.9.2",
+    "fastify": "^5.12.1",
     "graphiql": "^3.0.0",
     "graphql": "^16.6.0",
     "graphql-ws": "^5.11.2",
@@ -117,5 +117,10 @@
   "umd": "dist/umd/index.js",
   "files": [
     "dist"
-  ]
+  ],
+  "overrides": {
+    "mercurius-federation-info": {
+      "fastify": "$fastify"
+    }
+  }
 }
