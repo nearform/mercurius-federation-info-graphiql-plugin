@@ -94,7 +94,7 @@
     ],
     "moduleNameMapper": {
       "\\.(css|less|scss)$": "<rootDir>/src/__mocks__/styleMock.js",
-      "\\.svg(\\?react)?$": "<rootDir>/src/__mocks__/svgMock.js"
+      "\\.svg\\?react$": "<rootDir>/src/__mocks__/svgMock.js"
     }
   },
   "lint-staged": {
