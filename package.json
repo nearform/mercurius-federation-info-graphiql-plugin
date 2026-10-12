@@ -47,7 +47,7 @@
     "@mercuriusjs/federation": "^5.1.1",
     "@mercuriusjs/gateway": "^5.2.0",
     "@mui/icons-material": "^5.10.16",
-    "@mui/lab": "^5.0.0-alpha.111",
+    "@mui/lab": "^6.0.0-dev.20240529-082515-213b5e33ab",
     "@mui/material": "^5.10.16",
     "@playwright/test": "^1.62.1",
     "@rollup/plugin-replace": "^5.0.1",
