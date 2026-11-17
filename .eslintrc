@@ -1,12 +1,11 @@
 {
   "extends": [
     "eslint:recommended",
-    "plugin:prettier/recommended",
-    "eslint:recommended",
     "plugin:react/recommended",
     "plugin:react/jsx-runtime",
-    "react-app",
-    "react-app/jest"
+    "plugin:react-hooks/recommended",
+    "plugin:jest/recommended",
+    "plugin:prettier/recommended"
   ],
   "env": {
     "node": true,
@@ -15,7 +14,7 @@
     "browser": true
   },
   "parserOptions": {
-    "ecmaVersion": 2021,
+    "ecmaVersion": "latest",
     "sourceType": "module",
     "ecmaFeatures": {
       "jsx": true
@@ -31,7 +30,12 @@
     "react/jsx-uses-react": "error",
     "react/jsx-uses-vars": "error",
     "react/react-in-jsx-scope": "error",
-    "prettier/prettier": ["error", { "singleQuote": true }]
+    "prettier/prettier": [
+      "error",
+      {
+        "singleQuote": true
+      }
+    ]
   },
   "settings": {
     "react": {
